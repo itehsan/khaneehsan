@@ -21,8 +21,8 @@
       direction: rtl;
       backdrop-filter: brightness(0.9);
       margin: 0;
-      font-size: 20px; /* سایز فونت بزرگ‌تر */
-      font-weight: 600; /* فونت بولد */
+      font-size: 20px;
+      font-weight: 600;
     }
     .profile {
       margin-bottom: 20px;
@@ -38,8 +38,8 @@
     }
     h2 {
       margin-top: 15px;
-       color: #000;  /* رنگ مشکی */
-       font-size: 28px; /* بزرگ‌تر و بولدتر */
+      color: #000;
+      font-size: 28px;
       font-weight: 700;
     }
     .link {
@@ -54,8 +54,8 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       transition: transform 0.2s;
       flex-wrap: nowrap;
-      font-size: 20px; /* بزرگ‌تر */
-      font-weight: 600; /* بولد */
+      font-size: 20px;
+      font-weight: 600;
     }
     .link:hover {
       transform: scale(1.03);
@@ -71,12 +71,46 @@
       font-size: inherit;
       font-weight: inherit;
     }
-    /* بزرگ‌تر کردن فونت لینک‌های ایتا و تلگرام */
     .telegram-link a,
     .eitaa-link a {
       font-weight: 700;
-      font-size: 22px; /* کمی بزرگ‌تر */
+      font-size: 22px;
     }
+
+    .contact-box {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      max-width: 90%;
+      margin: 25px auto 10px;
+      padding: 15px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 15px;
+      font-size: 18px;
+      font-weight: 600;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .contact-box img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .contact-box h3 {
+      margin: 0 0 5px;
+      font-size: 18px;
+      color: #000;
+    }
+
+    .contact-box p {
+      margin: 0;
+      font-size: 16px;
+      color: #444;
+    }
+
     @media screen and (max-width: 480px) {
       body {
         font-size: 18px;
@@ -122,6 +156,24 @@
   <div class="link">
     <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
     <a href="https://youtube.com/@purehealthylifestyle4129" target="_blank">یوتیوب دکتر فرشته اسفیدانی</a>
+  </div>
+
+  <!-- ارتباط با واحد پیک -->
+  <div class="contact-box">
+    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">
+    <div>
+      <h3>ارتباط با واحد پیک خانه احسان</h3>
+      <p>۰۹۱۲۳۴۵۶۷۸۹</p>
+    </div>
+  </div>
+
+  <!-- ارتباط با بازرگانی -->
+  <div class="contact-box">
+    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">
+    <div>
+      <h3>ارتباط با بازرگانی خانه احسان</h3>
+      <p>۰۲۱-۱۲۳۴۵۶۷۸</p>
+    </div>
   </div>
 </body>
 </html>
