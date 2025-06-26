@@ -44,6 +44,101 @@ h2 {
   font-weight: 700;
 }
 
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  margin: 10px auto;
+  padding: 12px 18px;
+  max-width: 90%;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  flex-wrap: nowrap;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.link:hover {
+  transform: scale(1.03);
+}
+
+.link img {
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+.link a {
+  text-decoration: none;
+  color: #333;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.telegram-link a,
+.eitaa-link a {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.contact-box {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  max-width: 90%;
+  margin: 25px auto 10px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 600;
+  direction: rtl;
+  text-align: right;
+}
+
+.contact-box div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.contact-box h3 {
+  margin: 0 0 5px;
+  font-size: 20px;
+  color: #000;
+}
+
+.contact-box p {
+  margin: 3px 0;
+  font-size: 18px;
+  color: #444;
+}
+
+.contact-box p a {
+  text-decoration: none;
+  color: #444;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 18px;
+  }
+
+  .telegram-link a,
+  .eitaa-link a {
+    font-size: 20px;
+  }
+
+  .link img {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+  }
+}
+
 .blink {
   animation: blink-animation 1s steps(2, start) infinite;
   color: #d00000;
@@ -58,48 +153,65 @@ h2 {
   }
 }
 
+.notice-box {
+  font-size: 22px;
+  font-weight: bold;
+  color: #005f8c;
+  margin: 25px auto 10px;
+  display: inline-block;
+}
+
   </style>
 </head>
 <body>
   <div class="profile">
     <img src="https://itehsan.github.io/khaneehsan/logo.png" alt="Logo" />
     <h2>خانه احسان دریچه ای به زندگی پاک</h2>
-  </div>  <!-- آدرس -->  <div class="contact-box" style="justify-content: flex-start;">
-    <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Location Icon" style="width: 24px; height: 24px;" />
-    <div style="text-align: right;">
-      <h3 style="font-size: 22px;">آدرس خانه احسان</h3>
-      <p style="font-size: 20px; direction: rtl; margin: 0;">
-        استان خراسان رضوی، مشهد، منطقه ۹، بلوار لادن، بعد از لادن ۵۱
-      </p>
-    </div>
-  </div>  <!-- پیک -->  <div class="contact-box" style="flex-direction: column; align-items: flex-end;">
-    <h3 style="font-size: 20px; margin-bottom: 8px;">ارتباط با واحد پیک خانه احسان</h3>
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <a href="tel:09055719311" style="color: #444; text-decoration: none;">09055719311</a>
-      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" style="width: 20px;" />
-    </div>
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <a href="tel:05135099311" style="color: #444; text-decoration: none;">051-35099311-12</a>
-      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" style="width: 20px;" />
-    </div>
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <a href="tel:05131903" style="color: #444; text-decoration: none;">051-31903</a>
-      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" style="width: 20px;" />
-    </div>
-  </div>  <!-- بازرگانی -->  <div class="contact-box" style="flex-direction: column; align-items: flex-end;">
-    <h3 style="font-size: 20px; margin-bottom: 8px;">ارتباط با بازرگانی خانه احسان</h3>
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <a href="tel:05135099313" style="color: #444; text-decoration: none;">051-35099313</a>
-      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" style="width: 20px;" />
-    </div>
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <a href="tel:09059432165" style="color: #444; text-decoration: none;">0905 943 2165</a>
-      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" style="width: 20px;" />
-    </div>
-  </div>  <!-- دسترسی اختصاصی -->  <div style="font-size: 22px; font-weight: bold; color: #005f8c; margin: 30px auto 10px;">
+  </div>  <div class="link">
+    <img src="https://cdn-icons-png.flaticon.com/512/84/84410.png" alt="Website Icon" />
+    <a href="http://www.khaneehsan.com" target="_blank">سایت خانه احسان</a>
+  </div>  <div class="link">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
+    <a href="https://instagram.com/khaneh.ehsan" target="_blank">اینستاگرام خانه احسان</a>
+  </div>  <div class="link telegram-link">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
+    <a href="https://t.me/khaneehsan_shop" target="_blank">تلگرام - هایپر سلامت خانه احسان</a>
+  </div>  <div class="link eitaa-link">
+    <img src="https://itehsan.github.io/khaneehsan/eitaa.png" alt="Eitaa" />
+    <a href="https://eitaa.com/khaneehsan" target="_blank">ایتا - هایپر سلامت خانه احسان</a>
+  </div>  <div class="notice-box">
     🔐 دسترسی اختصاصی برای مشتریان کرم بوتاکس پلاس ↓
-  </div>  <!-- هشدار فیلترشکن -->  <div class="blink">
+  </div>  <div class="link telegram-link">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
+    <a href="https://t.me/doctor_green_life_bot" target="_blank">ربات دریافت کانال ۶ گام زیبایی</a>
+  </div>  <div class="link">
+    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
+    <a href="https://youtube.com/@doctorjaviid" target="_blank">یوتیوب دکتر جاوید - تجربیات ۱۸ ساله من در درمان بیماری ها</a>
+  </div>  <div class="link">
+    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
+    <a href="https://youtube.com/@purehealthylifestyle4129" target="_blank">یوتیوب دکتر فرشته - آموزش سبک زندگی سالم و درمان ساده</a>
+  </div>  <div class="blink">
     برای وارد شدن به کانال یوتیوب و تلگرام حتما فیلتر شکن خود را روشن نمایید.
-  </div>
+  </div>  <div class="contact-box">
+    <h3>ارتباط با واحد پیک خانه احسان</h3>
+    <div>
+      <p><a href="tel:09055719311">09055719311</a> <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" width="20"></p>
+      <p><a href="tel:05135099311">051-35099311-12</a> <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" width="20"></p>
+      <p><a href="tel:05131903">051-31903</a> <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" width="20"></p>
+    </div>
+  </div>  <div class="contact-box">
+    <h3>ارتباط با بازرگانی خانه احسان</h3>
+    <div>
+      <p><a href="tel:05135099313">051-35099313</a> <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" width="20"></p>
+      <p><a href="tel:09059432165">09059432165</a> <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" width="20"></p>
+    </div>
+  </div>  <div class="contact-box">
+    <h3>آدرس خانه احسان</h3>
+    <div>
+      <p>📍 استان خراسان رضوی، مشهد، منطقه 9، بلوار لادن، بعد از لادن 51</p>
+    </div>
+  </div>  <a href="https://nshn.ir/rb1-1sYJ5MET" target="_blank" rel="noopener noreferrer">
+    📍 موقعیت خانه احسان در نقشه نشان
+  </a>
 </body>
 </html>
