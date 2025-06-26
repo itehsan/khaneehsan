@@ -100,40 +100,51 @@
       font-size: 18px;
       font-weight: 600;
       direction: rtl;
-      text-align: left;
-      position: relative;
+      text-align: right;
     }
 
-    .contact-box img {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 0;
+    /* بخش تماس تلفنی: جهت چپ به راست، آیکون قبل از شماره */
+    .contact-phone {
+      direction: ltr;
+      justify-content: flex-start !important;
+      gap: 10px;
+    }
+
+    .contact-phone .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-right: 15px;
+    }
+
+    .contact-phone .contact-item img {
       width: 30px;
       height: 30px;
     }
 
-    .contact-box div {
-      position: relative;
-      z-index: 1;
-      padding-left: 40px;
-      text-align: left;
+    .contact-phone .contact-item a {
+      color: #444;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
     }
 
-    .contact-box h3 {
-      margin: 0 0 5px;
-      font-size: 20px;
-      color: #000;
+    .contact-phone .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* بخش آدرس: جهت راست به چپ و آیکون سمت راست متن */
+    .contact-address {
+      justify-content: flex-start;
+      gap: 15px;
+      direction: rtl;
       text-align: right;
     }
 
-    .contact-box p {
-      margin: 3px 0;
-      font-size: 18px;
-      color: #444;
-      direction: ltr;
-      text-align: left;
+    .contact-address img {
+      width: 30px;
+      height: 30px;
+      margin-left: 10px;
     }
 
     @media screen and (max-width: 480px) {
@@ -150,6 +161,10 @@
         width: 20px;
         height: 20px;
         margin-left: 8px;
+      }
+
+      .contact-phone .contact-item a {
+        font-size: 16px;
       }
     }
 
@@ -185,14 +200,6 @@
       vertical-align: middle;
       margin-left: 8px;
     }
-
-    .notice-box .down-arrow {
-      display: inline-block;
-      margin-right: 8px;
-      font-size: 28px;
-      vertical-align: middle;
-      color: #005f8c;
-    }
   </style>
 </head>
 <body>
@@ -221,10 +228,10 @@
     <a href="https://eitaa.com/khaneehsan" target="_blank">ایتا - هایپر سلامت خانه احسان</a>
   </div>
 
+  <!-- 🔐 اطلاعیه دسترسی ویژه با آیکن قفل -->
   <div class="notice-box">
     <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="قفل" />
-    دسترسی اختصاصی برای مشتریان کرم بوتاکس پلاس
-    <span class="down-arrow">⬇️</span>
+    دسترسی اختصاصی برای مشتریان کرم بوتاکس پلاس &#x2193;
   </div>
 
   <div class="link telegram-link">
@@ -246,32 +253,37 @@
     برای وارد شدن به کانال یوتیوب و تلگرام حتما فیلتر شکن خود را روشن نمایید.
   </div>
 
-  <div class="contact-box">
-    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" />
-    <div>
-      <h3>ارتباط با واحد پیک خانه احسان</h3>
-      <p><a href="tel:09055719311">09055719311</a></p>
-      <p><a href="tel:05135099311">05135099311</a>-12</p>
-      <p><a href="tel:05131903">05131903</a></p>
+  <div class="contact-box contact-phone">
+    <div class="contact-item">
+      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" />
+      <a href="tel:+989055719311">09055719311</a>
+    </div>
+    <div class="contact-item">
+      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" />
+      <a href="tel:+985135099311">051-35099311-12</a>
+    </div>
+    <div class="contact-item">
+      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" />
+      <a href="tel:+985131903">051-31903</a>
     </div>
   </div>
 
-  <div class="contact-box">
-    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" />
-    <div>
-      <h3>ارتباط با بازرگانی خانه احسان</h3>
-      <p><a href="tel:05135099313">05135099313</a></p>
-      <p><a href="tel:09059432165">09059432165</a></p>
+  <div class="contact-box contact-phone">
+    <div class="contact-item">
+      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" />
+      <a href="tel:+985135099313">051-35099313</a>
+    </div>
+    <div class="contact-item">
+      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" />
+      <a href="tel:+989059432165">0905 943 2165</a>
     </div>
   </div>
 
-  <div class="contact-box">
+  <div class="contact-box contact-address">
     <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Location Icon" />
     <div>
-      <h3 style="font-size: 22px; text-align: right;">آدرس خانه احسان</h3>
-      <p style="font-size: 20px; direction: rtl; text-align: right;">
-        استان خراسان رضوی، مشهد، منطقه ۹، بلوار لادن، بعد از لادن ۵۱
-      </p>
+      <h3 style="font-size: 22px;">آدرس خانه احسان</h3>
+      <p style="font-size: 20px; direction: rtl;">استان خراسان رضوی، مشهد، منطقه 9، بلوار لادن، بعد از لادن 51</p>
     </div>
   </div>
 
