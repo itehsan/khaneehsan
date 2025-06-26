@@ -113,7 +113,7 @@
       margin: 3px 0;
       font-size: 18px;
       color: #444;
-      direction: ltr; /* شماره‌ها چپ به راست */
+      direction: ltr;
     }
 
     @media screen and (max-width: 480px) {
@@ -130,6 +130,21 @@
         margin-left: 8px;
       }
     }
+
+    /* 👇 استایل چشمک زن */
+    .blink {
+      animation: blink-animation 1s steps(2, start) infinite;
+      color: #d00000;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    @keyframes blink-animation {
+      to {
+        visibility: hidden;
+      }
+    }
   </style>
 </head>
 <body>
@@ -138,7 +153,7 @@
     <h2>خانه احسان دریچه ای به زندگی پاک</h2>
   </div>
 
- <div class="link">
+  <div class="link">
     <img src="https://cdn-icons-png.flaticon.com/web-icon.jpg" alt="Instagram" />
     <a href="http://www.khaneehsan.com" target="_blank"> سایت خانه احسان </a>
   </div>
@@ -150,7 +165,7 @@
 
   <div class="link telegram-link">
     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
-    <a href="https://t.me/khaneehsan_shop" tahttp://www.khaneehsan.comhttp://www.khaneehsan.comrget="_blank">هایپر سلامت خانه احسان</a>
+    <a href="https://t.me/khaneehsan_shop" target="_blank">هایپر سلامت خانه احسان</a>
   </div>
 
   <div class="link eitaa-link">
@@ -160,22 +175,19 @@
 
   <div class="link">
     <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
-    <a href="https://youtube.com/@doctorjaviid" target="_blank">یوتیوب دکتر جاوید - تجربیات 18 ساله من در درمان بیماری ها
-</a>
+    <a href="https://youtube.com/@doctorjaviid" target="_blank">یوتیوب دکتر جاوید - تجربیات 18 ساله من در درمان بیماری ها</a>
   </div>
 
-    <div class="link">
+  <div class="link">
     <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
-    <a href="https://youtube.com/@purehealthylifestyle4129" target="_blank">یوتیوب دکتر فرشته - آموزش سبک زندگی سالم و درمان ساده
-    </a>
+    <a href="https://youtube.com/@purehealthylifestyle4129" target="_blank">یوتیوب دکتر فرشته - آموزش سبک زندگی سالم و درمان ساده</a>
   </div>
 
-  <!-- متن هشدار استفاده از فیلترشکن -->
-  <div style="margin-top: 10px; font-size: 18px; color: #d00000; font-weight: bold;">
+  <!-- متن چشمک‌زن هشدار فیلترشکن -->
+  <div class="blink">
     برای وارد شدن به کانال یوتیوب و تلگرام حتما فیلتر شکن خود را روشن نمایید.
   </div>
-  
-   <!-- ارتباط با واحد پیک -->
+
   <div class="contact-box">
     <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">
     <div>
@@ -186,7 +198,6 @@
     </div>
   </div>
 
-  <!-- ارتباط با بازرگانی -->
   <div class="contact-box">
     <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">
     <div>
@@ -194,8 +205,8 @@
       <p>051-35099313</p>
       <p>0905 943 2165</p>
     </div>
-    </div>
-   <!-- آدرس خانه احسان -->
+  </div>
+
   <div class="contact-box">
     <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Location Icon">
     <div>
@@ -205,9 +216,7 @@
   </div>
 
   <a href="https://nshn.ir/rb1-1sYJ5MET" target="_blank" rel="noopener noreferrer">
-  📍 موقعیت خانه احسان در نقشه نشان
-</a>
-
-  </div>
+    📍 موقعیت خانه احسان در نقشه نشان
+  </a>
 </body>
 </html>
