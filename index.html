@@ -93,19 +93,10 @@
       margin: 25px auto 10px;
       padding: 15px 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 15px;
       font-size: 18px;
       font-weight: 600;
       direction: rtl;
       text-align: right;
-    }
-
-    .contact-box img {
-      width: 30px;
-      height: 30px;
     }
 
     .contact-box div {
@@ -118,13 +109,22 @@
       color: #000;
     }
 
-    /* 👇 شماره‌های تماس به چپ */
+    /* شماره‌ها با آیکن تلفن و چپ‌چین */
     .contact-box p {
-      margin: 3px 0;
+      margin: 6px 0;
       font-size: 18px;
       color: #444;
       direction: ltr;
       text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-box p img {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
     }
 
     @media screen and (max-width: 480px) {
@@ -226,26 +226,23 @@
   </div>
 
   <div class="contact-box">
-    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">
     <div>
       <h3>ارتباط با واحد پیک خانه احسان</h3>
-      <p>09055719311</p>
-      <p>051-35099311-12</p>
-      <p>051-31903</p>
+      <p><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">09055719311</p>
+      <p><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">051-35099311-12</p>
+      <p><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">051-31903</p>
     </div>
   </div>
 
   <div class="contact-box">
-    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">
     <div>
       <h3>ارتباط با بازرگانی خانه احسان</h3>
-      <p>051-35099313</p>
-      <p>0905 943 2165</p>
+      <p><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">051-35099313</p>
+      <p><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">0905 943 2165</p>
     </div>
   </div>
 
   <div class="contact-box">
-    <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Location Icon">
     <div>
       <h3 style="font-size: 22px;">آدرس خانه احسان</h3>
       <p style="font-size: 20px; direction: rtl;">استان خراسان رضوی، مشهد، منطقه 9، بلوار لادن، بعد از لادن 51</p>
