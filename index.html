@@ -99,17 +99,20 @@
       gap: 15px;
       font-size: 18px;
       font-weight: 600;
-      direction: rtl;
-      text-align: right;
+      direction: rtl; /* جهت کلی فارسی */
+      text-align: right; /* جهت کلی */
+    }
+
+    /* بخش شماره تماس - چپ چین */
+    .contact-box div {
+      direction: ltr;  /* متن شماره‌ها چپ به راست */
+      text-align: left;
+      flex-grow: 1; /* اشغال فضای بیشتر */
     }
 
     .contact-box img {
       width: 30px;
       height: 30px;
-    }
-
-    .contact-box div {
-      text-align: right;
     }
 
     .contact-box h3 {
@@ -122,16 +125,6 @@
       margin: 3px 0;
       font-size: 18px;
       color: #444;
-      direction: ltr;
-    }
-
-    .contact-box p a {
-      color: #444;
-      text-decoration: none;
-    }
-
-    .contact-box p a:hover {
-      text-decoration: underline;
     }
 
     @media screen and (max-width: 480px) {
@@ -240,9 +233,9 @@
     <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">
     <div>
       <h3>ارتباط با واحد پیک خانه احسان</h3>
-      <p><a href="tel:09055719311">09055719311</a></p>
-      <p><a href="tel:05135099311">051-35099311-12</a></p>
-      <p><a href="tel:05131903">051-31903</a></p>
+      <p><a href="tel:+09055719311">09055719311</a></p>
+      <p><a href="tel:+05135099311">051-35099311-12</a></p>
+      <p><a href="tel:+05131903">051-31903</a></p>
     </div>
   </div>
 
@@ -250,8 +243,8 @@
     <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">
     <div>
       <h3>ارتباط با بازرگانی خانه احسان</h3>
-      <p><a href="tel:05135099313">051-35099313</a></p>
-      <p><a href="tel:09059432165">0905 943 2165</a></p>
+      <p><a href="tel:+05135099313">051-35099313</a></p>
+      <p><a href="tel:+09059432165">0905 943 2165</a></p>
     </div>
   </div>
 
@@ -259,7 +252,7 @@
     <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Location Icon">
     <div>
       <h3 style="font-size: 22px;">آدرس خانه احسان</h3>
-      <p style="font-size: 20px; direction: rtl; text-align: right;">استان خراسان رضوی، مشهد، منطقه 9، بلوار لادن، بعد از لادن 51</p>
+      <p style="font-size: 20px; direction: rtl;">استان خراسان رضوی، مشهد، منطقه 9، بلوار لادن، بعد از لادن 51</p>
     </div>
   </div>
 
