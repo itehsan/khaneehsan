@@ -100,32 +100,39 @@
       font-size: 18px;
       font-weight: 600;
       direction: rtl;
-      text-align: left; /* شماره ها سمت چپ */
+      text-align: left;
+      position: relative;
     }
 
     .contact-box img {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 0;
       width: 30px;
       height: 30px;
-      order: 0; /* لوگو اول */
     }
 
     .contact-box div {
-      text-align: left; /* متن شماره‌ها سمت چپ */
-      order: 1;
+      position: relative;
+      z-index: 1;
+      padding-left: 40px;
+      text-align: left;
     }
 
     .contact-box h3 {
       margin: 0 0 5px;
       font-size: 20px;
       color: #000;
-      text-align: right; /* عنوان سمت راست */
+      text-align: right;
     }
 
     .contact-box p {
       margin: 3px 0;
       font-size: 18px;
       color: #444;
-      direction: ltr; /* شماره ها چپ به راست */
+      direction: ltr;
       text-align: left;
     }
 
@@ -179,7 +186,6 @@
       margin-left: 8px;
     }
 
-    /* فلش پایین برای کادر اطلاعیه */
     .notice-box .down-arrow {
       display: inline-block;
       margin-right: 8px;
@@ -215,9 +221,8 @@
     <a href="https://eitaa.com/khaneehsan" target="_blank">ایتا - هایپر سلامت خانه احسان</a>
   </div>
 
-  <!-- 🔐 اطلاعیه دسترسی ویژه با آیکن قفل و فلش پایین -->
   <div class="notice-box">
-    <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="قفل">
+    <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="قفل" />
     دسترسی اختصاصی برای مشتریان کرم بوتاکس پلاس
     <span class="down-arrow">⬇️</span>
   </div>
@@ -245,9 +250,9 @@
     <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" />
     <div>
       <h3>ارتباط با واحد پیک خانه احسان</h3>
-      <p><a href="tel:989055719311">+989055719311</a></p>
-      <p><a href="tel:985135099311">+985135099311</a>-12</p>
-      <p><a href="tel:985131903">+985131903</a></p>
+      <p><a href="tel:09055719311">09055719311</a></p>
+      <p><a href="tel:05135099311">05135099311</a>-12</p>
+      <p><a href="tel:05131903">05131903</a></p>
     </div>
   </div>
 
@@ -255,8 +260,8 @@
     <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" />
     <div>
       <h3>ارتباط با بازرگانی خانه احسان</h3>
-      <p><a href="tel:985135099313">+985135099313</a></p>
-      <p><a href="tel:989059432165">+989059432165</a></p>
+      <p><a href="tel:05135099313">05135099313</a></p>
+      <p><a href="tel:09059432165">09059432165</a></p>
     </div>
   </div>
 
