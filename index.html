@@ -93,10 +93,19 @@
       margin: 25px auto 10px;
       padding: 15px 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 15px;
       font-size: 18px;
       font-weight: 600;
       direction: rtl;
       text-align: right;
+    }
+
+    .contact-box img {
+      width: 30px;
+      height: 30px;
     }
 
     .contact-box div {
@@ -109,22 +118,20 @@
       color: #000;
     }
 
-    /* شماره‌ها با آیکن تلفن و چپ‌چین */
     .contact-box p {
-      margin: 6px 0;
+      margin: 3px 0;
       font-size: 18px;
       color: #444;
       direction: ltr;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
-    .contact-box p img {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
+    .contact-box p a {
+      color: #444;
+      text-decoration: none;
+    }
+
+    .contact-box p a:hover {
+      text-decoration: underline;
     }
 
     @media screen and (max-width: 480px) {
@@ -163,7 +170,11 @@
       font-weight: bold;
       color: #005f8c;
       margin: 25px auto 10px;
+      padding: 10px 15px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
       display: inline-block;
+      box-shadow: 0 0 10px rgba(0, 95, 140, 0.2);
     }
 
     .notice-box img {
@@ -200,10 +211,10 @@
     <a href="https://eitaa.com/khaneehsan" target="_blank">ایتا - هایپر سلامت خانه احسان</a>
   </div>
 
-  <!-- 🔐 اطلاعیه دسترسی ویژه -->
+  <!-- 🔐 اطلاعیه دسترسی ویژه با آیکن قفل -->
   <div class="notice-box">
     <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="قفل">
-    دسترسی اختصاصی برای مشتریان کرم بوتاکس پلاس ⬇️
+    دسترسی اختصاصی برای مشتریان کرم بوتاکس پلاس &#x2193;
   </div>
 
   <div class="link telegram-link">
@@ -226,26 +237,29 @@
   </div>
 
   <div class="contact-box">
+    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">
     <div>
       <h3>ارتباط با واحد پیک خانه احسان</h3>
-      <p><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">09055719311</p>
-      <p><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">051-35099311-12</p>
-      <p><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">051-31903</p>
+      <p><a href="tel:09055719311">09055719311</a></p>
+      <p><a href="tel:05135099311">051-35099311-12</a></p>
+      <p><a href="tel:05131903">051-31903</a></p>
     </div>
   </div>
 
   <div class="contact-box">
+    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">
     <div>
       <h3>ارتباط با بازرگانی خانه احسان</h3>
-      <p><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">051-35099313</p>
-      <p><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon">0905 943 2165</p>
+      <p><a href="tel:05135099313">051-35099313</a></p>
+      <p><a href="tel:09059432165">0905 943 2165</a></p>
     </div>
   </div>
 
   <div class="contact-box">
+    <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Location Icon">
     <div>
       <h3 style="font-size: 22px;">آدرس خانه احسان</h3>
-       <p style="font-size: 20px; direction: rtl; text-align: right;">استان خراسان رضوی، مشهد، منطقه 9، بلوار لادن، بعد از لادن 51</p>
+      <p style="font-size: 20px; direction: rtl; text-align: right;">استان خراسان رضوی، مشهد، منطقه 9، بلوار لادن، بعد از لادن 51</p>
     </div>
   </div>
 
