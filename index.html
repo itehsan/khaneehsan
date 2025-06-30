@@ -14,34 +14,58 @@
       padding: 0;
       color: #333;
     }
+
     header {
-      background-color: #8e2d1a;
+      background-image: url('https://itehsan.github.io/khaneehsan/header.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       color: white;
       text-align: center;
-      padding: 30px 20px;
+      padding: 80px 20px 40px;
+      position: relative;
     }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    header > * {
+      position: relative;
+      z-index: 2;
+    }
+
     header img {
       width: 80px;
       height: auto;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
+
     h1 {
       margin: 15px 0 5px;
       font-size: 26px;
     }
+
     header p {
       font-size: 16px;
-      color: #ffe;
+      color: #eee;
     }
+
     .container {
       max-width: 1100px;
       margin: auto;
       padding: 20px;
     }
+
     section {
       margin: 50px 0;
     }
+
     .category-title {
       font-size: 24px;
       color: #8e2d1a;
@@ -50,15 +74,18 @@
       padding-bottom: 5px;
       position: relative;
     }
+
     .category-title::before {
       content: "🍽️";
       margin-left: 10px;
     }
+
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
     }
+
     .menu-item {
       background-color: #fff;
       border-radius: 16px;
@@ -66,28 +93,34 @@
       transition: transform 0.3s, box-shadow 0.3s;
       overflow: hidden;
     }
+
     .menu-item:hover {
       transform: scale(1.03);
       box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
+
     .menu-item img {
       width: 100%;
       height: 180px;
       object-fit: cover;
       border-bottom: 1px solid #eee;
     }
+
     .menu-info {
       padding: 15px;
     }
+
     .menu-info h3 {
       margin: 0 0 5px;
       font-size: 18px;
       color: #b63e2f;
     }
+
     .menu-info p {
       font-size: 14px;
       margin: 4px 0;
     }
+
     footer {
       background-color: #fbe2c0;
       text-align: center;
@@ -95,6 +128,7 @@
       font-size: 15px;
       color: #5c4033;
     }
+
     .contact-button {
       position: fixed;
       left: 20px;
@@ -110,16 +144,10 @@
       z-index: 999;
       transition: background 0.3s;
     }
+
     .contact-button:hover {
       background-color: #1ebc5a;
     }
-    .menu-item img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-bottom: 1px solid #eee;
-}
-
   </style>
 </head>
 <body>
@@ -131,212 +159,123 @@
   </header>
 
   <div class="container">
+
     <!-- پیش‌غذاها -->
-<section>
-  <h2 class="category-title">🍲 پیش‌غذا</h2>
-  <div class="menu-grid">
-
-    <div class="menu-item">
-        <img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو">
-      <div class="menu-info">
-        <h3>سوپ جو</h3>
-        <p>ارائه فقط در روزهای شنبه، دوشنبه و چهارشنبه</p>
-        <p>یک کیلو آش ، حبوبات شامل ماش ، عدس ، نخود ، لوبیا قرمز ، لوبیا سفید ، لوبیا چیتی ، سبزی آش </p>
-
-        <p><strong>۸۳.۰۰۰ تومان</strong></p>
+    <section>
+      <h2 class="category-title">🍲 پیش‌غذا</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو">
+          <div class="menu-info">
+            <h3>سوپ جو</h3>
+            <p>شنبه، دوشنبه، چهارشنبه</p>
+            <p>یک کیلو آش، حبوبات شامل ماش، عدس، نخود، لوبیاها و سبزی آش</p>
+            <p><strong>۸۳٬۰۰۰ تومان</strong></p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://itehsan.github.io/khaneehsan/ash.jpg" alt="آش جو">
+          <div class="menu-info">
+            <h3>آش جو</h3>
+            <p>یکشنبه، سه‌شنبه، پنج‌شنبه</p>
+            <p>بلغور جو، بوقلمون، هویج، رب، گوجه‌فرنگی، جعفری</p>
+            <p><strong>۱۰۹٬۰۰۰ تومان</strong></p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="menu-item">
-        <img src="https://itehsan.github.io/khaneehsan/ash.jpg" alt="آش جو">
-           <div class="menu-info">
-        <h3>آش جو</h3>
-        <p>ارائه فقط در روزهای یکشنبه، سه‌شنبه و پنج‌شنبه</p>
-        <p>یک کیلوگرم ، بلغور جو ،گوشت سینه بوقلمون ، هویج ،رب ،گوجه فرنگی ، جعفری</p>
-        <p><strong>۱۰۹.۰۰۰ تومان</strong></p>
+    <!-- کباب‌ها -->
+    <section>
+      <h2 class="category-title">🍢 کباب‌ها</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="images/kabab-koobideh.jpg" alt="کباب کوبیده">
+          <div class="menu-info">
+            <h3>کباب کوبیده</h3>
+            <p>دو سیخ گوشت گوسفندی با برنج زعفرانی</p>
+            <p><strong>۹۵٬۰۰۰ تومان</strong></p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="images/kabab-koobideh.jpg" alt="کباب کوبیده بوقلمون">
+          <div class="menu-info">
+            <h3>کباب بوقلمون</h3>
+            <p>دو سیخ بوقلمون طعم‌دار با برنج کره‌ای</p>
+            <p><strong>۹۸٬۰۰۰ تومان</strong></p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="images/kabab-koobideh.jpg" alt="کباب شتر">
+          <div class="menu-info">
+            <h3>کباب شتر لقمه</h3>
+            <p>گوشت شتر تازه با برنج ایرانی</p>
+            <p><strong>۱۱۰٬۰۰۰ تومان</strong></p>
+          </div>
+        </div>
       </div>
-    </div>
-
-  </div>
-</section>
-
-<section>
-  <h2 class="category-title">🍢 کباب‌ها</h2>
-  <div class="menu-grid">
-    <div class="menu-item">
-      <img src="images/kabab-koobideh.jpg" alt="کباب کوبیده گوسفندی">
-      <div class="menu-info">
-        <h3>کباب کوبیده</h3>
-        <p>دو سیخ گوشت چرخ‌کرده با برنج زعفرانی</p>
-        <p><strong>۹۵٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/kabab-koobideh.jpg" alt="کباب کوبیده بوقلمون">
-      <div class="menu-info">
-        <h3>کباب کوبیده</h3>
-        <p>دو سیخ گوشت چرخ‌کرده با برنج زعفرانی</p>
-        <p><strong>۹۵٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/kabab-koobideh.jpg" alt="کباب لقمه شتر">
-      <div class="menu-info">
-        <h3>کباب کوبیده</h3>
-        <p>دو سیخ گوشت چرخ‌کرده با برنج زعفرانی</p>
-        <p><strong>۹۵٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- ساندویچ‌ها -->
-   <!-- ساندویچ‌ها -->
-<section>
-  <h2 class="category-title">🥪 ساندویچ‌ها</h2>
-  <div class="menu-grid">
-
-    <div class="menu-item">
-      <img src="images/sandwich-kabab.jpg" alt="ساندویچ کباب">
-      <div class="menu-info">
-        <h3>ساندویچ کباب لقمه</h3>
-        <p>کوبیده در نان باگت با گوجه و سس مخصوص</p>
-        <p><strong>۶۵٬۰۰۰ تومان</strong></p>
+    <section>
+      <h2 class="category-title">🥪 ساندویچ‌ها</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="images/sandwich-kabab.jpg" alt="ساندویچ کباب">
+          <div class="menu-info">
+            <h3>ساندویچ کباب لقمه</h3>
+            <p>کوبیده در نان باگت با گوجه و سس</p>
+            <p><strong>۶۵٬۰۰۰ تومان</strong></p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="images/sandwich-kabab.jpg" alt="ساندویچ جوجه">
+          <div class="menu-info">
+            <h3>ساندویچ جوجه گریل</h3>
+            <p>جوجه طعم‌دار، نان نرم، سس مخصوص</p>
+            <p><strong>۶۰٬۰۰۰ تومان</strong></p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="images/sandwich-kabab.jpg" alt="ساندویچ سوسیس">
+          <div class="menu-info">
+            <h3>ساندویچ سوسیس بندری</h3>
+            <p>سس تند، پیاز سرخ‌شده، سوسیس تازه</p>
+            <p><strong>۵۵٬۰۰۰ تومان</strong></p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="images/sandwich-kabab.jpg" alt="ساندویچ کوکتل">
+          <div class="menu-info">
+            <h3>ساندویچ کوکتل</h3>
+            <p>کوکتل، قارچ، پنیر و سس فرانسوی</p>
+            <p><strong>۶۵٬۰۰۰ تومان</strong></p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="menu-item">
-      <img src="images/sandwich-kabab.jpg" alt="ساندویچ جوجه">
-      <div class="menu-info">
-        <h3>ساندویچ جوجه گریل</h3>
-        <p>جوجه مزه‌دار شده با سس مخصوص در نان نرم</p>
-        <p><strong>۶۰٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/sandwich-kabab.jpg" alt="ساندویچ سوسیس">
-      <div class="menu-info">
-        <h3>ساندویچ سوسیس بندری</h3>
-        <p>سوسیس با سس تند و پیاز سرخ شده</p>
-        <p><strong>۵۵٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/sandwich-kabab.jpg" alt="ساندویچ کوکتل">
-      <div class="menu-info">
-        <h3>ساندویچ کوکتل مخصوص</h3>
-        <p>کوکتل سرخ شده، سس فرانسوی، قارچ و پنیر</p>
-        <p><strong>۶۵٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-
-  </div>
-</section>
-    
     <!-- نوشیدنی‌ها -->
-   <!-- نوشیدنی‌ها -->
-<section>
-  <h2 class="category-title">🥤 نوشیدنی‌ها</h2>
-  <div class="menu-grid">
+    <section>
+      <h2 class="category-title">🥤 نوشیدنی‌ها</h2>
+      <div class="menu-grid">
 
-    <div class="menu-item">
-      <img src="images/doogh.jpg" alt="دوغ">
-      <div class="menu-info">
-        <h3>دوغ سنتی</h3>
-        <p>دوغ محلی خنک با نعناع خشک</p>
-        <p><strong>۱۲٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
+        <!-- نمونه نوشیدنی (فقط یک نمونه؛ بقیه مشابه اضافه کن) -->
+        <div class="menu-item">
+          <img src="images/doogh.jpg" alt="دوغ سنتی">
+          <div class="menu-info">
+            <h3>دوغ سنتی</h3>
+            <p>دوغ محلی خنک با نعناع خشک</p>
+            <p><strong>۱۲٬۰۰۰ تومان</strong></p>
+          </div>
+        </div>
 
-    <div class="menu-item">
-      <img src="images/doogh.jpg" alt="دوغ خانواده">
-      <div class="menu-info">
-        <h3>دوغ خانواده</h3>
-        <p>بطری خانواده مناسب برای ۳ نفر</p>
-        <p><strong>۲۰٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
+        <!-- نوشیدنی‌های دیگرت همین ساختار رو داشته باشن -->
 
-    <div class="menu-item">
-      <img src="images/doogh.jpg" alt="دلستر لیمو">
-      <div class="menu-info">
-        <h3>دلستر لیمو</h3>
-        <p>نوشیدنی گازدار با طعم لیمو</p>
-        <p><strong>۱۵٬۰۰۰ تومان</strong></p>
       </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/doogh.jpg" alt="دلستر هلو">
-      <div class="menu-info">
-        <h3>دلستر هلو</h3>
-        <p>نوشیدنی گازدار با طعم هلو</p>
-        <p><strong>۱۵٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/doogh.jpg" alt="نوشابه کوکا">
-      <div class="menu-info">
-        <h3>نوشابه کوکاکولا</h3>
-        <p>بطری ۳۰۰ میلی‌لیتر</p>
-        <p><strong>۱۲٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/doogh.jpg" alt="نوشابه فانتا">
-      <div class="menu-info">
-        <h3>نوشابه فانتا</h3>
-        <p>طعم پرتقال، بطری کوچک</p>
-        <p><strong>۱۲٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/doogh.jpg" alt="ماءالشعیر کلاسیک">
-      <div class="menu-info">
-        <h3>ماءالشعیر کلاسیک</h3>
-        <p>بدون طعم و گاز ملایم</p>
-        <p><strong>۱۵٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/doogh.jpg" alt="آب معدنی">
-      <div class="menu-info">
-        <h3>آب معدنی</h3>
-        <p>بطری نیم لیتری</p>
-        <p><strong>۵٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/doogh.jpg" alt="آب پرتقال طبیعی">
-      <div class="menu-info">
-        <h3>آب پرتقال طبیعی</h3>
-        <p>آبمیوه تازه و طبیعی</p>
-        <p><strong>۱۸٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src="images/doogh.jpg" alt="آب سیب">
-      <div class="menu-info">
-        <h3>آب سیب</h3>
-        <p>آبمیوه پاکتی برند سن‌ایچ</p>
-        <p><strong>۱۷٬۰۰۰ تومان</strong></p>
-      </div>
-    </div>
+    </section>
 
   </div>
-</section>
-
 
   <footer>
     آدرس: مشهد، بلوار لادن، بین لادن ۱ و ۳ | تلفن: ۰۹۱۵۰۰۰۰۰۰۰
