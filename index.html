@@ -4,43 +4,55 @@
   <meta charset="UTF-8">
   <title>منوی رستوران لقمه احسان</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" />
   <style>
     body {
       direction: rtl;
-      font-family: Tahoma, sans-serif;
-      background-color: #fffaf5;
-      color: #333;
+      font-family: Vazir, sans-serif;
+      background: linear-gradient(180deg, #fffdf9, #fbe8d3);
       margin: 0;
       padding: 0;
+      color: #333;
     }
     header {
-      background-color: #b63e2f;
+      background-color: #8e2d1a;
       color: white;
       text-align: center;
-      padding: 20px;
+      padding: 30px 20px;
     }
     header img {
       width: 80px;
       height: auto;
-      border-radius: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-    h1, h2 {
-      margin: 10px 0;
+    h1 {
+      margin: 15px 0 5px;
+      font-size: 26px;
+    }
+    header p {
+      font-size: 16px;
+      color: #ffe;
     }
     .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 0 20px;
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
     }
     section {
-      margin-bottom: 40px;
+      margin: 50px 0;
     }
     .category-title {
-      font-size: 22px;
-      color: #b63e2f;
-      border-bottom: 2px solid #b63e2f;
-      padding-bottom: 5px;
+      font-size: 24px;
+      color: #8e2d1a;
       margin-bottom: 20px;
+      border-bottom: 2px solid #8e2d1a;
+      padding-bottom: 5px;
+      position: relative;
+    }
+    .category-title::before {
+      content: "🍽️";
+      margin-left: 10px;
     }
     .menu-grid {
       display: grid;
@@ -49,46 +61,71 @@
     }
     .menu-item {
       background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
       overflow: hidden;
+    }
+    .menu-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
     .menu-item img {
       width: 100%;
-      height: 170px;
+      height: 180px;
       object-fit: cover;
+      border-bottom: 1px solid #eee;
     }
     .menu-info {
       padding: 15px;
     }
     .menu-info h3 {
-      margin: 0;
+      margin: 0 0 5px;
       font-size: 18px;
       color: #b63e2f;
     }
     .menu-info p {
       font-size: 14px;
-      margin: 5px 0;
+      margin: 4px 0;
     }
     footer {
-      background-color: #f4f4f4;
+      background-color: #fbe2c0;
       text-align: center;
       padding: 20px;
+      font-size: 15px;
+      color: #5c4033;
+    }
+    .contact-button {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
       font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 999;
+      transition: background 0.3s;
+    }
+    .contact-button:hover {
+      background-color: #1ebc5a;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="logo.png" alt="لوگوی لقمه احسان">
+    <img src="logo.png" alt="لوگوی رستوران">
     <h1>رستوران لقمه احسان</h1>
-    <p>طعم اصیل غذاهای ایرانی و فست‌فود</p>
+    <p>با ما لقمه‌ای دلچسب تجربه کنید</p>
   </header>
 
   <div class="container">
 
-    <!-- بخش کباب‌ها -->
+    <!-- کباب‌ها -->
     <section>
       <h2 class="category-title">🍢 کباب‌ها</h2>
       <div class="menu-grid">
@@ -96,76 +133,51 @@
           <img src="images/kabab-koobideh.jpg" alt="کباب کوبیده">
           <div class="menu-info">
             <h3>کباب کوبیده</h3>
-            <p>دو سیخ گوشت مخلوط با برنج ایرانی</p>
+            <p>دو سیخ گوشت چرخ‌کرده با برنج زعفرانی</p>
             <p><strong>۹۵٬۰۰۰ تومان</strong></p>
           </div>
         </div>
-        <div class="menu-item">
-          <img src="images/kabab-barg.jpg" alt="کباب برگ">
-          <div class="menu-info">
-            <h3>کباب برگ</h3>
-            <p>یک سیخ راسته گوسفندی با برنج زعفرانی</p>
-            <p><strong>۱۵۵٬۰۰۰ تومان</strong></p>
-          </div>
-        </div>
-        <!-- غذای بعدی -->
+        <!-- غذاهای بیشتر -->
       </div>
     </section>
 
-    <!-- بخش ساندویچ‌ها -->
+    <!-- ساندویچ‌ها -->
     <section>
       <h2 class="category-title">🥪 ساندویچ‌ها</h2>
       <div class="menu-grid">
         <div class="menu-item">
-          <img src="images/sandwich-sosis.jpg" alt="ساندویچ سوسیس">
-          <div class="menu-info">
-            <h3>ساندویچ سوسیس</h3>
-            <p>سوسیس آلمانی با سیب‌زمینی و سس مخصوص</p>
-            <p><strong>۵۵٬۰۰۰ تومان</strong></p>
-          </div>
-        </div>
-        <div class="menu-item">
-          <img src="images/sandwich-kabab.jpg" alt="ساندویچ کباب لقمه">
+          <img src="images/sandwich-kabab.jpg" alt="ساندویچ کباب">
           <div class="menu-info">
             <h3>ساندویچ کباب لقمه</h3>
-            <p>کباب کوبیده با نان باگت، گوجه، سبزیجات</p>
+            <p>کوبیده در نان باگت با گوجه و سس مخصوص</p>
             <p><strong>۶۵٬۰۰۰ تومان</strong></p>
           </div>
         </div>
-        <!-- غذای بعدی -->
       </div>
     </section>
 
-    <!-- بخش نوشیدنی‌ها -->
+    <!-- نوشیدنی‌ها -->
     <section>
       <h2 class="category-title">🥤 نوشیدنی‌ها</h2>
       <div class="menu-grid">
         <div class="menu-item">
-          <img src="images/cola.jpg" alt="نوشابه">
-          <div class="menu-info">
-            <h3>نوشابه قوطی</h3>
-            <p>کوکاکولا، فانتا یا اسپرایت</p>
-            <p><strong>۱۰٬۰۰۰ تومان</strong></p>
-          </div>
-        </div>
-        <div class="menu-item">
           <img src="images/doogh.jpg" alt="دوغ">
           <div class="menu-info">
-            <h3>دوغ لیوانی</h3>
-            <p>دوغ سنتی با نعناع خشک</p>
+            <h3>دوغ سنتی</h3>
+            <p>دوغ محلی خنک با نعناع خشک</p>
             <p><strong>۱۲٬۰۰۰ تومان</strong></p>
           </div>
         </div>
-        <!-- نوشیدنی بعدی -->
       </div>
     </section>
 
   </div>
 
   <footer>
-    آدرس: مشهد، بلوار لادن، بین لادن ۱ و ۳<br>
-    تلفن: ۰۹۱۵۰۰۰۰۰۰۰
+    آدرس: مشهد، بلوار لادن، بین لادن ۱ و ۳ | تلفن: ۰۹۱۵۰۰۰۰۰۰۰
   </footer>
+
+  <button class="contact-button" onclick="window.location.href='tel:09150000000'">📞 تماس سریع</button>
 
 </body>
 </html>
