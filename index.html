@@ -6,19 +6,48 @@
   <title>منوی رستوران لقمه احسان</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
+
+    @font-face {
+      font-family: 'AdobeArabic';
+      src: url('https://itehsan.github.io/khaneehsan/AdobeArabic-Regular.otf') format('opentype');
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: 'Vazirmatn', sans-serif;
       background-color: #1a1a1a;
       color: #fff;
       padding: 1rem;
     }
+
+    .branding {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .branding img {
+      width: 100px;
+      border-radius: 20px;
+    }
+
+    .branding h1 {
+      font-size: 1.3rem;
+      margin-top: 0.5rem;
+    }
+
+    .branding p {
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1rem;
     }
+
     .search-box {
       background-color: #333;
       padding: 0.7rem 1rem;
@@ -27,6 +56,7 @@
       margin-bottom: 1rem;
       width: 100%;
     }
+
     .search-box input {
       width: 100%;
       background: transparent;
@@ -34,13 +64,16 @@
       outline: none;
       color: #fff;
       font-size: 1rem;
+      font-family: 'AdobeArabic', sans-serif;
     }
+
     .tabs {
       display: flex;
       gap: 0.5rem;
       margin-bottom: 1rem;
       overflow-x: auto;
     }
+
     .tab {
       padding: 0.5rem 1rem;
       border-radius: 8px;
@@ -52,15 +85,18 @@
       gap: 0.3rem;
       cursor: pointer;
     }
+
     .tab img {
       width: 24px;
       height: 24px;
       border-radius: 50%;
     }
+
     .tab.active {
       background-color: #f9c400;
       color: black;
     }
+
     .menu-item {
       background-color: #2a2a2a;
       border-radius: 12px;
@@ -71,24 +107,29 @@
       align-items: center;
       cursor: pointer;
     }
+
     .menu-item img {
       width: 90px;
       height: auto;
       border-radius: 12px;
     }
+
     .menu-item .info {
       flex: 1;
       margin-left: 1rem;
     }
+
     .menu-item .info strong {
       font-size: 1rem;
       display: block;
       margin-bottom: 0.5rem;
     }
+
     .menu-item .info span {
       color: #ccc;
       font-size: 0.9rem;
     }
+
     .modal {
       display: none;
       position: fixed;
@@ -99,6 +140,7 @@
       align-items: center;
       z-index: 1000;
     }
+
     .modal-content {
       background-color: #2a2a2a;
       padding: 1rem;
@@ -107,15 +149,16 @@
       position: relative;
       max-width: 90%;
     }
-  .modal-content img {
-  max-width: 40vw;   /* حداکثر عرض ۹۰ درصد ویوپورت */
-  max-height: 30vh;  /* حداکثر ارتفاع ۸۰ درصد ویوپورت */
-  width: auto;
-  height: auto;
-  border-radius: 80px;
-  margin-bottom: 1rem;
-  object-fit: contain;
-}
+
+    .modal-content img {
+      max-width: 40vw;
+      max-height: 30vh;
+      width: auto;
+      height: auto;
+      border-radius: 80px;
+      margin-bottom: 1rem;
+      object-fit: contain;
+    }
 
     .modal-content .close {
       position: absolute;
@@ -125,6 +168,7 @@
       cursor: pointer;
       color: #f55;
     }
+
     .footer {
       text-align: center;
       margin-top: 2rem;
@@ -134,11 +178,21 @@
   </style>
 </head>
 <body>
+
+  <!-- لوگو و معرفی -->
+  <div class="branding">
+    <img src="https://itehsan.github.io/khaneehsan/logo.png" alt="لوگوی رستوران">
+    <h1>به خانه طعم‌ها خوش آمدید</h1>
+    <p>تجربه‌ای متفاوت از غذای اصیل ایرانی</p>
+  </div>
+
+  <!-- هدر اصلی -->
   <div class="header">
     <h2>منوی رستوران لقمه احسان</h2>
     <div>☎️</div>
   </div>
 
+  <!-- جستجو -->
   <div class="search-box">
     <input type="text" id="search" placeholder="هرچی دوست داری جستجو کن ...">
   </div>
