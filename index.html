@@ -92,6 +92,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
       transition: transform 0.3s, box-shadow 0.3s;
       overflow: hidden;
+      box-sizing: border-box;
     }
 
     .menu-item:hover {
@@ -108,6 +109,7 @@
 
     .menu-info {
       padding: 15px;
+      box-sizing: border-box;
     }
 
     .menu-info h3 {
@@ -147,6 +149,46 @@
 
     .contact-button:hover {
       background-color: #1ebc5a;
+    }
+
+    /* واکنش‌گرایی برای موبایل */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 20px;
+      }
+
+      header {
+        padding: 40px 10px 20px;
+      }
+
+      header img {
+        width: 60px;
+      }
+
+      header p {
+        font-size: 14px;
+      }
+
+      .category-title {
+        font-size: 18px;
+      }
+
+      .menu-info h3 {
+        font-size: 16px;
+      }
+
+      .menu-info p {
+        font-size: 12px;
+      }
+
+      .menu-item img {
+        height: 140px;
+      }
+
+      .contact-button {
+        padding: 10px 16px;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
@@ -252,8 +294,6 @@
     <section>
       <h2 class="category-title">🥤 نوشیدنی‌ها</h2>
       <div class="menu-grid">
-
-        <!-- نمونه نوشیدنی (فقط یک نمونه؛ بقیه مشابه اضافه کن) -->
         <div class="menu-item">
           <img src="images/doogh.jpg" alt="دوغ سنتی">
           <div class="menu-info">
@@ -262,16 +302,13 @@
             <p><strong>۱۲٬۰۰۰ تومان</strong></p>
           </div>
         </div>
-
-        <!-- نوشیدنی‌های دیگرت همین ساختار رو داشته باشن -->
-
       </div>
     </section>
 
   </div>
 
   <footer>
- استان خراسان رضوی، مشهد، منطقه 9، بلوار لادن، بعد از لادن 51
+    استان خراسان رضوی، مشهد، منطقه 9، بلوار لادن، بعد از لادن 51
   </footer>
 
   <button class="contact-button" onclick="window.location.href='tel:051-31903'">📞 تماس سریع</button>
