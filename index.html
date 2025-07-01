@@ -31,10 +31,8 @@
       background-position: center;
       background-repeat: no-repeat;
       color: #fff;
-      /* یک لایه نیمه شفاف پشت متن برای خوانایی بهتر */
       position: relative;
     }
-    /* لایه نیمه شفاف پشت متن */
     .branding::before {
       content: "";
       position: absolute;
@@ -81,14 +79,14 @@
     }
 
     .search-box input {
-  width: 100%;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #fff;
-  font-size: 1rem;
-  font-family: 'Vazirmatn', sans-serif;
-}
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 1rem;
+      font-family: 'Vazirmatn', sans-serif;
+    }
 
     .tabs {
       display: flex;
@@ -120,28 +118,28 @@
       color: black;
     }
 
+    /* اضافه کردن کانتینر برای منو و گرید دو ستونه */
+    .menu-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
     .menu-item {
-  background-color: #2a2a2a;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  flex-direction: row-reverse; /* اضافه شد */
-}
-
-.menu-item .info {
-  flex: 1;
-  margin-right: 1rem; /* به جای margin-left */
-  margin-left: 0;
-}
-
+      background-color: #2a2a2a;
+      border-radius: 12px;
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row-reverse; /* عکس سمت راست */
+    }
 
     .menu-item .info {
       flex: 1;
-      margin-left: 1rem;
+      margin-right: 1rem;
+      margin-left: 0;
     }
 
     .menu-item .info strong {
@@ -153,6 +151,13 @@
     .menu-item .info span {
       color: #ccc;
       font-size: 0.9rem;
+    }
+
+    .menu-item img {
+      width: 90px;
+      height: auto;
+      border-radius: 12px;
+      flex-shrink: 0;
     }
 
     .modal {
@@ -200,13 +205,23 @@
       color: #888;
       font-size: 0.8rem;
     }
+
+    /* برای واکنشگرایی اگر بخواهی میتونی تغییر بدی */
+    @media (max-width: 600px) {
+      .menu-container {
+        grid-template-columns: 1fr;
+      }
+      .menu-item {
+        flex-direction: row-reverse;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- لوگو و معرفی -->
   <div class="branding">
-    <img src="https://itehsan.github.io/khaneehsan/.png" alt="لوگوی رستوران">
+    <img src="https://itehsan.github.io/khaneehsan/logo.png" alt="لوگوی رستوران">
     <h1>به خانه طعم‌ها خوش آمدید</h1>
     <p>تجربه‌ای متفاوت از غذای اصیل ایرانی</p>
   </div>
@@ -223,99 +238,111 @@
   </div>
 
   <div class="tabs">
-     <div class="tab active" data-category="پیش غذا">پیش غذا</div>
-    <div class="tab" data-category="کباب ها"> کباب ها</div>
-    <div class="tab" data-category="ساندویچ ها">  ساندویچ ها</div>
-    <div class="tab" data-category="دسر و چاشنی"> دسر و چاشنی</div>
-    <div class="tab" data-category="نوشیدنی"> شربت ، نوشیدنی</div>
+    <div class="tab active" data-category="پیش غذا">پیش غذا</div>
+    <div class="tab" data-category="کباب ها">کباب ها</div>
+    <div class="tab" data-category="ساندویچ ها">ساندویچ ها</div>
+    <div class="tab" data-category="دسر و چاشنی">دسر و چاشنی</div>
+    <div class="tab" data-category="نوشیدنی">شربت ، نوشیدنی</div>
   </div>
 
- <!---پیش غذا) -->
-  <div class="menu-item" data-category="پیش غذا" onclick="showModal('سوپ جو', '۲۷۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/soup.jpg')">
-    <div class="info"><strong>سوپ جو</strong><span>۲۷۰,۰۰۰ ریال</span></div>
-<img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو">
-  </div>
-  <div class="menu-item" data-category="پیش غذا" onclick="showModal('آش جو ', '۲۹۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/ash.jpg')">
-    <div class="info"><strong>آش جو</strong><span>۲۹۰,۰۰۰ ریال</span></div>
- <img src="https://itehsan.github.io/khaneehsan/ash.jpg" alt="آش جو">  </div>
-  
-  <div class="menu-item" data-category="پیش غذا" onclick="showModal('حلیم گندم', '۳۵۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/haleam.jpg')">
-    <div class="info"><strong>حلیم گندم</strong><span>۳۵۰,۰۰۰ ریال</span></div>
-          <img src="https://itehsan.github.io/khaneehsan/haleam.jpg" alt="حلیم گندم">
-  </div>
+  <!-- کانتینر محصولات -->
+  <div class="menu-container">
 
-  <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب لقمه شتر', '۳۵۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
-    <div class="info"><strong>کباب لقمه شتر</strong><span>۳۵۰,۰۰۰ ریال</span></div>
-<img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">  </div>
-
-  
-  <!-- کباب ها -->
-  <div class="menu-item" data-category="کباب ها" onclick="showModal('کوبیده گوسفندی', '۲۷۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
-    <div class="info"><strong>کوبیده گوسفندی</strong><span>۲۷۰,۰۰۰ ریال</span>
+    <!---پیش غذا) -->
+    <div class="menu-item" data-category="پیش غذا" onclick="showModal('سوپ جو', '۲۷۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/soup.jpg')">
+      <div class="info"><strong>سوپ جو</strong><span>۲۷۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو">
     </div>
-<img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="کوبیده گوسفندی">
-  </div>
-  <div class="menu-item" data-category="کباب ها" onclick="showModal('کوبیده بوقلمون ', '۲۹۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
-    <div class="info"><strong>کوبیده بوقلمون</strong><span>۲۹۰,۰۰۰ ریال</span>
+
+    <div class="menu-item" data-category="پیش غذا" onclick="showModal('آش جو ', '۲۹۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/ash.jpg')">
+      <div class="info"><strong>آش جو</strong><span>۲۹۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/ash.jpg" alt="آش جو">
     </div>
-<img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="کوبیده بوقلمون">  </div>
-  
-  <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب لقمه گوسفندی', '۳۵۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
-    <div class="info"><strong>کباب لقمه گوسفندی</strong><span>۳۵۰,۰۰۰ ریال</span></div>
-    <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه گوسفندی"> 
-  </div>
 
-  <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب لقمه شتر', '۳۵۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
-    <div class="info"><strong>کباب لقمه شتر</strong><span>۳۵۰,۰۰۰ ریال</span></div>
-<img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">
-  </div>
+    <div class="menu-item" data-category="پیش غذا" onclick="showModal('حلیم گندم', '۳۵۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/haleam.jpg')">
+      <div class="info"><strong>حلیم گندم</strong><span>۳۵۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/haleam.jpg" alt="حلیم گندم">
+    </div>
 
-  <!-- ساندویچ ها -->
-  <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ کوبیده گسفندی', '۳۲۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
-    <div class="info"><strong>ساندویچ کوبیده گسفندی</strong><span>۳۲۰,۰۰۰ ریال</span></div>
-<img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">  </div>
-  
-  <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ کوبیده بوقلمون', '۲۲۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
-    <div class="info"><strong>ساندویچ کوبیده بوقلمون</strong><span>۲۲۰,۰۰۰ ریال</span></div>
-<img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">  </div>
-  
-  <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ لقمه گوسفندی ', '۳۰۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
-    <div class="info"><strong>ساندویچ لقمه گوسفندی</strong><span>۳۰۰,۰۰۰ ریال</span></div>
-<img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">  </div>
+    <!-- کباب ها -->
+    <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب لقمه شتر', '۳۵۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
+      <div class="info"><strong>کباب لقمه شتر</strong><span>۳۵۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">
+    </div>
 
-   <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ لقمه شتر ', '۳۰۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
-    <div class="info"><strong>ساندویچ لقمه شتر</strong><span>۳۰۰,۰۰۰ ریال</span></div>
-<img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">  </div>
+    <div class="menu-item" data-category="کباب ها" onclick="showModal('کوبیده گوسفندی', '۲۷۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
+      <div class="info"><strong>کوبیده گوسفندی</strong><span>۲۷۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="کوبیده گوسفندی">
+    </div>
 
-  <!-- دسر و چاشنی -->
-  <div class="menu-item" data-category="دسر و چاشنی" onclick="showModal('رب زرشک کوهی', '۷۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/4617221.jpg')">
-    <div class="info"><strong>رب زرشک کوهی</strong><span>۷۰,۰۰۰ ریال</span></div>
+    <div class="menu-item" data-category="کباب ها" onclick="showModal('کوبیده بوقلمون ', '۲۹۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
+      <div class="info"><strong>کوبیده بوقلمون</strong><span>۲۹۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="کوبیده بوقلمون">
+    </div>
+
+    <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب لقمه گوسفندی', '۳۵۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
+      <div class="info"><strong>کباب لقمه گوسفندی</strong><span>۳۵۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه گوسفندی">
+    </div>
+
+    <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب لقمه شتر', '۳۵۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
+      <div class="info"><strong>کباب لقمه شتر</strong><span>۳۵۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">
+    </div>
+
+    <!-- ساندویچ ها -->
+    <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ کوبیده گسفندی', '۳۲۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
+      <div class="info"><strong>ساندویچ کوبیده گسفندی</strong><span>۳۲۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">
+    </div>
+
+    <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ کوبیده بوقلمون', '۲۲۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
+      <div class="info"><strong>ساندویچ کوبیده بوقلمون</strong><span>۲۲۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">
+    </div>
+
+    <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ لقمه گوسفندی ', '۳۰۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
+      <div class="info"><strong>ساندویچ لقمه گوسفندی</strong><span>۳۰۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">
+    </div>
+
+    <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ لقمه شتر ', '۳۰۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
+      <div class="info"><strong>ساندویچ لقمه شتر</strong><span>۳۰۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="لقمه شتر">
+    </div>
+
+    <!-- دسر و چاشنی -->
+    <div class="menu-item" data-category="دسر و چاشنی" onclick="showModal('رب زرشک کوهی', '۷۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/4617221.jpg')">
+      <div class="info"><strong>رب زرشک کوهی</strong><span>۷۰,۰۰۰ ریال</span></div>
       <img src="https://itehsan.github.io/khaneehsan/4617221.jpg" alt="رب زرشک کوهی">
-  </div>
-  <div class="menu-item" data-category="دسر و چاشنی" onclick="showModal('زیتون پرورده', '۹۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/1730492867JGqD1.jpg')">
-    <div class="info"><strong>زیتون پرورده</strong><span>۹۰,۰۰۰ ریال</span></div>
-    <img src="https://itehsan.github.io/khaneehsan/1730492867JGqD1.jpg" alt="زیتون پرورده">  
-  </div>   
+    </div>
 
-  <!-- نوشیدنی -->
-  <div class="menu-item" data-category="نوشیدنی" onclick="showModal('دوغ تلمی نیم لیتری', '۶۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/doq500.jpg')">
-    <div class="info"><strong>دوغ خانواده سنتی</strong><span>۶۰,۰۰۰ ریال</span></div>
-<img src="https://itehsan.github.io/khaneehsan/doq500.jpg" alt="دوغ تلمی نیم لیتری">  
-  </div>
-  
-  <div class="menu-item" data-category="نوشیدنی" onclick="showModal('دوغ تلمی خانواده دولیتری', '۵۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/doq2.jpg')">
-    <div class="info"><strong>نوشابه قوطی کوکاکولا</strong><span>۵۰,۰۰۰ ریال</span></div>
-<img src="https://itehsan.github.io/khaneehsan/doq2.jpg" alt="دوغ تلمی خانواده دولیتری">  
-  </div>
-  
-  <div class="menu-item" data-category="نوشیدنی" onclick="showModal('آب معدنی نیم لیتری', '۲۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/vata.jpg')">
-    <div class="info"><strong>آب معدنی نیم لیتری</strong><span>۲۰,۰۰۰ ریال</span></div>
-<img src="https://itehsan.github.io/khaneehsan/vata.jpg" alt="آب معدنی نیم لیتری">  
-  </div>
-  
-  <div class="menu-item" data-category="نوشیدنی" onclick="showModal('آب معدنی 1.5 لیتری', '۲۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg')">
-    <div class="info"><strong>آب معدنی 1.5 لیتری</strong><span>۲۰,۰۰۰ ریال</span></div>
-<img src="https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg" alt="آب معدنی 1.5 لیتری">  
+    <div class="menu-item" data-category="دسر و چاشنی" onclick="showModal('زیتون پرورده', '۹۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/1730492867JGqD1.jpg')">
+      <div class="info"><strong>زیتون پرورده</strong><span>۹۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/1730492867JGqD1.jpg" alt="زیتون پرورده">
+    </div>
+
+    <!-- نوشیدنی -->
+    <div class="menu-item" data-category="نوشیدنی" onclick="showModal('دوغ تلمی نیم لیتری', '۶۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/doq500.jpg')">
+      <div class="info"><strong>دوغ خانواده سنتی</strong><span>۶۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/doq500.jpg" alt="دوغ تلمی نیم لیتری">
+    </div>
+
+    <div class="menu-item" data-category="نوشیدنی" onclick="showModal('دوغ تلمی خانواده دولیتری', '۵۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/doq2.jpg')">
+      <div class="info"><strong>نوشابه قوطی کوکاکولا</strong><span>۵۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/doq2.jpg" alt="دوغ تلمی خانواده دولیتری">
+    </div>
+
+    <div class="menu-item" data-category="نوشیدنی" onclick="showModal('آب معدنی نیم لیتری', '۲۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/vata.jpg')">
+      <div class="info"><strong>آب معدنی نیم لیتری</strong><span>۲۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/vata.jpg" alt="آب معدنی نیم لیتری">
+    </div>
+
+    <div class="menu-item" data-category="نوشیدنی" onclick="showModal('آب معدنی 1.5 لیتری', '۲۰,۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg')">
+      <div class="info"><strong>آب معدنی 1.5 لیتری</strong><span>۲۰,۰۰۰ ریال</span></div>
+      <img src="https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg" alt="آب معدنی 1.5 لیتری">
+    </div>
+
   </div>
 
   <div class="modal" id="modal">
