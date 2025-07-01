@@ -148,3 +148,80 @@
   <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب کوبیده گوسفندی', '۲۵۵,۰۰۰ ریال', 'https://via.placeholder.com/300x200')">
     <div class="info">
       <strong>کباب کوبیده گوسفندی</strong>
+      <span>۲۵۵,۰۰۰ ریال</span>
+    </div>
+    <img src="https://via.placeholder.com/90" alt="کباب کوبیده گوسفندی">
+  </div>
+
+  <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب کوبیده بوقلمون', '۲۵۵,۰۰۰ ریال', 'https://via.placeholder.com/300x200')">
+    <div class="info">
+      <strong>کباب کوبیده بوقلمون</strong>
+      <span>۲۵۵,۰۰۰ ریال</span>
+    </div>
+    <img src="https://via.placeholder.com/90" alt="کباب کوبیده بوقلمون">
+  </div>
+
+  <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب لقمه گوسفندی', '۲۷۰,۰۰۰ ریال', 'https://via.placeholder.com/300x200')">
+    <div class="info">
+      <strong>کباب لقمه گوسفندی</strong>
+      <span>۲۷۰,۰۰۰ ریال</span>
+    </div>
+    <img src="https://via.placeholder.com/90" alt="کباب لقمه گوسفندی">
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="close" onclick="closeModal()">✕</div>
+      <img id="modal-img" src="" alt="">
+      <h3 id="modal-title"></h3>
+      <p id="modal-price"></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    طراحی و پشتیبانی : باور پردازان
+  </div>
+
+  <script>
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+    const modalTitle = document.getElementById("modal-title");
+    const modalPrice = document.getElementById("modal-price");
+
+    function showModal(title, price, img) {
+      modal.style.display = "flex";
+      modalImg.src = img;
+      modalTitle.textContent = title;
+      modalPrice.textContent = price;
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    document.getElementById("search").addEventListener("input", function () {
+      const query = this.value.trim().toLowerCase();
+      const items = document.querySelectorAll(".menu-item");
+      items.forEach(item => {
+        const title = item.querySelector("strong").textContent.toLowerCase();
+        item.style.display = title.includes(query) ? "flex" : "none";
+      });
+    });
+
+    const tabs = document.querySelectorAll(".tab");
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        const selectedCategory = tab.dataset.category;
+        const items = document.querySelectorAll(".menu-item");
+        items.forEach(item => {
+          const itemCategory = item.dataset.category;
+          item.style.display = itemCategory === selectedCategory ? "flex" : "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
