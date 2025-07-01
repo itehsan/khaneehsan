@@ -25,6 +25,15 @@
       border-radius: 12px;
       color: #bbb;
       margin-bottom: 1rem;
+      width: 100%;
+    }
+    .search-box input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 1rem;
     }
     .tabs {
       display: flex;
@@ -37,7 +46,15 @@
       border-radius: 8px;
       background-color: #2c2c2c;
       color: white;
-      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .tab img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
     }
     .tab.active {
       background-color: #f9c400;
@@ -51,9 +68,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      cursor: pointer;
     }
     .menu-item img {
       width: 90px;
+      height: auto;
       border-radius: 12px;
     }
     .menu-item .info {
@@ -61,8 +80,44 @@
       margin-left: 1rem;
     }
     .menu-item .info strong {
+      font-size: 1rem;
       display: block;
       margin-bottom: 0.5rem;
+    }
+    .menu-item .info span {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background-color: #2a2a2a;
+      padding: 1rem;
+      border-radius: 16px;
+      text-align: center;
+      position: relative;
+      max-width: 90%;
+    }
+    .modal-content img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    .modal-content .close {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #f55;
     }
     .footer {
       text-align: center;
@@ -75,86 +130,80 @@
 <body>
   <div class="header">
     <h2>منو خانه یزدان پناه</h2>
-    <div>📞</div>
+    <div>☎️</div>
   </div>
 
-  <div class="search-box">هرچی دوست داری جستجو کن ...</div>
+  <div class="search-box">
+    <input type="text" id="search" placeholder="هرچی دوست داری جستجو کن ...">
+  </div>
 
   <div class="tabs">
-    <div class="tab active" data-category="irani">غذای ایرانی</div>
-    <div class="tab" data-category="sonati">غذای سنتی</div>
-    <div class="tab" data-category="asli">غذای اصلی</div>
-    <div class="tab" data-category="chelow">چلو</div>
+    <div class="tab"><img src="https://via.placeholder.com/24" alt=""> غذای اصلی</div>
+    <div class="tab"><img src="https://via.placeholder.com/24" alt=""> غذای سنتی</div>
+    <div class="tab active"><img src="https://via.placeholder.com/24" alt=""> غذای ایرانی</div>
+    <div class="tab"><img src="https://via.placeholder.com/24" alt=""> چلو</div>
   </div>
 
-  <!-- آیتم‌های منو با دسته‌بندی -->
-  <div class="menu-item" data-category="irani">
+  <div class="menu-item" onclick="showModal('چلوخورش قرمه سبزی', '۲۵۵,۰۰۰ ریال', 'https://via.placeholder.com/300x200')">
     <div class="info">
-      <strong>چلو خورش قرمه سبزی</strong>
+      <strong>چلوخورش قرمه سبزی</strong>
       <span>۲۵۵,۰۰۰ ریال</span>
     </div>
-    <img src="https://itehsan.github.io/khaneehsan/images/qormesabzi.jpg" alt="قرمه سبزی">
+    <img src="https://via.placeholder.com/90" alt="قرمه سبزی">
   </div>
 
-  <div class="menu-item" data-category="irani">
+  <div class="menu-item" onclick="showModal('چلو خورش قیمه', '۲۵۵,۰۰۰ ریال', 'https://via.placeholder.com/300x200')">
     <div class="info">
       <strong>چلو خورش قیمه</strong>
       <span>۲۵۵,۰۰۰ ریال</span>
     </div>
-    <img src="https://itehsan.github.io/khaneehsan/images/gheime.jpg" alt="قیمه">
+    <img src="https://via.placeholder.com/90" alt="قیمه">
   </div>
 
-  <div class="menu-item" data-category="irani">
+  <div class="menu-item" onclick="showModal('چلو خورش فسنجان', '۲۷۰,۰۰۰ ریال', 'https://via.placeholder.com/300x200')">
     <div class="info">
       <strong>چلو خورش فسنجان</strong>
       <span>۲۷۰,۰۰۰ ریال</span>
     </div>
-    <img src="https://itehsan.github.io/khaneehsan/images/fesenjan.jpg" alt="فسنجان">
+    <img src="https://via.placeholder.com/90" alt="فسنجان">
   </div>
 
-  <div class="menu-item" data-category="sonati" style="display: none;">
-    <div class="info">
-      <strong>کله پاچه</strong>
-      <span>۳۵۰,۰۰۰ ریال</span>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="close" onclick="closeModal()">✕</div>
+      <img id="modal-img" src="" alt="">
+      <h3 id="modal-title"></h3>
+      <p id="modal-price"></p>
     </div>
-    <img src="https://itehsan.github.io/khaneehsan/images/kale.jpg" alt="کله پاچه">
   </div>
 
-  <div class="menu-item" data-category="asli" style="display: none;">
-    <div class="info">
-      <strong>زرشک پلو با مرغ</strong>
-      <span>۲۸۰,۰۰۰ ریال</span>
-    </div>
-    <img src="https://itehsan.github.io/khaneehsan/images/zereshk.jpg" alt="زرشک پلو">
+  <div class="footer">
+    طراحی و پشتیبانی : باور پردازان
   </div>
-
-  <div class="menu-item" data-category="chelow" style="display: none;">
-    <div class="info">
-      <strong>چلو کره</strong>
-      <span>۱۰۰,۰۰۰ ریال</span>
-    </div>
-    <img src="https://itehsan.github.io/khaneehsan/images/kare.jpg" alt="چلو کره">
-  </div>
-
-  <div class="footer">طراحی و پشتیبانی : باور پردازان</div>
 
   <script>
-    const tabs = document.querySelectorAll('.tab');
-    const items = document.querySelectorAll('.menu-item');
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+    const modalTitle = document.getElementById("modal-title");
+    const modalPrice = document.getElementById("modal-price");
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // تب فعال رو تغییر بده
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+    function showModal(title, price, img) {
+      modal.style.display = "flex";
+      modalImg.src = img;
+      modalTitle.textContent = title;
+      modalPrice.textContent = price;
+    }
 
-        // دسته مربوطه
-        const category = tab.getAttribute('data-category');
+    function closeModal() {
+      modal.style.display = "none";
+    }
 
-        // آیتم‌ها رو فیلتر کن
-        items.forEach(item => {
-          item.style.display = item.getAttribute('data-category') === category ? 'flex' : 'none';
-        });
+    document.getElementById("search").addEventListener("input", function () {
+      const query = this.value.trim().toLowerCase();
+      const items = document.querySelectorAll(".menu-item");
+      items.forEach(item => {
+        const title = item.querySelector("strong").textContent.toLowerCase();
+        item.style.display = title.includes(query) ? "flex" : "none";
       });
     });
   </script>
