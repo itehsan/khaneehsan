@@ -121,21 +121,23 @@
     }
 
     .menu-item {
-      background-color: #2a2a2a;
-      border-radius: 12px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  flex-direction: row-reverse; /* اضافه شد */
+}
 
-    .menu-item img {
-      width: 90px;
-      height: auto;
-      border-radius: 12px;
-    }
+.menu-item .info {
+  flex: 1;
+  margin-right: 1rem; /* به جای margin-left */
+  margin-left: 0;
+}
+
 
     .menu-item .info {
       flex: 1;
@@ -204,7 +206,7 @@
 
   <!-- لوگو و معرفی -->
   <div class="branding">
-    <img src="https://itehsan.github.io/khaneehsan/logo.png" alt="لوگوی رستوران">
+    <img src="https://itehsan.github.io/khaneehsan/.png" alt="لوگوی رستوران">
     <h1>به خانه طعم‌ها خوش آمدید</h1>
     <p>تجربه‌ای متفاوت از غذای اصیل ایرانی</p>
   </div>
