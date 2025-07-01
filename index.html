@@ -50,6 +50,7 @@
       display: flex;
       align-items: center;
       gap: 0.3rem;
+      cursor: pointer;
     }
     .tab img {
       width: 24px;
@@ -138,75 +139,12 @@
   </div>
 
   <div class="tabs">
-    <div class="tab"><img src="https://via.placeholder.com/24" alt=""> کباب ها</div>
-    <div class="tab"><img src="https://via.placeholder.com/24" alt=""> ساندویچ ها</div>
-    <div class="tab active"><img src="https://via.placeholder.com/24" alt="">  دسر و چاشنی</div>
-    <div class="tab"><img src="https://via.placeholder.com/24" alt=""> نوشیدنی</div>
-    
+    <div class="tab active" data-category="کباب ها"><img src="https://via.placeholder.com/24" alt=""> کباب ها</div>
+    <div class="tab" data-category="ساندویچ ها"><img src="https://via.placeholder.com/24" alt=""> ساندویچ ها</div>
+    <div class="tab" data-category="دسر و چاشنی"><img src="https://via.placeholder.com/24" alt=""> دسر و چاشنی</div>
+    <div class="tab" data-category="نوشیدنی"><img src="https://via.placeholder.com/24" alt=""> نوشیدنی</div>
   </div>
 
-  <div class="menu-item" onclick="showModal('کباب کوبیده گوسفندی', '۲۵۵,۰۰۰ ریال', 'https://via.placeholder.com/300x200')">
+  <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب کوبیده گوسفندی', '۲۵۵,۰۰۰ ریال', 'https://via.placeholder.com/300x200')">
     <div class="info">
-      <strong>چلوخورش قرمه سبزی</strong>
-      <span>۲۵۵,۰۰۰ ریال</span>
-    </div>
-    <img src="https://via.placeholder.com/90" alt="قرمه سبزی">
-  </div>
-
-  <div class="menu-item" onclick="showModal('کباب کوبیده بوقلمون', '۲۵۵,۰۰۰ ریال', 'https://via.placeholder.com/300x200')">
-    <div class="info">
-      <strong>چلو خورش قیمه</strong>
-      <span>۲۵۵,۰۰۰ ریال</span>
-    </div>
-    <img src="https://via.placeholder.com/90" alt="قیمه">
-  </div>
-
-  <div class="menu-item" onclick="showModal('کباب لقمه گوسفندی', '۲۷۰,۰۰۰ ریال', 'https://via.placeholder.com/300x200')">
-    <div class="info">
-      <strong>چلو خورش فسنجان</strong>
-      <span>۲۷۰,۰۰۰ ریال</span>
-    </div>
-    <img src="https://via.placeholder.com/90" alt="فسنجان">
-  </div>
-
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <div class="close" onclick="closeModal()">✕</div>
-      <img id="modal-img" src="" alt="">
-      <h3 id="modal-title"></h3>
-      <p id="modal-price"></p>
-    </div>
-  </div>
-
-  <div class="footer">
-    طراحی و پشتیبانی : باور پردازان
-  </div>
-
-  <script>
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modal-img");
-    const modalTitle = document.getElementById("modal-title");
-    const modalPrice = document.getElementById("modal-price");
-
-    function showModal(title, price, img) {
-      modal.style.display = "flex";
-      modalImg.src = img;
-      modalTitle.textContent = title;
-      modalPrice.textContent = price;
-    }
-
-    function closeModal() {
-      modal.style.display = "none";
-    }
-
-    document.getElementById("search").addEventListener("input", function () {
-      const query = this.value.trim().toLowerCase();
-      const items = document.querySelectorAll(".menu-item");
-      items.forEach(item => {
-        const title = item.querySelector("strong").textContent.toLowerCase();
-        item.style.display = title.includes(query) ? "flex" : "none";
-      });
-    });
-  </script>
-</body>
-</html>
+      <strong>کباب کوبیده گوسفندی</strong>
