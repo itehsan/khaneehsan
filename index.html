@@ -118,10 +118,10 @@
       color: black;
     }
 
-    /* اضافه کردن کانتینر برای منو و گرید دو ستونه */
+    /* تغییر مهم: کانتینر محصولات دو ستونه */
     .menu-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
 
@@ -206,13 +206,10 @@
       font-size: 0.8rem;
     }
 
-    /* برای واکنشگرایی اگر بخواهی میتونی تغییر بدی */
+    /* واکنشگرایی برای موبایل: یک ستونه */
     @media (max-width: 600px) {
       .menu-container {
         grid-template-columns: 1fr;
-      }
-      .menu-item {
-        flex-direction: row-reverse;
       }
     }
   </style>
