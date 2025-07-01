@@ -71,11 +71,12 @@
 
    .search-box {
   background-color: #333;
-  padding: 0.7rem 1rem;
+  padding: 0.7rem 1rem 0.7rem 1rem;
   border-radius: 12px;
   color: #bbb;
-  margin: 0 auto 1rem; /* وسط‌چین کردن با margin خودکار */
-  width: 300px; /* عرض کمتر */
+  margin: 0 auto 1rem;
+  width: 300px;
+  position: relative; /* برای قرار دادن آیکون */
 }
 
 .search-box input {
@@ -86,6 +87,18 @@
   color: #fff;
   font-size: 1rem;
   font-family: 'Vazirmatn', sans-serif;
+  padding-right: 30px; /* جای خالی برای آیکون */
+}
+
+.search-box svg {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  fill: #bbb;
+  width: 18px;
+  height: 18px;
+  pointer-events: none; /* غیرقابل کلیک */
 }
 
     .tabs {
@@ -230,9 +243,13 @@
   </div>
 
   <!-- جستجو -->
-  <div class="search-box">
-    <input type="text" id="search" placeholder="هرچی دوست داری جستجو کن ...">
-  </div>
+ <div class="search-box">
+  <input type="text" id="search" placeholder="هرچی دوست داری جستجو کن ...">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
+    <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.07 5.6 12.47 3 9 3S2.93 5.6 2.93 8.39 5.53 13.78 9 13.78c1.61 0 3.08-.65 4.13-1.7l.27.28v.79l4.25 4.25c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L15.5 14zM9 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+  </svg>
+</div>
+
 
   <div class="tabs">
     <div class="tab active" data-category="پیش غذا">پیش غذا</div>
