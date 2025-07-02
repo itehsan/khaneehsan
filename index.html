@@ -455,97 +455,114 @@
     آدرس: تهران، خیابان آزادی، پلاک ۱۲۳ - تلفن: ۰۲۱-۱۲۳۴۵۶۷۸
   </div>
 
-  <script>
-    // منوی بازشو
-    const menuButton = document.getElementById('menuToggle');
-    const sideMenu = document.getElementById('sideMenu');
+<script>
+  // منوی بازشو
+  const menuButton = document.getElementById('menuToggle');
+  const sideMenu = document.getElementById('sideMenu');
 
-    menuButton.addEventListener('click', () => {
-      sideMenu.classList.toggle('open');
-      const expanded = sideMenu.classList.contains('open');
-      sideMenu.setAttribute('aria-hidden', !expanded);
+  menuButton.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+    const expanded = sideMenu.classList.contains('open');
+    sideMenu.setAttribute('aria-hidden', !expanded);
+  });
+
+  // بستن منو بعد از کلیک روی لینک‌های داخل منو
+  document.querySelectorAll('#sideMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      sideMenu.classList.remove('open');
+      sideMenu.setAttribute('aria-hidden', 'true');
     });
+  });
 
-    // تب‌ها برای فیلتر
-    const tabs = document.querySelectorAll('.tab');
-    const menuItems = document.querySelectorAll('.menu-item');
+  // بستن منو وقتی بیرون ازش کلیک شد
+  document.addEventListener('click', (event) => {
+    const isClickInsideMenu = sideMenu.contains(event.target);
+    const isClickOnButton = menuButton.contains(event.target);
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+    if (!isClickInsideMenu && !isClickOnButton) {
+      sideMenu.classList.remove('open');
+      sideMenu.setAttribute('aria-hidden', 'true');
+    }
+  });
 
-        const cat = tab.getAttribute('data-category');
-        menuItems.forEach(item => {
-          item.style.display = item.getAttribute('data-category') === cat ? 'flex' : 'none';
-        });
-      });
-    });
+  // تب‌ها برای فیلتر
+  const tabs = document.querySelectorAll('.tab');
+  const menuItems = document.querySelectorAll('.menu-item');
 
-    // جستجو
-    const searchInput = document.getElementById('search');
-    searchInput.addEventListener('input', () => {
-      const val = searchInput.value.trim().toLowerCase();
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const cat = tab.getAttribute('data-category');
       menuItems.forEach(item => {
-        const text = item.querySelector('.info strong').textContent.toLowerCase();
-        if(text.includes(val)) item.style.display = 'flex';
-        else item.style.display = 'none';
+        item.style.display = item.getAttribute('data-category') === cat ? 'flex' : 'none';
       });
     });
+  });
 
-    // تابع نمایش ساعت سفارش برای سوپ جو و آش جو بر اساس روزهای هفته
-    function getOrderTime(foodName) {
-      const today = new Date();
-      const day = today.getDay(); 
-      const dayNames = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'];
-      const todayName = dayNames[day];
+  // جستجو
+  const searchInput = document.getElementById('search');
+  searchInput.addEventListener('input', () => {
+    const val = searchInput.value.trim().toLowerCase();
+    menuItems.forEach(item => {
+      const text = item.querySelector('.info strong').textContent.toLowerCase();
+      if(text.includes(val)) item.style.display = 'flex';
+      else item.style.display = 'none';
+    });
+  });
 
-      const evenDays = ['شنبه', 'دوشنبه', 'چهارشنبه'];
-      const oddDays = ['یکشنبه', 'سه‌شنبه', 'پنج‌شنبه'];
+  // تابع نمایش ساعت سفارش برای سوپ جو و آش جو بر اساس روزهای هفته
+  function getOrderTime(foodName) {
+    const today = new Date();
+    const day = today.getDay(); 
+    const dayNames = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'];
+    const todayName = dayNames[day];
 
-      if (foodName === 'سوپ جو') {
-        if (evenDays.includes(todayName)) return 'ساعت سفارش‌دهی ۱۲ تا ۱۵';
-        else return 'موجود نیست';
-      }
-      if (foodName === 'آش جو') {
-        if (oddDays.includes(todayName)) return 'ساعت سفارش‌دهی ۱۲ تا ۱۵';
-        else return 'موجود نیست';
-      }
-      return '';
+    const evenDays = ['شنبه', 'دوشنبه', 'چهارشنبه'];
+    const oddDays = ['یکشنبه', 'سه‌شنبه', 'پنج‌شنبه'];
+
+    if (foodName === 'سوپ جو') {
+      if (evenDays.includes(todayName)) return 'ساعت سفارش‌دهی ۱۲ تا ۱۵';
+      else return 'موجود نیست';
     }
-
-    // مودال بازشو
-    const modal = document.getElementById('modal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalImg = document.getElementById('modalImg');
-    const modalClose = document.getElementById('modalClose');
-    const orderTime = document.getElementById('orderTime');
-
-    function showModal(name, price, img) {
-      modalTitle.textContent = name;
-      modalDesc.textContent = price;
-
-      modalImg.src = img;
-      modalImg.alt = name;
-
-      // نمایش ساعت سفارش برای سوپ و آش جو
-      const timeText = getOrderTime(name);
-      orderTime.textContent = timeText;
-
-      modal.style.display = 'flex';
+    if (foodName === 'آش جو') {
+      if (oddDays.includes(todayName)) return 'ساعت سفارش‌دهی ۱۲ تا ۱۵';
+      else return 'موجود نیست';
     }
+    return '';
+  }
 
-    modalClose.addEventListener('click', () => {
+  // مودال بازشو
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalImg = document.getElementById('modalImg');
+  const modalClose = document.getElementById('modalClose');
+  const orderTime = document.getElementById('orderTime');
+
+  function showModal(name, price, img) {
+    modalTitle.textContent = name;
+    modalDesc.textContent = price;
+
+    modalImg.src = img;
+    modalImg.alt = name;
+
+    const timeText = getOrderTime(name);
+    orderTime.textContent = timeText;
+
+    modal.style.display = 'flex';
+  }
+
+  modalClose.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', e => {
+    if(e.target === modal){
       modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', e => {
-      if(e.target === modal){
-        modal.style.display = 'none';
-      }
-    });
-
-  </script>
+    }
+  });
+</script>
 </body>
 </html>
