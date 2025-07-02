@@ -158,19 +158,12 @@
     .menu-item .info strong {
       font-size: 1rem;
       display: block;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.5rem;
     }
 
     .menu-item .info span {
       color: #ccc;
       font-size: 0.9rem;
-    }
-
-    /* متن ساعت آماده سازی */
-    .menu-item .info .prep-time {
-      color: #f9c400;
-      font-size: 0.85rem;
-      margin-top: 0.3rem;
     }
 
     .menu-item img {
@@ -271,20 +264,12 @@
 
     <!---پیش غذا) -->
     <div class="menu-item" data-category="پیش غذا" onclick="showModal('سوپ جو', '۸۳.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/soup.jpg')">
-      <div class="info">
-        <strong>سوپ جو</strong>
-        <span>کیلویی ۸۳.۰۰۰ تومان </span>
-        <div class="prep-time"></div>
-      </div>
-      <img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو">
+   <div class="info"><strong>سوپ جو</strong><span>کیلویی ۸۳.۰۰۰ تومان </span></div>
+     <img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو">
     </div>
 
     <div class="menu-item" data-category="پیش غذا" onclick="showModal('آش جو ', ' ۱۰۹.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/ash.jpg')">
-      <div class="info">
-        <strong>آش جو</strong>
-        <span>کیلویی ۱۰۹.۰۰۰ تومان</span>
-        <div class="prep-time"></div>
-      </div>
+      <div class="info"><strong>آش جو</strong><span>کیلویی ۱۰۹.۰۰۰ تومان</span></div>
       <img src="https://itehsan.github.io/khaneehsan/ash.jpg" alt="آش جو">
     </div>
 
@@ -363,108 +348,106 @@
       <img src="https://itehsan.github.io/khaneehsan/doq2.jpg" alt="دوغ تلمی خانواده دولیتری">
     </div>
 
-    <div class="menu-item" data-category="نوشیدنی" onclick="showModal('آب معدنی 1.5 لیتری', '۱۵.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/vata.jpg')">
-      <div class="info"><strong>آب معدنی نیم لیتری</strong><span>۱۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/vata.jpg" alt="آب معدنی 1.5 لیتری">
-    </div>
-
-    <div class="menu-item" data-category="نوشیدنی" onclick="showModal('آب معدنی نیم لیتری', '۹.۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg')">
-      <div class="info"><strong>آب معدنی نیم لیتری</strong><span>۱۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg" alt="آب معدنی نیم لیتری">
-    </div>
-
   </div>
 
-  <div class="modal" id="modal">
+  <!-- مودال -->
+  <div id="modal" class="modal">
     <div class="modal-content">
-      <div class="close" onclick="closeModal()">✕</div>
+      <span id="modal-close" class="close">&times;</span>
       <img id="modal-img" src="" alt="">
-      <h3 id="modal-title"></h3>
+      <h2 id="modal-title"></h2>
       <p id="modal-price"></p>
     </div>
   </div>
 
-  <div class="footer">
-    طراحی و پشتیبانی :  خانه احسان
-  </div>
+  <footer class="footer">
+    خانه احسان © ۲۰۲۳
+  </footer>
 
   <script>
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modal-img");
-    const modalTitle = document.getElementById("modal-title");
-    const modalPrice = document.getElementById("modal-price");
+    const tabs = document.querySelectorAll('.tab');
+    const menuItems = document.querySelectorAll('.menu-item');
+    const searchInput = document.getElementById('search');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const category = tab.getAttribute('data-category');
+        menuItems.forEach(item => {
+          if (item.getAttribute('data-category') === category || category === 'all') {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+
+      menuItems.forEach(item => {
+        const title = item.querySelector('strong').textContent.toLowerCase();
+        const category = item.getAttribute('data-category').toLowerCase();
+        if (title.includes(searchTerm) || category.includes(searchTerm)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalPrice = document.getElementById('modal-price');
+    const modalClose = document.getElementById('modal-close');
+
+    modalClose.onclick = () => {
+      modal.style.display = 'none';
+    };
+
+    window.onclick = (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
 
     function showModal(title, price, img) {
       modal.style.display = "flex";
       modalImg.src = img;
       modalTitle.textContent = title;
-      modalPrice.textContent = price;
-    }
 
-    function closeModal() {
-      modal.style.display = "none";
-    }
+      const today = new Date();
+      const day = today.getDay(); // یکشنبه=0، دوشنبه=1، ... شنبه=6
 
-    document.getElementById("search").addEventListener("input", function () {
-      const query = this.value.trim().toLowerCase();
-      const items = document.querySelectorAll(".menu-item");
-      items.forEach(item => {
-        const title = item.querySelector("strong").textContent.toLowerCase();
-        item.style.display = title.includes(query) ? "flex" : "none";
-      });
-    });
+      let availabilityText = "";
 
-    const tabs = document.querySelectorAll(".tab");
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        tabs.forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
-
-        const selectedCategory = tab.dataset.category;
-        const items = document.querySelectorAll(".menu-item");
-        items.forEach(item => {
-          const itemCategory = item.dataset.category;
-          item.style.display = itemCategory === selectedCategory ? "flex" : "none";
-        });
-      });
-    });
-
-    // اضافه کردن نمایش / مخفی کردن سوپ جو و آش جو بر اساس روز هفته
-    window.addEventListener("DOMContentLoaded", () => {
-      const soupItem = document.querySelector(".menu-item[data-category='پیش غذا']:nth-child(1)");
-      const ashItem = document.querySelector(".menu-item[data-category='پیش غذا']:nth-child(2)");
-
-      const soupPrepTimeElem = soupItem.querySelector(".prep-time");
-      const ashPrepTimeElem = ashItem.querySelector(".prep-time");
-
-      // روز هفته به زبان انگلیسی: یکشنبه 0، دوشنبه 1 ... شنبه 6 در جاوااسکریپت
-      // میخوایم شنبه، دوشنبه، چهارشنبه سوپ باشه، یعنی 6،1،3 (دوشنبه = 1، چهارشنبه=3)
-      // آش جو روزهای یکشنبه، سه‌شنبه، پنج‌شنبه (0،2،4)
-      const day = new Date().getDay();
-
-      // روزهای سوپ
-      const soupDays = [6, 1, 3];
-      // روزهای آش
-      const ashDays = [0, 2, 4];
-
-      if (soupDays.includes(day)) {
-        // نمایش سوپ جو و ساعت آماده سازی
-        soupItem.style.display = "flex";
-        soupPrepTimeElem.textContent = "🕒 ساعت آماده‌سازی: ۱۲ تا ۱۵";
+      if (title === "سوپ جو") {
+        // شنبه(6)، دوشنبه(1)، چهارشنبه(3) => سفارش دهی 12 تا 15
+        // بقیه روزها => موجود نیست
+        if (day === 6 || day === 1 || day === 3) {
+          availabilityText = "ساعت سفارش دهی: ۱۲ تا ۱۵";
+        } else {
+          availabilityText = "موجود نیست";
+        }
+      } else if (title === "آش جو ") {
+        // یکشنبه(0)، سه‌شنبه(2)، پنجشنبه(4) => سفارش دهی 12 تا 15
+        // بقیه روزها => موجود نیست
+        if (day === 0 || day === 2 || day === 4) {
+          availabilityText = "ساعت سفارش دهی: ۱۲ تا ۱۵";
+        } else {
+          availabilityText = "موجود نیست";
+        }
       } else {
-        soupItem.style.display = "none";
+        availabilityText = "";
       }
 
-      if (ashDays.includes(day)) {
-        ashItem.style.display = "flex";
-        ashPrepTimeElem.textContent = "🕒 ساعت آماده‌سازی: ۱۲ تا ۱۵";
-      } else {
-        ashItem.style.display = "none";
-      }
-
-      // سایر روزها (جمعه) هر دو مخفی باشند (اگر لازم بود می‌توان اضافه کرد)
-      // اگر بخواهید روز جمعه هم چیزی خاص شود می‌توانید تغییر دهید.
-    });
+      modalPrice.textContent = price + (availabilityText ? " | " + availabilityText : "");
+    }
   </script>
+
 </body>
 </html>
