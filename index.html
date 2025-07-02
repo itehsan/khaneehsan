@@ -194,63 +194,45 @@
       position: relative;
     }
 
-  .menu-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row-reverse; /* عکس سمت راست */
-  gap: 10px;
-  user-select: none;
-  padding: 1rem;
-  background-color: #2a2a2a;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  position: relative;
-}
+    .menu-item {
+      background-color: #2a2a2a;
+      border-radius: 12px;
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row-reverse; /* عکس سمت راست */
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .menu-item:hover {
+      background-color: #444;
+    }
 
-.menu-item .info {
-  flex: 1;
-  margin-right: 1rem;
-}
+    .menu-item .info {
+      flex: 1;
+      margin-right: 1rem;
+      margin-left: 0;
+    }
 
-.menu-item .rating {
-  width: 110px;
-  text-align: center;
-  user-select: none;
-  color: #f9c400;
-  font-size: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+    .menu-item .info strong {
+      font-size: 1rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
 
-.menu-item .rating .stars {
-  cursor: pointer;
-}
+    .menu-item .info span {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
 
-.menu-item .rating .stars span {
-  color: #444;
-  font-size: 1.3rem;
-  margin: 0 2px;
-  transition: color 0.3s;
-}
-
-.menu-item .rating .stars span.hover,
-.menu-item .rating .stars span.selected {
-  color: #f9c400;
-}
-
-.menu-item img {
-  width: 90px;
-  height: auto;
-  border-radius: 12px;
-  flex-shrink: 0;
-  object-fit: cover;
-  max-height: 120px;
-}
-
+    .menu-item img {
+      width: 90px;
+      height: auto;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
 
     .modal {
   display: none;
@@ -357,23 +339,9 @@
 
     <!---پیش غذا) -->
     <div class="menu-item" data-category="پیش غذا" onclick="showModal('سوپ جو', '۸۳.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/soup.jpg')">
-  <div class="info">
-    <strong>سوپ جو</strong>
-    <span>کیلویی ۸۳.۰۰۰ تومان </span>
-  </div>
-  <div class="rating" data-product="سوپ جو">
-    <div class="stars">
-      <span data-value="1">&#9733;</span>
-      <span data-value="2">&#9733;</span>
-      <span data-value="3">&#9733;</span>
-      <span data-value="4">&#9733;</span>
-      <span data-value="5">&#9733;</span>
+      <div class="info"><strong>سوپ جو</strong><span>کیلویی ۸۳.۰۰۰ تومان </span></div>
+      <img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو">
     </div>
-    <div class="average-rating" id="avg-سوپ جو">امتیاز: 0.0</div>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو">
-</div>
-
 
     <div class="menu-item" data-category="پیش غذا" onclick="showModal('آش جو', '۱۰۹.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/ash.jpg')">
       <div class="info"><strong>آش جو</strong><span>کیلویی ۱۰۹.۰۰۰ تومان</span></div>
