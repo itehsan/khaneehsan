@@ -21,65 +21,6 @@
       padding: 1rem;
     }
 
-    /* منوی کشویی بالا سمت راست */
-    .dropdown {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 1100;
-    }
-
-    .dropbtn {
-      background-color: #f9c400;
-      color: black;
-      padding: 10px 15px;
-      font-size: 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #333;
-  min-width: 160px;
-  right: 0; /* منو از سمت راست قرار گرفته */
-  border-radius: 8px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  z-index: 1200;
-  text-align: right; /* متن راست‌چین */
-}
-
-
-    .dropdown-content a {
-      color: white;
-      padding: 10px 14px;
-      text-decoration: none;
-      display: block;
-      font-size: 14px;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #f9c400;
-      color: black;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .dropdown-content {
-  right: auto; /* غیر فعال کردن راست */
-  left: 0; /* قرار دادن منو از سمت چپ دکمه */
-  text-align: left;
-}
-
-
-    .dropdown:hover .dropbtn {
-      background-color: #e0b500;
-    }
-
     .branding {
       text-align: center;
       margin-bottom: 1rem;
@@ -126,39 +67,87 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1rem;
+      position: relative;
+    }
+
+    /* منوی کشویی (dropdown) */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: #2c2c2c;
+      color: white;
+      padding: 8px 16px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      min-width: 160px;
+      right: 0; /* منو از سمت راست باز می‌شود */
+      border-radius: 8px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1200;
+      text-align: right;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      border-bottom: 1px solid #444;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f9c400;
+      color: black;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+      display: block;
     }
 
    .search-box {
-      background-color: #333;
-      padding: 0.7rem 1rem 0.7rem 1rem;
-      border-radius: 12px;
-      color: #bbb;
-      margin: 0 auto 1rem;
-      width: 300px;
-      position: relative; /* برای قرار دادن آیکون */
-    }
+  background-color: #333;
+  padding: 0.7rem 1rem 0.7rem 1rem;
+  border-radius: 12px;
+  color: #bbb;
+  margin: 0 auto 1rem;
+  width: 300px;
+  position: relative; /* برای قرار دادن آیکون */
+}
 
-    .search-box input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #fff;
-      font-size: 1rem;
-      font-family: 'Vazirmatn', sans-serif;
-      padding-right: 30px; /* جای خالی برای آیکون */
-    }
+.search-box input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Vazirmatn', sans-serif;
+  padding-right: 30px; /* جای خالی برای آیکون */
+}
 
-    .search-box svg {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      fill: #bbb;
-      width: 18px;
-      height: 18px;
-      pointer-events: none; /* غیرقابل کلیک */
-    }
+.search-box svg {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  fill: #bbb;
+  width: 18px;
+  height: 18px;
+  pointer-events: none; /* غیرقابل کلیک */
+}
 
     .tabs {
       display: flex;
@@ -190,7 +179,7 @@
       color: black;
     }
 
-    /* تغییر مهم: کانتینر محصولات دو ستونه */
+    /* کانتینر محصولات دو ستونه */
     .menu-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -288,15 +277,6 @@
 </head>
 <body>
 
-  <!-- منوی کشویی بالا سمت راست -->
-  <div class="dropdown">
-    <button class="dropbtn">☰</button>
-    <div class="dropdown-content">
-      <a href="http://www.khaneehsan.com">خانه احسان</a>
-      <a href="https://khaneehsan.github.io/social-platform/">تماس با ما</a>
-    </div>
-  </div>
-
   <!-- لوگو و معرفی -->
   <div class="branding">
     <img src="https://itehsan.github.io/khaneehsan/logo.png" alt="لوگوی رستوران">
@@ -307,16 +287,26 @@
   <!-- هدر اصلی -->
   <div class="header">
     <h2>منوی رستوران لقمه احسان</h2>
-    <div>☎️</div>
+
+    <!-- منوی کشویی -->
+    <div class="dropdown" tabindex="0">
+      <button class="dropbtn">☰ منو</button>
+      <div class="dropdown-content">
+        <a href="https://itehsan.github.io/khaneehsan/">خانه احسان</a>
+        <a href="https://itehsan.github.io/khaneehsan/about.html">درباره ما</a>
+        <a href="https://itehsan.github.io/khaneehsan/contact.html">تماس با ما</a>
+      </div>
+    </div>
   </div>
 
   <!-- جستجو -->
-  <div class="search-box">
-    <input type="text" id="search" placeholder="هرچی دوست داری جستجو کن ...">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
-      <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.07 5.6 12.47 3 9 3S2.93 5.6 2.93 8.39 5.53 13.78 9 13.78c1.61 0 3.08-.65 4.13-1.7l.27.28v.79l4.25 4.25c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L15.5 14zM9 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
-    </svg>
-  </div>
+ <div class="search-box">
+  <input type="text" id="search" placeholder="هرچی دوست داری جستجو کن ...">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
+    <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.07 5.6 12.47 3 9 3S2.93 5.6 2.93 8.39 5.53 13.78 9 13.78c1.61 0 3.08-.65 4.13-1.7l.27.28v.79l4.25 4.25c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L15.5 14zM9 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+  </svg>
+</div>
+
 
   <div class="tabs">
     <div class="tab active" data-category="پیش غذا">پیش غذا</div>
@@ -329,7 +319,7 @@
   <!-- کانتینر محصولات -->
   <div class="menu-container">
 
-    <!---پیش غذا) -->
+      <!---پیش غذا) -->
     <div class="menu-item" data-category="پیش غذا" onclick="showModal('سوپ جو', '۸۳.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/soup.jpg')">
    <div class="info"><strong>سوپ جو</strong><span>کیلویی ۸۳.۰۰۰ تومان </span></div>
      <img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو">
@@ -409,7 +399,6 @@
       <img src="https://itehsan.github.io/khaneehsan/1730493013JJmlL.jpg" alt="سبزی خوردن ">
     </div>
 
-
     
       <!-- نوشیدنی -->
     <div class="menu-item" data-category="نوشیدنی" onclick="showModal('دوغ تلمی نیم لیتری', '۱۹.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/doq500.jpg')">
@@ -434,48 +423,42 @@
 
   </div>
 
-  <!-- مدال نمایش تصویر -->
-  <div class="modal" id="modal">
+  <!-- مودال نمایش جزئیات غذا -->
+  <div id="modal" class="modal" tabindex="-1">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()">×</span>
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modal-img" src="" alt="عکس غذا" />
       <h3 id="modal-title"></h3>
-      <img id="modal-img" src="" alt="">
       <p id="modal-price"></p>
+      <p id="modal-order-time"></p>
     </div>
   </div>
 
-  <footer class="footer">
-    آدرس: تهران، خیابان ولیعصر، پلاک ۱۲۳ | تلفن: ۰۲۱-۱۲۳۴۵۶۷۸
-  </footer>
+  <div class="footer">
+    <p>خانه احسان © ۱۴۰۲</p>
+    <p>آدرس: تهران، خیابان انقلاب، کوچه احسان</p>
+    <p>تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</p>
+  </div>
 
   <script>
-    // باز و بسته کردن مدال محصول
-    function showModal(title, price, imgSrc) {
-      document.getElementById('modal-title').textContent = title;
-      document.getElementById('modal-price').textContent = price;
-      const modalImg = document.getElementById('modal-img');
-      modalImg.src = imgSrc;
-      modalImg.alt = title;
-      document.getElementById('modal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-
-    // فیلتر دسته‌ها
     const tabs = document.querySelectorAll('.tab');
-    const items = document.querySelectorAll('.menu-item');
+    const menuItems = document.querySelectorAll('.menu-item');
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalPrice = document.getElementById('modal-price');
+    const modalImg = document.getElementById('modal-img');
+    const modalOrderTime = document.getElementById('modal-order-time');
+    const searchInput = document.getElementById('search');
 
+    // نمایش آیتم‌های مربوط به تب انتخاب شده
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
 
         const category = tab.getAttribute('data-category');
-
-        items.forEach(item => {
-          if(item.getAttribute('data-category') === category){
+        menuItems.forEach(item => {
+          if (item.getAttribute('data-category') === category) {
             item.style.display = 'flex';
           } else {
             item.style.display = 'none';
@@ -484,19 +467,75 @@
       });
     });
 
-    // جستجو در منو
-    const searchInput = document.getElementById('search');
+    // جستجو در غذاها
     searchInput.addEventListener('input', () => {
-      const query = searchInput.value.trim().toLowerCase();
-      items.forEach(item => {
-        const title = item.querySelector('.info strong').textContent.toLowerCase();
-        if(title.includes(query)){
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      menuItems.forEach(item => {
+        const text = item.querySelector('.info strong').textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
           item.style.display = 'flex';
         } else {
           item.style.display = 'none';
         }
       });
     });
+
+    // نمایش مودال و تنظیم محتوا
+    function showModal(title, price, imgSrc) {
+      modalTitle.textContent = title;
+      modalPrice.textContent = price;
+      modalImg.src = imgSrc;
+
+      // ساعت سفارش‌دهی بر اساس روزهای هفته برای سوپ و آش
+      const today = new Date();
+      const day = today.getDay(); // 0=یکشنبه ... 6=شنبه (دقت: جاوااسکریپت یکشنبه=0)
+      // چون روزهای ما به شمسی هست، فرض می‌کنیم:
+      // شنبه=6، یکشنبه=0، دوشنبه=1، سه‌شنبه=2، چهارشنبه=3، پنجشنبه=4، جمعه=5
+
+      // تعریف روزهای زوج و فرد بر اساس فرض بالا:
+      // روزهای زوج: شنبه(6)، دوشنبه(1)، چهارشنبه(3)
+      // روزهای فرد: یکشنبه(0)، سه‌شنبه(2)، پنجشنبه(4)
+
+      // با توجه به اختلاف تقویم شمسی و میلادی و جاوااسکریپت، اینجا فرضی عمل می‌کنیم:
+      // برای تست سریع فقط روز شنبه و دوشنبه و چهارشنبه سوپ موجوده از 12 تا 15
+      // روزهای یکشنبه، سه‌شنبه، پنجشنبه آش موجود است از 12 تا 15
+
+      let orderTimeText = '';
+
+      if (title === 'سوپ جو') {
+        if ([6, 1, 3].includes(day)) {
+          orderTimeText = 'ساعت سفارش‌دهی: ۱۲ تا ۱۵ (روزهای زوج)';
+        } else {
+          orderTimeText = 'موجود نیست (روزهای فرد)';
+        }
+      } else if (title === 'آش جو ') {
+        if ([0, 2, 4].includes(day)) {
+          orderTimeText = 'ساعت سفارش‌دهی: ۱۲ تا ۱۵ (روزهای فرد)';
+        } else {
+          orderTimeText = 'موجود نیست (روزهای زوج)';
+        }
+      } else {
+        orderTimeText = '';
+      }
+
+      modalOrderTime.textContent = orderTimeText;
+
+      modal.style.display = 'flex';
+      modal.focus();
+    }
+
+    // بستن مودال
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    // بستن مودال با کلید Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
+        closeModal();
+      }
+    });
   </script>
+
 </body>
 </html>
