@@ -228,8 +228,6 @@
       font-size: 0.9rem;
     }
 
-    
-
     .menu-item img {
       width: 90px;
       height: auto;
@@ -336,11 +334,6 @@
       .search-box {
         width: 100%;
       }
-      
-  .fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
     }
   </style>
 </head>
@@ -638,26 +631,6 @@
         // ارسال یا ذخیره امتیاز در اینجا
         console.log(`امتیاز داده شده: ${val}`);
       });
-      // کدهای قبلی...
-
-// افکت محو شدن هنگام کلیک روی لینک‌های منوی بازشو
-const menuLinks = document.querySelectorAll('.side-menu a');
-
-menuLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault(); // جلوگیری از رفتار پیشفرض لینک تا افکت اجرا شود
-
-    sideMenu.classList.add('fade-out'); // فعال کردن افکت محو شدن
-
-    setTimeout(() => {
-      sideMenu.classList.remove('open');      // بستن منو
-      sideMenu.classList.remove('fade-out');  // حذف کلاس fade-out برای بازگشت به حالت اولیه
-      sideMenu.setAttribute('aria-hidden', 'true');
-
-      // حالا لینک واقعی اجرا می‌شود:
-      window.open(link.href, link.target || '_self');
-    }, 500); // مدت زمان برابر با transition در CSS
-  });
     });
   </script>
 </body>
