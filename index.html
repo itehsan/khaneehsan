@@ -592,6 +592,37 @@
       modal.style.display = 'none';
     }
   });
+
+  const stars = document.querySelectorAll('.star');
+let selectedRating = 0;
+
+stars.forEach(star => {
+  star.addEventListener('mouseover', () => {
+    const val = parseInt(star.dataset.value);
+    highlightStars(val);
+  });
+
+  star.addEventListener('mouseout', () => {
+    highlightStars(selectedRating);
+  });
+
+  star.addEventListener('click', () => {
+    selectedRating = parseInt(star.dataset.value);
+    highlightStars(selectedRating);
+    console.log('امتیاز ثبت شده برای', modalTitle.textContent, ':', selectedRating);
+    // اینجا می‌تونی ارسال به Google Sheets یا سرور رو هم اضافه کنی
+  });
+});
+
+function highlightStars(rating) {
+  stars.forEach(s => {
+    s.classList.remove('selected', 'hovered');
+    if (parseInt(s.dataset.value) <= rating) {
+      s.classList.add('selected');
+    }
+  });
+}
+
 </script>
 </body>
 </html>
