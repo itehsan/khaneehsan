@@ -350,8 +350,23 @@
 
     <button class="menu-button" id="menuToggle" aria-label="باز کردن منو">&#9776;</button>
   </div>
+  
+<div style="margin-bottom: 1rem; font-weight: bold; font-size: 1.2rem; color: #f9c400; cursor: default;">
+  <svg style="vertical-align: middle; margin-left: 5px;" width="24" height="24" fill="#f9c400" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 6h18M3 12h18M3 18h18" stroke="#f9c400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  دسته‌بندی‌ها
+</div>
+<ul style="list-style: none; padding-right: 0; margin-bottom: 1rem;">
+  <li><a href="#" class="side-category-link" data-category="پیش غذا">پیش غذا</a></li>
+  <li><a href="#" class="side-category-link" data-category="کباب ها">کباب ها</a></li>
+  <li><a href="#" class="side-category-link" data-category="ساندویچ ها">ساندویچ ها</a></li>
+  <li><a href="#" class="side-category-link" data-category="دسر و چاشنی">دسر و چاشنی</a></li>
+  <li><a href="#" class="side-category-link" data-category="نوشیدنی">شربت ، نوشیدنی</a></li>
+</ul>
 
   <nav class="side-menu" id="sideMenu" aria-hidden="true">
+    
     <a href="http://www.khaneehsan.com" target="_blank" rel="noopener">خانه احسان</a>
     <a href="https://khaneehsan.github.io/social-platform/" target="_blank" rel="noopener">درباره ما</a>
   </nav>
@@ -532,7 +547,7 @@
       const isOpen = sideMenu.classList.contains('open');
       sideMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
     });
-
+    
     // بستن منوی بازشو وقتی روی بیرون منو کلیک شود
     window.addEventListener('click', (event) => {
       const isClickInsideMenu = sideMenu.contains(event.target);
@@ -541,6 +556,40 @@
         sideMenu.classList.remove('open');
         sideMenu.setAttribute('aria-hidden', 'true');
       }
+
+const sideCategoryLinks = document.querySelectorAll('.side-category-link');
+
+sideCategoryLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+
+    const category = link.getAttribute('data-category');
+
+    // غیر فعال کردن همه تب‌ها و فعال کردن تب انتخاب شده
+    tabs.forEach(t => {
+      if (t.getAttribute('data-category') === category) {
+        t.classList.add('active');
+      } else {
+        t.classList.remove('active');
+      }
+    });
+
+    // فیلتر کردن محصولات بر اساس دسته‌بندی
+    menuItems.forEach(item => {
+      if (item.getAttribute('data-category') === category) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // بستن منوی بازشو
+    sideMenu.classList.remove('open');
+    sideMenu.setAttribute('aria-hidden', 'true');
+  });
+});
+
+      
     });
 
     // فیلتر جستجو
