@@ -284,6 +284,27 @@
       position: relative;
     }
 
+    .rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.star {
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.star:hover,
+.star.hovered,
+.star.selected {
+  color: gold;
+}
+
     /* واکنشگرایی موبایل */
     @media (max-width: 600px) {
       .menu-container {
