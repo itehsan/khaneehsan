@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="فا" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -99,7 +99,7 @@
       height: 100%;
       background-color: #2b2e34;
       box-shadow: -2px 0 5px rgba(0,0,0,0.7);
-      transition: right 0.3s ease;
+      transition: right 0.3s ease, opacity 0.5s ease;
       z-index: 10000;
       padding: 1rem;
       display: flex;
@@ -107,10 +107,16 @@
       gap: 1rem;
       font-size: 1rem;
       border-radius: 0 0 0 10px;
+      opacity: 1;
     }
 
     .side-menu.open {
       right: 0;
+    }
+
+    /* کلاس برای افکت محو شدن */
+    .side-menu.fade-out {
+      opacity: 0;
     }
 
     .side-menu a {
@@ -522,116 +528,104 @@
 
   <div class="footer">© ۲۰۲۵ رستوران لقمه احسان</div>
 
-  <script>
-    // باز و بسته کردن منوی بازشو
-    const menuToggle = document.getElementById('menuToggle');
-    const sideMenu = document.getElementById('sideMenu');
-    menuToggle.addEventListener('click', () => {
-      sideMenu.classList.toggle('open');
-      // aria-hidden تنظیم برای دسترس پذیری
-      const isOpen = sideMenu.classList.contains('open');
-      sideMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-    });
+<script>
+  // باز و بسته کردن منوی بازشو
+  const menuToggle = document.getElementById('menuToggle');
+  const sideMenu = document.getElementById('sideMenu');
 
-    // بستن منوی بازشو وقتی روی بیرون منو کلیک شود
-    window.addEventListener('click', (event) => {
-      const isClickInsideMenu = sideMenu.contains(event.target);
-      const isClickOnButton = menuToggle.contains(event.target);
-      if (!isClickInsideMenu && !isClickOnButton) {
-        sideMenu.classList.remove('open');
+  menuToggle.addEventListener('click', () => {
+    if(sideMenu.classList.contains('open')){
+      sideMenu.classList.remove('open');
+      sideMenu.setAttribute('aria-hidden', 'true');
+    } else {
+      sideMenu.classList.add('open');
+      sideMenu.setAttribute('aria-hidden', 'false');
+    }
+  });
+
+  // افکت محو شدن هنگام کلیک روی لینک‌های منوی بازشو
+  const menuLinks = document.querySelectorAll('.side-menu a');
+
+  menuLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault(); // جلوگیری از رفتن سریع به لینک
+
+      sideMenu.classList.add('fade-out'); // فعال کردن افکت محو شدن
+
+      setTimeout(() => {
+        sideMenu.classList.remove('open');      // بستن منو
+        sideMenu.classList.remove('fade-out');  // حذف کلاس fade-out
         sideMenu.setAttribute('aria-hidden', 'true');
+
+        // اجرای لینک پس از انیمیشن
+        window.open(link.href, link.target || '_self');
+      }, 500); // مدت زمان انیمیشن در CSS
+    });
+  });
+
+  // مودال برای نمایش جزئیات محصول
+  const modal = document.getElementById('modal');
+  const modalImage = document.getElementById('modalImage');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const closeModalBtn = document.getElementById('closeModal');
+
+  function showModal(name, price, img) {
+    modalTitle.textContent = name;
+    modalDesc.textContent = price;
+    modalImage.src = img;
+    modalImage.alt = name;
+    modal.style.display = 'flex';
+  }
+
+  closeModalBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if(e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  // فیلتر جستجو
+  const searchInput = document.getElementById('search');
+  const menuItems = document.querySelectorAll('.menu-item');
+
+  searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+
+    menuItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      if(text.includes(searchTerm)){
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
       }
     });
+  });
 
-    // فیلتر جستجو
-    const searchInput = document.getElementById('search');
-    const menuItems = document.querySelectorAll('.menu-item');
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.trim().toLowerCase();
+  // تب بندی دسته بندی
+  const tabs = document.querySelectorAll('.tab');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // حذف حالت فعال همه تب‌ها
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const category = tab.getAttribute('data-category');
+
       menuItems.forEach(item => {
-        const title = item.querySelector('strong').textContent.trim().toLowerCase();
-        const category = item.getAttribute('data-category').trim().toLowerCase();
-        if (title.includes(query) || category.includes(query)) {
+        if(item.getAttribute('data-category') === category || category === ''){
           item.style.display = 'flex';
         } else {
           item.style.display = 'none';
         }
       });
     });
+  });
+</script>
 
-    // تغییر تب‌ها
-    const tabs = document.querySelectorAll('.tab');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const category = tab.getAttribute('data-category');
-        menuItems.forEach(item => {
-          if (item.getAttribute('data-category') === category) {
-            item.style.display = 'flex';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // نمایش مودال
-    const modal = document.getElementById('modal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalImg = document.getElementById('modalImg');
-    const modalClose = document.getElementById('modalClose');
-    const orderTime = document.getElementById('orderTime');
-    const ratingStars = document.querySelectorAll('#rating .star');
-
-    function showModal(title, price, imgSrc) {
-      modalTitle.textContent = title;
-      modalDesc.textContent = price;
-      modalImg.src = imgSrc;
-      modalImg.alt = title;
-
-      // زمان سفارش (مثال ساده)
-      orderTime.textContent = 'زمان سفارش: ۱۲ تا ۱۵';
-
-      // ریست رنگ ستاره‌ها
-      ratingStars.forEach(star => star.classList.remove('selected'));
-
-      modal.style.display = 'flex';
-    }
-
-    modalClose.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', e => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
-
-    // ستاره‌ها - امتیازدهی
-    ratingStars.forEach(star => {
-      star.addEventListener('mouseenter', () => {
-        const val = star.getAttribute('data-value');
-        ratingStars.forEach(s => {
-          s.classList.toggle('hovered', s.getAttribute('data-value') <= val);
-        });
-      });
-
-      star.addEventListener('mouseleave', () => {
-        ratingStars.forEach(s => s.classList.remove('hovered'));
-      });
-
-      star.addEventListener('click', () => {
-        const val = star.getAttribute('data-value');
-        ratingStars.forEach(s => {
-          s.classList.toggle('selected', s.getAttribute('data-value') <= val);
-        });
-        // ارسال یا ذخیره امتیاز در اینجا
-        console.log(`امتیاز داده شده: ${val}`);
-      });
-    });
-  </script>
 </body>
 </html>
