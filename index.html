@@ -597,9 +597,26 @@
       modalImg.src = imgSrc;
       modalImg.alt = title;
 
-      // زمان سفارش (مثال ساده)
-      orderTime.textContent = 'زمان سفارش: ۱۲ تا ۱۵';
+ // تابع نمایش ساعت سفارش برای سوپ جو و آش جو بر اساس روزهای هفته
+  function getOrderTime(foodName) {
+    const today = new Date();
+    const day = today.getDay(); 
+    const dayNames = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'];
+    const todayName = dayNames[day];
 
+    const evenDays = ['شنبه', 'دوشنبه', 'چهارشنبه'];
+    const oddDays = ['یکشنبه', 'سه‌شنبه', 'پنج‌شنبه'];
+
+    if (foodName === 'سوپ جو') {
+      if (evenDays.includes(todayName)) return 'ساعت سفارش‌دهی ۱۲ تا ۱۵';
+      else return 'موجود نیست';
+    }
+    if (foodName === 'آش جو') {
+      if (oddDays.includes(todayName)) return 'ساعت سفارش‌دهی ۱۲ تا ۱۵';
+      else return 'موجود نیست';
+    }
+    return '';
+  }
       // ریست رنگ ستاره‌ها
       ratingStars.forEach(star => star.classList.remove('selected'));
 
