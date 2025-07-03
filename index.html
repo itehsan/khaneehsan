@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="فا" dir="rtl">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -380,7 +380,7 @@
   <div class="menu-container">
     <!-- محصولات با onclick نمایش مودال -->
    
-<!---پیش غذا) -->
+   <!---پیش غذا) -->
     <div class="menu-item" data-category="پیش غذا" onclick="showModal('سوپ جو', '۸۳.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/soup.jpg')">
       <div class="info"><strong>سوپ جو</strong><span>کیلویی ۸۳.۰۰۰ تومان </span></div>
       <img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو">
@@ -474,7 +474,7 @@
       <img src="https://itehsan.github.io/khaneehsan/zeyton.jpg" alt="زیتون پرورده">
     </div>
 
-     <div class="menu-item" data-category="دسر و چاشنی" onclick="showModal('سبزی خوردن', '۳۸.۰۰۰ توامن', 'https://itehsan.github.io/khaneehsan/1730493013JJmlL.jpg')">
+     <div class="menu-item" data-category="دسر و چاشنی" onclick="showModal('سبزی خوردن', '۳۸.۰۰۰ توامن', 'https://itehsan.github.io/khaneehsan/4617221.jpg')">
       <div class="info"><strong>سبزی خوردن</strong><span>۳۸.۰۰۰ تومان</span></div>
       <img src="https://itehsan.github.io/khaneehsan/1730493013JJmlL.jpg" alt="سبزی خوردن ">
     </div>
@@ -500,33 +500,24 @@
       <div class="info"><strong>آب معدنی نیم لیتری</strong><span>۱۵.۰۰۰ تومان</span></div>
       <img src="https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg" alt="آب معدنی نیم لیتری">
     </div>
-
-
-  </div>
   </div>
 
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
     <div class="modal-content">
-      <button class="close" id="modalClose" aria-label="بستن مودال" title="بستن">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#f55" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M18.3 5.71a1 1 0 00-1.42 0L12 10.59 7.12 5.7A1 1 0 105.7 7.12L10.59 12l-4.88 4.88a1 1 0 101.42 1.42L12 13.41l4.88 4.88a1 1 0 001.42-1.42L13.41 12l4.88-4.88a1 1 0 000-1.41z"/>
+      <button class="close" id="modalClose" aria-label="بستن مودال">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+          <path d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.11 5.7A1 1 0 0 0 5.7 7.11L10.59 12l-4.89 4.89a1 1 0 1 0 1.41 1.41L12 13.41l4.89 4.89a1 1 0 0 0 1.41-1.41L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z"/>
         </svg>
       </button>
+      <img src="" alt="" id="modalImg" />
       <h3 id="modalTitle"></h3>
       <p id="modalDesc"></p>
-      <img id="modalImg" src="" alt="" />
-      <p id="orderTime" style="margin-top:10px; font-weight:bold; color:#f9c400;"></p>
-      <div class="rating" id="rating">
-        <span class="star" data-value="5">&#9733;</span>
-        <span class="star" data-value="4">&#9733;</span>
-        <span class="star" data-value="3">&#9733;</span>
-        <span class="star" data-value="2">&#9733;</span>
-        <span class="star" data-value="1">&#9733;</span>
-      </div>
     </div>
   </div>
 
-  <div class="footer">© ۲۰۲۵ رستوران لقمه احسان</div>
+  <footer class="footer">
+    &copy; ۱۴۰۲ لقمه احسان - همه حقوق محفوظ است
+  </footer>
 
 <script>
   // باز و بسته کردن منوی بازشو
@@ -534,7 +525,7 @@
   const sideMenu = document.getElementById('sideMenu');
 
   menuToggle.addEventListener('click', () => {
-    if(sideMenu.classList.contains('open')){
+    if (sideMenu.classList.contains('open')) {
       sideMenu.classList.remove('open');
       sideMenu.setAttribute('aria-hidden', 'true');
     } else {
@@ -548,33 +539,32 @@
 
   menuLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-      e.preventDefault(); // جلوگیری از رفتن سریع به لینک
+      e.preventDefault();
 
-      sideMenu.classList.add('fade-out'); // فعال کردن افکت محو شدن
+      sideMenu.classList.add('fade-out');
 
       setTimeout(() => {
-        sideMenu.classList.remove('open');      // بستن منو
-        sideMenu.classList.remove('fade-out');  // حذف کلاس fade-out
+        sideMenu.classList.remove('open');
+        sideMenu.classList.remove('fade-out');
         sideMenu.setAttribute('aria-hidden', 'true');
 
-        // اجرای لینک پس از انیمیشن
         window.open(link.href, link.target || '_self');
-      }, 500); // مدت زمان انیمیشن در CSS
+      }, 500);
     });
   });
 
-  // مودال برای نمایش جزئیات محصول
+  // مودال نمایش جزئیات محصول
   const modal = document.getElementById('modal');
-  const modalImage = document.getElementById('modalImage');
+  const modalImg = document.getElementById('modalImg');
   const modalTitle = document.getElementById('modalTitle');
   const modalDesc = document.getElementById('modalDesc');
-  const closeModalBtn = document.getElementById('closeModal');
+  const closeModalBtn = document.getElementById('modalClose');
 
   function showModal(name, price, img) {
     modalTitle.textContent = name;
     modalDesc.textContent = price;
-    modalImage.src = img;
-    modalImage.alt = name;
+    modalImg.src = img;
+    modalImg.alt = name;
     modal.style.display = 'flex';
   }
 
@@ -583,7 +573,7 @@
   });
 
   window.addEventListener('click', (e) => {
-    if(e.target === modal) {
+    if (e.target === modal) {
       modal.style.display = 'none';
     }
   });
@@ -597,7 +587,7 @@
 
     menuItems.forEach(item => {
       const text = item.textContent.toLowerCase();
-      if(text.includes(searchTerm)){
+      if (text.includes(searchTerm)) {
         item.style.display = 'flex';
       } else {
         item.style.display = 'none';
@@ -610,14 +600,13 @@
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      // حذف حالت فعال همه تب‌ها
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
 
       const category = tab.getAttribute('data-category');
 
       menuItems.forEach(item => {
-        if(item.getAttribute('data-category') === category || category === ''){
+        if (item.getAttribute('data-category') === category || category === '') {
           item.style.display = 'flex';
         } else {
           item.style.display = 'none';
