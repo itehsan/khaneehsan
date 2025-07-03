@@ -638,6 +638,42 @@
         console.log(`امتیاز داده شده: ${val}`);
       });
     });
+
+          // منوهای دسته‌بندی داخل منوی بازشو
+document.querySelectorAll('.side-menu a[data-category]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const category = link.getAttribute('data-category');
+
+    // تب‌ها رو تنظیم کن
+    tabs.forEach(t => {
+      if (t.getAttribute('data-category') === category) {
+        t.classList.add('active');
+      } else {
+        t.classList.remove('active');
+      }
+    });
+
+    // آیتم‌ها رو فیلتر کن
+    menuItems.forEach(item => {
+      if (item.getAttribute('data-category') === category) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // منوی کناری رو ببند
+    sideMenu.classList.add('fade-out');
+    setTimeout(() => {
+      sideMenu.classList.remove('open');
+      sideMenu.classList.remove('fade-out');
+      sideMenu.setAttribute('aria-hidden', 'true');
+    }, 500);
+  });
+});
+
   </script>
 </body>
 </html>
