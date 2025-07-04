@@ -888,11 +888,20 @@
   });
 
   // بستن مودال با کلیک روی فضای بیرون مودال
-  modal.addEventListener('click', (e) => {
-    if(e.target === modal) {
-      modal.classList.remove('show');
-    }
-  });
+  // بستن منوی بازشو وقتی روی بیرون منو کلیک شود
+    window.addEventListener('click', (event) => {
+      const isClickInsideMenu = sideMenu.contains(event.target);
+      const isClickOnButton = menuToggle.contains(event.target);
+      if (!isClickInsideMenu && !isClickOnButton) {
+        sideMenu.classList.remove('open');
+        sideMenu.setAttribute('aria-hidden', 'true');
+      }
+    });
+  //modal.addEventListener('click', (e) => {
+  //  if(e.target === modal) {
+    //  modal.classList.remove('show');
+  //  }
+//  });
 
   // امتیازدهی ستاره‌ای در مودال
   stars.forEach(star => {
