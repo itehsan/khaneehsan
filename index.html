@@ -584,16 +584,19 @@
         }
       });
     });
-
- // تغییر تب‌ها
+// تغییر تب‌ها
 const tabs = document.querySelectorAll('.tab');
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     const category = tab.getAttribute('data-category');
+
     menuItems.forEach(item => {
-      const isMatch = item.getAttribute('data-category') === category;
+      const itemCategory = item.getAttribute('data-category');
+
+      const isMatch = category === 'همه' || itemCategory === category;
+
       if (isMatch) {
         item.style.display = 'flex';
 
@@ -606,6 +609,11 @@ tabs.forEach(tab => {
         item.classList.remove('animate-up');
       }
     });
+
+    // بستن منوی بازشو اگر باز بود
+    const sideMenu = document.getElementById('sideMenu');
+    sideMenu.classList.remove('open');
+    sideMenu.setAttribute('aria-hidden', 'true');
   });
 });
 
