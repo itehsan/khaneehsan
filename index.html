@@ -586,6 +586,8 @@
     });
 // تغییر تب‌ها
 const tabs = document.querySelectorAll('.tab');
+const menuItems = document.querySelectorAll('.menu-item');
+
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
     tabs.forEach(t => t.classList.remove('active'));
@@ -594,13 +596,11 @@ tabs.forEach(tab => {
 
     menuItems.forEach(item => {
       const itemCategory = item.getAttribute('data-category');
-
       const isMatch = category === 'همه' || itemCategory === category;
 
       if (isMatch) {
         item.style.display = 'flex';
 
-        // اجرای انیمیشن: ریست و اعمال مجدد
         item.classList.remove('animate-up');
         void item.offsetWidth;
         item.classList.add('animate-up');
@@ -609,6 +609,30 @@ tabs.forEach(tab => {
         item.classList.remove('animate-up');
       }
     });
+
+
+    // بستن منوی بازشو اگر باز بود
+    const sideMenu = document.getElementById('sideMenu');
+    if (sideMenu) {
+      sideMenu.classList.remove('open');
+      sideMenu.setAttribute('aria-hidden', 'true');
+    }
+  });
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  // فعال کردن تب همه
+  tabs.forEach(t => t.classList.remove('active'));
+  const allTab = document.querySelector('.tab[data-category="همه"]');
+  if (allTab) allTab.classList.add('active');
+
+  // نمایش همه آیتم‌ها
+  menuItems.forEach(item => {
+    item.style.display = 'flex';
+    item.classList.add('animate-up');
+  });
+});
+
 
     // بستن منوی بازشو اگر باز بود
     const sideMenu = document.getElementById('sideMenu');
