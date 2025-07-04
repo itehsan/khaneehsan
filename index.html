@@ -689,6 +689,26 @@ orderTime.textContent = orderText;
         console.log(`امتیاز داده شده: ${val}`);
       });
     });
+
+  // بستن منو پس از کلیک روی تب‌هایی که داخل منوی بازشو هستن
+  document.querySelectorAll('.side-menu .tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      // فعال کردن تب
+      const cat = tab.getAttribute('data-category');
+
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      document.querySelectorAll('.menu-item').forEach(item => {
+        item.style.display = item.getAttribute('data-category') === cat ? 'flex' : 'none';
+      });
+
+      // بستن منو
+      document.getElementById('sideMenu').classList.remove('open');
+      document.getElementById('sideMenu').setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>
   </script>
 </body>
 </html>
