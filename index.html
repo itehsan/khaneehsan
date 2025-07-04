@@ -586,40 +586,39 @@
     });
 
 // تغییر تب‌ها
-// تغییر تب‌ها
 const tabs = document.querySelectorAll('.tab');
+const menuItems = document.querySelectorAll('.menu-item');
+
 tabs.forEach(tab => {
-tab.addEventListener('click', () => {
-tabs.forEach(t => t.classList.remove('active'));
-tab.classList.add('active');
-const category = tab.getAttribute('data-category');
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const category = tab.getAttribute('data-category');
 
-menuItems.forEach(item => {  
-  const itemCategory = item.getAttribute('data-category');  
+    menuItems.forEach(item => {
+      const itemCategory = item.getAttribute('data-category');
+      const isMatch = category === 'همه' || itemCategory === category;
 
-  const isMatch = category === 'همه' || itemCategory === category;  
+      if (isMatch) {
+        item.style.display = 'flex';
 
-  if (isMatch) {  
-    item.style.display = 'flex';  
+        item.classList.remove('animate-up');
+        void item.offsetWidth;
+        item.classList.add('animate-up');
+      } else {
+        item.style.display = 'none';
+        item.classList.remove('animate-up');
+      }
+    });
 
-    // اجرای انیمیشن: ریست و اعمال مجدد  
-    item.classList.remove('animate-up');  
-    void item.offsetWidth;  
-    item.classList.add('animate-up');  
-  } else {  
-    item.style.display = 'none';  
-    item.classList.remove('animate-up');  
-  }  
-});  
-
-// بستن منوی بازشو اگر باز بود  
-const sideMenu = document.getElementById('sideMenu');  
-sideMenu.classList.remove('open');  
-sideMenu.setAttribute('aria-hidden', 'true');
-
+    // بستن منوی بازشو اگر باز بود
+    const sideMenu = document.getElementById('sideMenu');
+    if (sideMenu) {
+      sideMenu.classList.remove('open');
+      sideMenu.setAttribute('aria-hidden', 'true');
+    }
+  });
 });
-});
-
 
 window.addEventListener('DOMContentLoaded', () => {
   // فعال کردن تب همه
@@ -633,8 +632,6 @@ window.addEventListener('DOMContentLoaded', () => {
     item.classList.add('animate-up');
   });
 });
-
-
     // بستن منوی بازشو اگر باز بود
     const sideMenu = document.getElementById('sideMenu');
     sideMenu.classList.remove('open');
