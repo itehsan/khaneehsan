@@ -1,731 +1,244 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<!DOCTYPE html><html lang="fa">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>منوی رستوران لقمه احسان</title>
+  <title>ارتباط با خانه احسان</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
-
     @font-face {
       font-family: 'AdobeArabic';
       src: url('https://itehsan.github.io/khaneehsan/AdobeArabic-Regular.otf') format('opentype');
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Vazirmatn', sans-serif;
-      background-color: #2b2e34;
-      color: #fff;
-      padding: 1rem;
-      position: relative;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .branding {
-      text-align: center;
-      margin-bottom: 1rem;
-      padding: 2rem 1rem;
-      border-radius: 20px;
-      background-image: url('https://itehsan.github.io/khaneehsan/dd.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: #fff;
-      position: relative;
-      z-index: 2;
-    }
-    .branding::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 20px;
-      z-index: -1;
-    }
-    .branding * {
-      position: relative;
-      z-index: 2;
-    }
-
-    .branding img {
-      width: 100px;
-      border-radius: 20px;
-      margin-bottom: 0.7rem;
-    }
-
-    .branding h1 {
-      font-size: 1.3rem;
-      margin-top: 0.5rem;
-    }
-
-    .branding p {
-      font-size: 0.95rem;
-      color: #ddd;
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      z-index: 2;
-      position: relative;
-    }
-
-    /* دکمه منوی بازشو */
-    .menu-button {
-      background: transparent;
-      border: none;
-      font-size: 1.5rem;
-      color: #fff;
-      cursor: pointer;
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-    }
-    .menu-button:hover {
-      background-color: #444;
-    }
-
-    /* منوی بازشو از سمت راست */
-    .side-menu {
-      position: fixed;
-      top: 0;
-      right: -250px; /* خارج صفحه */
-      width: 250px;
-      height: 100%;
-      background-color: #2b2e34;
-      box-shadow: -2px 0 5px rgba(0,0,0,0.7);
-      transition: right 0.3s ease;
-      z-index: 10000;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      font-size: 1rem;
-      border-radius: 0 0 0 10px;
-    }
-
-    .side-menu.open {
-      right: 0;
-    }
-
-    .side-menu a {
-      color: #eee;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      background-color: #333;
-      transition: background-color 0.3s ease;
-    }
-    .side-menu a:hover {
-      background-color: #f9c400;
-      color: #000;
-    }
-
-    .search-box {
-      background-color: #333;
-      padding: 0.7rem 1rem 0.7rem 1rem;
-      border-radius: 12px;
-      color: #bbb;
-      margin: 0 auto 1rem;
-      width: 300px;
-      position: relative; /* برای قرار دادن آیکون */
-      z-index: 2;
-    }
-
-    .search-box input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #fff;
-      font-size: 1rem;
-      font-family: 'Vazirmatn', sans-serif;
-      padding-right: 30px; /* جای خالی برای آیکون */
-    }
-
-    .search-box svg {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      fill: #bbb;
-      width: 18px;
-      height: 18px;
-      pointer-events: none; /* غیرقابل کلیک */
-    }
-
-    .tabs {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      overflow-x: auto;
-      z-index: 2;
-      position: relative;
-    }
-
-    .tab {
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      background-color: #2c2c2c;
-      color: white;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .tab.active {
-      background-color: #f9c400;
-      color: black;
-    }
-
-    .menu-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      z-index: 1;
-      position: relative;
-    }
-
-
-    .menu-item {
-      background-color: #3b3f47;
-      border-radius: 12px;
-      padding: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-direction: row-reverse; /* عکس سمت راست */
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-    .menu-item:hover {
-      background-color: #3b3f47;
-    }
-
-    .menu-item .info {
-      flex: 1;
-      margin-right: 1rem;
-      margin-left: 0;
-    }
-
-    .menu-item .info strong {
-      font-size: 1rem;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .menu-item .info span {
-      color: #ccc;
-      font-size: 0.9rem;
-    }
-
-    .menu-item img {
-      width: 90px;
-      height: auto;
-      border-radius: 12px;
-      flex-shrink: 0;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(43, 46, 52, 0.8);
-      backdrop-filter: blur(4px);
-      justify-content: center;
-      align-items: center;
-      z-index: 11000;
-    }
-
-    .modal-content {
-      background-color: #2a2a2a;
-      padding: 1rem;
-      border-radius: 16px;
-      text-align: center;
-      position: relative;
-      max-width: 90%;
-      user-select: none;
-    }
-
-    .modal-content img {
-      width: 350px;
-      height: 350px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .modal-content .close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.2s ease;
-    }
-
-    .modal-content .close:hover {
-      transform: rotate(90deg);
-    }
-
-    .modal-content .close svg {
-      display: block;
-      width: 24px;
-      height: 24px;
-      fill: #f55;
-      transition: fill 0.3s ease;
-    }
-
-    .modal-content .close:hover svg {
-      fill: #e74c3c;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 2rem;
-      color: #888;
-      font-size: 0.8rem;
-      z-index: 2;
-      position: relative;
-    }
-
-    .rating {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: center;
-      gap: 5px;
-      margin-top: 10px;
-    }
-
-    .star {
-      font-size: 2rem;
-      color: #888;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-
-    .star:hover,
-    .star.hovered,
-    .star.selected {
-      color: gold;
-    }
-
-    @media (max-width: 600px) {
-      .menu-container {
-        grid-template-columns: 1fr;
-      }
-      .search-box {
-        width: 100%;
-      }
-    }
-    #orderTime.unavailable {
-  color: #ff5555;
+      font-weight: normal;
+      font-style: normal;
+    }body {
+  font-family: 'AdobeArabic', sans-serif;
+  background: url('https://itehsan.github.io/khaneehsan/back4.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 40px;
+  direction: rtl;
+  backdrop-filter: brightness(0.9);
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
 }
-#orderTime.available {
-  color: #f9c400;
+
+.profile {
+  margin-bottom: 20px;
+}
+
+.profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
+  background: #fff;
+}
+
+h2 {
+  margin-top: 15px;
+  color: #000;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  margin: 10px auto;
+  padding: 12px 18px;
+  max-width: 90%;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  flex-wrap: nowrap;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.link:hover {
+  transform: scale(1.03);
+}
+
+.link img {
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+.link a {
+  text-decoration: none;
+  color: #333;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.telegram-link a,
+.eitaa-link a {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.contact-box {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  max-width: 90%;
+  margin: 25px auto 10px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 600;
+  direction: rtl;
+  text-align: right;
+}
+
+.contact-item div {
+  width: 100%;
+}
+
+.contact-box div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.contact-box h3 {
+  margin: 0 0 5px;
+  font-size: 20px;
+  color: #000;
+}
+
+.contact-box p {
+  margin: 3px 0;
+  font-size: 18px;
+  color: #444;
+}
+
+.contact-box p a {
+  text-decoration: none;
+  color: #444;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 18px;
+  }
+
+  .telegram-link a,
+  .eitaa-link a {
+    font-size: 20px;
+  }
+
+  .link img {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+  }
+}
+
+.blink {
+  animation: blink-animation 2s steps(3, start) infinite;
+  color: #d00000;
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 10px;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+.notice-box {
+  font-size: 22px;
+  font-weight: bold;
+  color: #005f8c;
+  margin: 25px auto 10px;
+  display: inline-block;
 }
 
   </style>
 </head>
 <body>
+  <div class="profile">
+    <img src="https://itehsan.github.io/khaneehsan/logo.png" alt="Logo" />
+    <h2>خانه احسان دریچه ای به زندگی پاک</h2>
+  </div>  <div class="link">
+    <img src="https://cdn-icons-png.flaticon.com/512/84/84410.png" alt="Website Icon" />
+    <a href="http://www.khaneehsan.com" target="_blank">خرید از فروشگاه اینترنتی خانه احسان</a>
+  </div>  <div class="link">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
+    <a href="https://instagram.com/dr.javid.persian" target="_blank"> اینستاگرام - دکتر جاوید </a>
+  </div> <div class="link">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
+    <a href="https://instagram.com/dr.fereshte.persian" target="_blank"> اینستاگرام - دکتر فرشته </a>
+  </div><div class="link">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
+    <a href="https://instagram.com/khaneh.ehsan" target="_blank">اینستاگرام - هایپر سلامت خانه احسان</a>
+  </div> <div class="link telegram-link">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
+    <a href="https://t.me/khaneehsan_shop" target="_blank">تلگرام - هایپر سلامت خانه احسان</a>
+     </div> 
+  </div>  <div class="link eitaa-link">
+    <img src="https://itehsan.github.io/khaneehsan/eitaa.png" alt="Eitaa" />
+    <a href="https://eitaa.com/khaneehsan" target="_blank">ایتا - هایپر سلامت خانه احسان</a>
+    </div>  
 
-  <div class="branding">
-    <img src="https://itehsan.github.io/khaneehsan/logo.png" alt="لوگوی رستوران">
-    <h1>به خانه طعم‌ها خوش آمدید</h1>
-    <p>تجربه‌ای متفاوت از غذای اصیل ایرانی</p>
-  </div>
-
-  <div class="header">
-    <h2>منوی رستوران لقمه احسان</h2>
-
-    <button class="menu-button" id="menuToggle" aria-label="باز کردن منو">&#9776;</button>
-  </div>
-
-  <nav class="side-menu" id="sideMenu" aria-hidden="true">
-    <p>یشنهادی</p>
-    <div class="tab active" data-category="پیش غذا">پیش غذا</div>
-    <div class="tab" data-category="کباب ها">کباب ها</div>
-    <div class="tab" data-category="ساندویچ ها">ساندویچ ها</div>
-    <div class="tab" data-category="دسر و چاشنی">دسر و چاشنی</div>
-    <div class="tab" data-category="نوشیدنی">شربت ، نوشیدنی</div>
-    <a href="http://www.khaneehsan.com" target="_blank" rel="noopener">خانه احسان</a>
-    <a href="https://khaneehsan.github.io/social-platform/" target="_blank" rel="noopener">درباره ما</a>
-  </nav>
-
-  <div class="search-box">
-    <input type="text" id="search" placeholder="هرچی دوست داری جستجو کن ...">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
-      <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.07 5.6 12.47 3 9 3S2.93 5.6 2.93 8.39 5.53 13.78 9 13.78c1.61 0 3.08-.65 4.13-1.7l.27.28v.79l4.25 4.25c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L15.5 14zM9 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
-    </svg>
-  </div>
-
-  <div class="tabs">
-    <div class="tab active" data-category="پیش غذا">پیش غذا</div>
-    <div class="tab" data-category="کباب ها">کباب ها</div>
-    <div class="tab" data-category="ساندویچ ها">ساندویچ ها</div>
-    <div class="tab" data-category="دسر و چاشنی">دسر و چاشنی</div>
-    <div class="tab" data-category="نوشیدنی">شربت ، نوشیدنی</div>
-  </div>
-
-  <div class="menu-container">
-    <!-- محصولات با onclick نمایش مودال -->
-   
-<!---پیش غذا) -->
-    <div class="menu-item" data-category="پیش غذا" onclick="showModal('سوپ جو', '۸۳.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/soup.jpg')">
-      <div class="info"><strong>سوپ جو</strong><span>کیلویی ۸۳.۰۰۰ تومان </span></div>
-      <img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو">
+    🔐 دسترسی اختصاصی برای مشتریان کرم بوتاکس پلاس ↓
+  </div>  <div class="link telegram-link">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
+    <a href="https://t.me/doctor_green_life_bot" target="_blank">ربات دریافت کانال ۶ گام زیبایی</a>
+  </div>    <div class="blink">
+    برای وارد شدن به کانال اینستاگرام و تلگرام حتما فیلتر شکن خود را روشن نمایید.
+  </div>  <div class="contact-box">
+    <h3 style="display: flex; align-items: center">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
+      ارتباط با واحد پیک خانه احسان
+    </h3>
+    <div style="width: 100%">
+      <p><a href="tel:09055719311">09055719311</a> <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" width="20"></p>
+      <p><a href="tel:05135099311">051-35099311-2</a> <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" width="20"></p>
+      <p><a href="tel:05131903">051-31903</a> <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" width="20"></p>
     </div>
-
-    <div class="menu-item" data-category="پیش غذا" onclick="showModal('آش جو', '۱۰۹.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/ash.jpg')">
-      <div class="info"><strong>آش جو</strong><span>کیلویی ۱۰۹.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/ash.jpg" alt="آش جو">
+  </div>  <div class="contact-box">
+    <h3 style="display: flex; align-items: center">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
+      ارتباط با بازرگانی خانه احسان</h3>
+    <div style="width: 100%">
+      <p><a href="tel:05135099313">051-35099313</a> <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" width="20"></p>
+      <p><a href="tel:09059432165">09059432165</a> <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" width="20"></p>
     </div>
-
-    <div class="menu-item" data-category="پیش غذا" onclick="showModal('حلیم گندم', '۱۴۸.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/haleam.jpg')">
-      <div class="info"><strong>حلیم گندم</strong><span>کیلویی ۱۴۸.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/haleam.jpg" alt="حلیم گندم">
+  </div>  <div class="contact-box">
+    <h3>آدرس خانه احسان</h3>
+    <div>
+      <p>📍 استان خراسان رضوی، مشهد، منطقه 9، بلوار لادن، بعد از لادن 51</p>
     </div>
-
-    <!-- کباب ها -->
-    <div class="menu-item" data-category="کباب ها" onclick="showModal('کوبیده گوسفندی', '۱۱۱.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/0c53a7a9-636.jpg')">
-      <div class="info"><strong>کوبیده گوسفندی</strong><span>۱۲۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/0c53a7a9-636.jpg" alt="کوبیده گوسفندی">
-    </div>
-
-    <div class="menu-item" data-category="کباب ها" onclick="showModal('کوبیده بوقلمون', '۷۹.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/008bcb7c-447.jpg')">
-      <div class="info"><strong>کوبیده بوقلمون</strong><span>۱۲۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/008bcb7c-447.jpg" alt="کوبیده بوقلمون">
-    </div>
+  </div>  <a href="https://nshn.ir/rb1-1sYJ5MET" target="_blank" rel="noopener noreferrer">
+    📍 موقعیت خانه احسان در نقشه نشان
     
-    <div class="menu-item" data-category="کباب ها" onclick="showModal('کوبیده گوسفندی با نان و دورچین', '۱۲۵.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/kabab gosfandi.jpg')">
-      <div class="info"><strong>کوبیده گوسفندی با نان و دورچین</strong><span>۱۲۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/kabab gosfandi.jpg" alt="کوبیده گوسفندی با نان و دورچین">
-    </div>
-
-    <div class="menu-item" data-category="کباب ها" onclick="showModal('کوبیده بوقلمون با نان و درچین', '۷۹.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/babab boqlamon.jpg')">
-      <div class="info"><strong>کوبیده بوقلمون با نان و درچین</strong><span>۷۹.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/babab boqlamon.jpg" alt=" کوبیده بوقلمون با نان و درچین">
-    </div>
-
-    <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب لقمه گوسفندی', '۱۸۴.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/loqmeh.jpg')">
-      <div class="info"><strong>کباب لقمه گوسفندی</strong><span>۱۸۴.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/loqmeh.jpg" alt="کباب لقمه گوسفندی">
-    </div>
-
-    <div class="menu-item" data-category="کباب ها" onclick="showModal('کباب لقمه شتر', '۲۱۵.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/loqmeh.jpg')">
-      <div class="info"><strong>کباب لقمه شتر</strong><span>۲۱۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/loqmeh.jpg" alt="کباب لقمه شتر">
-    </div>
-
-     <div class="menu-item" data-category="کباب ها" onclick="showModal('گوجه کبابی', '۲۱۵.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/gojeh.jpg')">
-      <div class="info"><strong>گوجه کبابی</strong><span>۲۱۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/gojeh.jpg" alt="گوجه کبابی">
-    </div>
-
-    <div class="menu-item" data-category="کباب ها" onclick="showModal('دورچین', '۲۱۵.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/dorchin.jpg')">
-      <div class="info"><strong>دورچین</strong><span>۲۱۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/dorchin.jpg" alt="دورچین">
-    </div>
-    
-    <!-- ساندویچ ها -->
-    <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ کوبیده گوسفندی', '۱۲۵.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/sandevich gosfandy.jpg')">
-      <div class="info"><strong>ساندویچ کوبیده گوسفندی</strong><span>۱۲۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/sandevich gosfandy.jpg" alt="ساندویچ کوبیده گوسفندی">
-    </div>
-
-    <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ کوبیده بوقلمون', '۲۲۰.۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/boqlamon.jpg')">
-      <div class="info"><strong>ساندویچ کوبیده بوقلمون</strong><span>۲۲۰.۰۰۰ ریال</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/boqlamon.jpg" alt="ساندویچ کوبیده بوقلمون">
-    </div>
-
-    <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ لقمه گوسفندی', '۲۰۰.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/gosfandy.jpg')">
-      <div class="info"><strong>ساندویچ لقمه گوسفندی</strong><span>۲۰۰.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="ساندویچ لقمه گوسفندی">
-    </div>
-
-    <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ لقمه شتر', '۲۴۰.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/loqmeh.jpg')">
-      <div class="info"><strong>ساندویچ لقمه شتر</strong><span>۲۴۰.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/loqmeh.jpg" alt="ساندویچ لقمه شتر">
-    </div>
-    
-    <div class="menu-item" data-category="ساندویچ ها" onclick="showModal('ساندویچ همبرگر بوقلمون', '۹۹.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/hamberger.jpg')">
-      <div class="info"><strong>ساندویچ همبرگر بوقلمون</strong><span>۹۹.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/hamberger.jpg" alt="ساندویچ همبرگر بوقلمون">
-    </div>
-
-    <!-- دسر و چاشنی -->
-    <div class="menu-item" data-category="دسر و چاشنی" onclick="showModal('نوشانه زرشک', '۱۲۰.۰۰۰ توامن', 'https://itehsan.github.io/khaneehsan/noshaneh.jpeg')">
-      <div class="info"><strong>نوشانه زرشک</strong><span>۱۲۰.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/noshaneh.jpeg" alt="نوشانه زرشک ">
-    </div>
-
-    <div class="menu-item" data-category="دسر و چاشنی" onclick="showModal('زیتون پرورده ۷۵ گرمی', '۲۵۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/zeyton.jpg')">
-      <div class="info"><strong>زیتون پرورده</strong><span>۲۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/zeyton.jpg" alt="زیتون پرورده">
-    </div>
-
-     <div class="menu-item" data-category="دسر و چاشنی" onclick="showModal('سبزی خوردن', '۳۸.۰۰۰ توامن', 'https://itehsan.github.io/khaneehsan/1730493013JJmlL.jpg')">
-      <div class="info"><strong>سبزی خوردن</strong><span>۳۸.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/1730493013JJmlL.jpg" alt="سبزی خوردن ">
-    </div>
-
-
-     <!-- نوشیدنی -->
-    <div class="menu-item" data-category="نوشیدنی" onclick="showModal('دوغ تلمی نیم لیتری', '۱۹.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/doq500.jpg')">
-      <div class="info"><strong>دوغ تلمی نیم لیتری</strong><span>۱۹.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/doq500.jpg" alt="دوغ تلمی نیم لیتری">
-    </div>
-
-    <div class="menu-item" data-category="نوشیدنی" onclick="showModal('دوغ تلمی خانواده دولیتری', '۶۳.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/doq2.jpg')">
-      <div class="info"><strong>دوغ تلمی خانواده دولیتری</strong><span>۶۳.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/doq2.jpg" alt="دوغ تلمی خانواده دولیتری">
-    </div>
-
-     <div class="menu-item" data-category="نوشیدنی" onclick="showModal('آب معدنی 1.5 لیتری', '۱۵.۰۰۰ تومان', 'https://itehsan.github.io/khaneehsan/vata.jpg')">
-      <div class="info"><strong>آب معدنی نیم لیتری</strong><span>۱۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/vata.jpg" alt="آب معدنی 1.5 لیتری">
-    </div>
-
-    <div class="menu-item" data-category="نوشیدنی" onclick="showModal('آب معدنی نیم لیتری', '۹.۰۰۰ ریال', 'https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg')">
-      <div class="info"><strong>آب معدنی نیم لیتری</strong><span>۱۵.۰۰۰ تومان</span></div>
-      <img src="https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg" alt="آب معدنی نیم لیتری">
-    </div>
-
-
-  </div>
-  </div>
-
-  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
-    <div class="modal-content">
-      <button class="close" id="modalClose" aria-label="بستن مودال" title="بستن">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#f55" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M18.3 5.71a1 1 0 00-1.42 0L12 10.59 7.12 5.7A1 1 0 105.7 7.12L10.59 12l-4.88 4.88a1 1 0 101.42 1.42L12 13.41l4.88 4.88a1 1 0 001.42-1.42L13.41 12l4.88-4.88a1 1 0 000-1.41z"/>
-        </svg>
-      </button>
-      <h3 id="modalTitle"></h3>
-      <p id="modalDesc"></p>
-      <img id="modalImg" src="" alt="" />
-      <p id="orderTime" style="margin-top:10px; font-weight:bold; color:#f9c400;"></p>
-      <div class="rating" id="rating">
-        <span class="star" data-value="5">&#9733;</span>
-        <span class="star" data-value="4">&#9733;</span>
-        <span class="star" data-value="3">&#9733;</span>
-        <span class="star" data-value="2">&#9733;</span>
-        <span class="star" data-value="1">&#9733;</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">© ۲۰۲۵ رستوران لقمه احسان</div>
-
-  <script>
-    // باز و بسته کردن منوی بازشو
-    const menuToggle = document.getElementById('menuToggle');
-    const sideMenu = document.getElementById('sideMenu');
-    menuToggle.addEventListener('click', () => {
-      sideMenu.classList.toggle('open');
-      // aria-hidden تنظیم برای دسترس پذیری
-      const isOpen = sideMenu.classList.contains('open');
-      sideMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-    });
-
-    // بستن منوی بازشو وقتی روی بیرون منو کلیک شود
-    window.addEventListener('click', (event) => {
-      const isClickInsideMenu = sideMenu.contains(event.target);
-      const isClickOnButton = menuToggle.contains(event.target);
-      if (!isClickInsideMenu && !isClickOnButton) {
-        sideMenu.classList.remove('open');
-        sideMenu.setAttribute('aria-hidden', 'true');
-      }
-    });
-
-    // فیلتر جستجو
-    const searchInput = document.getElementById('search');
-    const menuItems = document.querySelectorAll('.menu-item');
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.trim().toLowerCase();
-      menuItems.forEach(item => {
-        const title = item.querySelector('strong').textContent.trim().toLowerCase();
-        const category = item.getAttribute('data-category').trim().toLowerCase();
-        if (title.includes(query) || category.includes(query)) {
-          item.style.display = 'flex';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    });
-
-    // تغییر تب‌ها
-    const tabs = document.querySelectorAll('.tab');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const category = tab.getAttribute('data-category');
-        menuItems.forEach(item => {
-          if (item.getAttribute('data-category') === category) {
-            item.style.display = 'flex';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // نمایش مودال
-    const modal = document.getElementById('modal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalImg = document.getElementById('modalImg');
-    const modalClose = document.getElementById('modalClose');
-    const orderTime = document.getElementById('orderTime');
-    const ratingStars = document.querySelectorAll('#rating .star');
-
-    function showModal(title, price, imgSrc) {
-      modalTitle.textContent = title;
-      modalDesc.textContent = price;
-      modalImg.src = imgSrc;
-      modalImg.alt = title;
-
-      // ریست رنگ ستاره‌ها
-      ratingStars.forEach(star => star.classList.remove('selected'));
-
-      modal.style.display = 'flex';
-    }
-
-    modalClose.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', e => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
-
-    // ستاره‌ها - امتیازدهی
-    ratingStars.forEach(star => {
-      star.addEventListener('mouseenter', () => {
-        const val = star.getAttribute('data-value');
-        ratingStars.forEach(s => {
-          s.classList.toggle('hovered', s.getAttribute('data-value') <= val);
-        });
-      });
-
-      star.addEventListener('mouseleave', () => {
-        ratingStars.forEach(s => s.classList.remove('hovered'));
-      });
-
-      star.addEventListener('click', () => {
-        const val = star.getAttribute('data-value');
-        ratingStars.forEach(s => {
-          s.classList.toggle('selected', s.getAttribute('data-value') <= val);
-        });
-        // ارسال یا ذخیره امتیاز در اینجا
-        console.log(`امتیاز داده شده: ${val}`);
-      });
-    });
-
-          // منوهای دسته‌بندی داخل منوی بازشو
-document.querySelectorAll('.side-menu a[data-category]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    const category = link.getAttribute('data-category');
-
-    // تب‌ها رو تنظیم کن
-    tabs.forEach(t => {
-      if (t.getAttribute('data-category') === category) {
-        t.classList.add('active');
-      } else {
-        t.classList.remove('active');
-      }
-    });
-
-    // آیتم‌ها رو فیلتر کن
-    menuItems.forEach(item => {
-      if (item.getAttribute('data-category') === category) {
-        item.style.display = 'flex';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-
-    // منوی کناری رو ببند
-    sideMenu.classList.add('fade-out');
-    setTimeout(() => {
-      sideMenu.classList.remove('open');
-      sideMenu.classList.remove('fade-out');
-      sideMenu.setAttribute('aria-hidden', 'true');
-    }, 500);
-  });
-});
-  function showModal(title, price, imgSrc) {
-  modalTitle.textContent = title;
-  modalDesc.textContent = price;
-  modalImg.src = imgSrc;
-  modalImg.alt = title;
-
-  const today = new Date().getDay(); // 0=شنبه ... 6=جمعه
-  let timeText = "";
-  let isAvailable = true;
-
-  // فقط برای سوپ و آش زمان سفارش یا عدم موجود بودن را نمایش بده
-  if (title.includes("سوپ")) {
-    if ([0, 2, 4].includes(today)) {
-      timeText = "زمان سفارش: ۱۲ تا ۱۵";
-      isAvailable = true;
-    } else {
-      isAvailable = false;
-      timeText = today === 6 
-        ? "موجود نیست (جمعه‌ها تعطیل)" 
-        : "موجود نیست (فقط شنبه، دوشنبه، چهارشنبه)";
-    }
-  }
-
-  else if (title.includes("آش")) {
-    if ([1, 3, 5].includes(today)) {
-      timeText = "زمان سفارش: ۱۲ تا ۱۵";
-      isAvailable = true;
-    } else {
-      isAvailable = false;
-      timeText = today === 6 
-        ? "موجود نیست (جمعه‌ها تعطیل)" 
-        : "موجود نیست (فقط یک‌شنبه، سه‌شنبه، پنج‌شنبه)";
-    }
-  }
-
-  else {
-    timeText = ""; // برای بقیه غذاها چیزی نشون نده
-    isAvailable = true;
-  }
-
-  orderTime.textContent = timeText;
-  orderTime.classList.remove("available", "unavailable");
-  if (timeText !== "") {
-    orderTime.classList.add(isAvailable ? "available" : "unavailable");
-  }
-
-  ratingStars.forEach(star => star.classList.remove('selected'));
-  modal.style.display = 'flex';
-}
-
+  <!-- 📍 نقشه گوگل مپ با مختصات جدید خانه احسان -->
+<div style="max-width: 600px; margin: 30px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+  <iframe
+  src="https://maps.google.com/maps?q=36.31586640621939,59.46994676427054&hl=fa&z=15&output=embed"
+  width="100%"
+  height="250"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+</div>
+  </a>
+</body>
+</html>
+  </a>
 </body>
 </html>
