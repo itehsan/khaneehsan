@@ -584,22 +584,27 @@
     });
 
     // تغییر تب‌ها
-    const tabs = document.querySelectorAll('.tab');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const category = tab.getAttribute('data-category');
-        menuItems.forEach(item => {
-  if (item.getAttribute('data-category') === category) {
-    item.style.display = 'flex';
-    item.classList.remove('animate-up');  // ریست کردن انیمیشن
-    void item.offsetWidth;                // ترفند برای ری‌استارت انیمیشن
-    item.classList.add('animate-up');     // اعمال انیمیشن
-  } else {
-    item.style.display = 'none';
-    item.classList.remove('animate-up');
-  }
+const tabs = document.querySelectorAll('.tab');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const category = tab.getAttribute('data-category');
+    menuItems.forEach(item => {
+      const isMatch = item.getAttribute('data-category') === category;
+      if (isMatch) {
+        item.style.display = 'flex';
+
+        // اجرای انیمیشن: ریست و اعمال مجدد
+        item.classList.remove('animate-up');
+        void item.offsetWidth;
+        item.classList.add('animate-up');
+      } else {
+        item.style.display = 'none';
+        item.classList.remove('animate-up');
+      }
+    });
+  });
 });
 
     // نمایش مودال
