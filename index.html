@@ -583,21 +583,25 @@
       });
     });
 
-    // تغییر تب‌ها
+ // تغییر تب‌ها با انیمیشن
 const tabs = document.querySelectorAll('.tab');
+const menuItems = document.querySelectorAll('.menu-item');
+
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     const category = tab.getAttribute('data-category');
+
     menuItems.forEach(item => {
       const isMatch = item.getAttribute('data-category') === category;
+
       if (isMatch) {
         item.style.display = 'flex';
 
-        // اجرای انیمیشن: ریست و اعمال مجدد
+        // ریست و اجرای انیمیشن
         item.classList.remove('animate-up');
-        void item.offsetWidth;
+        void item.offsetWidth; // فورس بازسازی DOM
         item.classList.add('animate-up');
       } else {
         item.style.display = 'none';
