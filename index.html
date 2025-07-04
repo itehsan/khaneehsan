@@ -335,6 +335,23 @@
       .search-box {
         width: 100%;
       }
+
+//انیمیشن
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-item.animate-up {
+  animation: slideUp 0.4s ease-out;
+}
     }
   </style>
 </head>
@@ -574,14 +591,16 @@
         tab.classList.add('active');
         const category = tab.getAttribute('data-category');
         menuItems.forEach(item => {
-          if (item.getAttribute('data-category') === category) {
-            item.style.display = 'flex';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    });
+  if (item.getAttribute('data-category') === category) {
+    item.style.display = 'flex';
+    item.classList.remove('animate-up');  // ریست کردن انیمیشن
+    void item.offsetWidth;                // ترفند برای ری‌استارت انیمیشن
+    item.classList.add('animate-up');     // اعمال انیمیشن
+  } else {
+    item.style.display = 'none';
+    item.classList.remove('animate-up');
+  }
+});
 
     // نمایش مودال
     const modal = document.getElementById('modal');
