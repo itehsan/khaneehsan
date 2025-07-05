@@ -987,13 +987,22 @@ fetch("https://script.google.com/macros/s/AKfycbyqqeO1WaeOLrctM0I2q-wKQh-Zd1MUO0
     "Content-Type": "application/json"
   },
   body: JSON.stringify({
-    food: title,
-    rating: value
+    title: title,     // ← حالا با کد Google Script هماهنگه
+    rating: value,
+    comment: ""       // اختیاریه فعلاً خالی می‌فرستیم
   })
-}).then(response => {
-  if (!response.ok) throw new Error("Failed to submit rating");
+})
+.then(response => {
+  if (!response.ok) throw new Error("ارسال به گوگل شیت با خطا مواجه شد.");
   return response.text();
-}).then(console.log).catch(console.error);
+})
+.then(result => {
+  console.log("نتیجه از Google Sheets:", result);
+})
+.catch(error => {
+  console.error("خطا:", error);
+});
+
 
 
     // بروزرسانی پیام و رنگ ستاره‌ها در مودال
