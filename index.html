@@ -5,6 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>منوی رستوران لقمه احسان</title>
 
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px); /* شروع از پایین */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* جای اصلی */
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 1;
+    transform: translateY(0); /* جای اصلی */
+  }
+  to {
+    opacity: 0;
+    transform: translateY(30px); /* حرکت به پایین */
+  }
+}
+
+.animate-in {
+  animation: slide-up 0.4s ease forwards;
+  /* اجرای انیمیشن بالا آمدن در 0.4 ثانیه با افکت ease */
+}
+
+.animate-out {
+  animation: slide-down 0.3s ease forwards;
+  /* اجرای انیمیشن پایین رفتن در 0.3 ثانیه */
+}
+
+
   <!-- ایمپورت فونت وزیرمتن فارسی -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
