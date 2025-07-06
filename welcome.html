@@ -2,56 +2,85 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ورود به سایت</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       direction: rtl;
       font-family: sans-serif;
-      background: linear-gradient(to bottom left, #cfe3e9, #8baecb);
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom left, #e0efff, #a5c8ff);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
     }
+
     .card {
       background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      width: 400px;
-      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      padding: 25px;
+      width: 90%;
+      max-width: 400px;
       text-align: center;
     }
+
     .card img {
-      width: 120px;
-      margin-bottom: 15px;
-    }
-    .card h2 {
+      width: 200px;
       margin-bottom: 20px;
     }
+
+    .card h2 {
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+
     input {
-      width: 90%;
-      padding: 10px;
+      width: 100%;
+      padding: 12px;
       margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 8px;
-      text-align: right;
+      font-size: 1rem;
     }
+
     button {
+      width: 100%;
       background-color: #f57c00;
       color: white;
-      padding: 12px 30px;
       border: none;
-      border-radius: 25px;
-      cursor: pointer;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
       margin-top: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e76c00;
+    }
+
+    @media (max-width: 400px) {
+      .card h2 {
+        font-size: 1.2rem;
+      }
+
+      input, button {
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <img src="https://itehsan.github.io/khaneehsan/welcom.png" alt="پشتیبانی">
+    <img src="https://itehsan.github.io/khaneehsan/welcom.png" alt="ورود">
     <h2>ورود به سایت</h2>
 
     <input type="text" id="name" placeholder="نام کامل">
@@ -77,11 +106,11 @@
       })
       .then(res => res.json())
       .then(() => {
-        window.location.href = "index.html"; // انتقال به صفحه اصلی
+        window.location.href = "index.html";
       })
       .catch(err => {
         console.error(err);
-        alert("ارسال اطلاعات با مشکل مواجه شد.");
+        alert("خطا در ارسال اطلاعات.");
       });
     }
   </script>
