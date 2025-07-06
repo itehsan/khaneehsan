@@ -4,5 +4,6 @@
 
 [[redirects]]
   from = "/api/submit-rating"
-  to = "/.netlify/functions/submit-rating"
+  to = "/.netlify/functions/:splat"
+
   status = 200
