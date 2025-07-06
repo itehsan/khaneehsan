@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>منوی رستوران لقمه احسان</title>
 
-  <!-- ایمپورت فونت وزیرمتن فارسی -->
-  <style>
+<html dir="rtl" lang="fa">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>منوی رستوران لقمه احسان</title>
+<!-- ایمپورت فونت وزیرمتن فارسی -->
+<style>
     @import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
 
     /* تنظیم پایه استایل‌ها */
@@ -423,299 +423,279 @@
   </style>
 </head>
 <body>
-
-  <!-- بخش برندینگ -->
-  <div class="branding" role="banner">
-    <img src="https://itehsan.github.io/khaneehsan/logo.png" alt="لوگوی رستوران لقمه احسان" />
-    <h1>به خانه طعم‌ها خوش آمدید</h1>
-    <p>تجربه‌ای متفاوت از غذای اصیل ایرانی</p>
-  </div>
-
-  <!-- هدر بالا با عنوان و دکمه منو -->
-  <header class="header" role="banner">
-    <h2>منوی رستوران لقمه احسان</h2>
-    <button class="menu-button" id="menuToggle" aria-label="باز کردن منوی جانبی">&#9776;</button>
-  </header>
-
-  <!-- منوی جانبی که از راست باز می‌شود -->
-  <nav class="side-menu" id="sideMenu" aria-hidden="true" role="navigation" aria-label="منوی جانبی">
-    <p style="font-weight:bold; margin-bottom: 0.5rem;">دسته‌بندی‌ها</p>
-    <div class="tab active" data-category="پیش غذا" tabindex="0" role="button" aria-pressed="true">پیش غذا</div>
-    <div class="tab" data-category="کباب ها" tabindex="0" role="button" aria-pressed="false">کباب ها</div>
-    <div class="tab" data-category="ساندویچ ها" tabindex="0" role="button" aria-pressed="false">ساندویچ ها</div>
-    <div class="tab" data-category="دسر و چاشنی" tabindex="0" role="button" aria-pressed="false">دسر و چاشنی</div>
-    <div class="tab" data-category="نوشیدنی" tabindex="0" role="button" aria-pressed="false">شربت ، نوشیدنی</div>
-    <hr style="border-color:#444; margin: 1rem 0;">
-    <p style="font-weight:bold; margin-bottom: 0.5rem; class="center-link">تماس با ما</p>
-    <a href="http://www.khaneehsan.com" target="_blank" rel="noopener" tabindex="0">خانه احسان</a>
-    <a href="https://khaneehsan.github.io/social-platform/" target="_blank" rel="noopener" tabindex="0">درباره ما</a>
-  </nav>
-
-  <!-- کادر جستجو -->
-  <div class="search-box" role="search" aria-label="جستجوی غذاها">
-    <input type="text" id="search" placeholder="هرچی دوست داری جستجو کن ..." aria-label="جستجوی غذاها" autocomplete="off" />
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.07 5.6 12.47 3 9 3S2.93 5.6 2.93 8.39 5.53 13.78 9 13.78c1.61 0 3.08-.65 4.13-1.7l.27.28v.79l4.25 4.25c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L15.5 14zM9 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
-    </svg>
-  </div>
-
-  <!-- تب‌های دسته‌بندی بالای صفحه -->
-  <div class="tabs" role="tablist" aria-label="دسته‌بندی‌های غذا">
-    <div class="tab active" data-category="همه" role="tab" aria-selected="true" tabindex="0">همه غذاها</div>
-    <div class="tab" data-category="پیش غذا" role="tab" aria-selected="false" tabindex="-1">پیش غذا</div>
-    <div class="tab" data-category="کباب ها" role="tab" aria-selected="false" tabindex="-1">کباب ها</div>
-    <div class="tab" data-category="ساندویچ ها" role="tab" aria-selected="false" tabindex="-1">ساندویچ ها</div>
-    <div class="tab" data-category="دسر و چاشنی" role="tab" aria-selected="false" tabindex="-1">دسر و چاشنی</div>
-    <div class="tab" data-category="نوشیدنی" role="tab" aria-selected="false" tabindex="-1">شربت ، نوشیدنی</div>
-  </div>
-
-  <!-- لیست غذاها -->
-  <main class="menu-container" role="list" aria-label="لیست غذاها">
-    
-    <!-- نمونه غذاها: هر آیتم یک div با داده‌ها -->
-    <div class="menu-item" role="listitem" tabindex="0" data-category="پیش غذا" data-title="سوپ جو" data-price="۸۳.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/soup.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-      <div class="info">
-        <strong>سوپ جو</strong>
-        <span>۸۳.۰۰۰ تومان</span>
-      </div>
-      <img src="https://itehsan.github.io/khaneehsan/soup.jpg" alt="سوپ جو" />
-      <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="سوپ جو"></div>
-    </div>
-
-    <div class="menu-item" role="listitem" tabindex="0" data-category="پیش غذا" data-title="آش جو" data-price="۱۰۹.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/ash.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-      <div class="info">
-        <strong>آش جو</strong>
-        <span>۱۰۹.۰۰۰ تومان</span>
-      </div>
-      <img src="https://itehsan.github.io/khaneehsan/ash.jpg" alt="آش جو" />
-      <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="آش جو"></div>
-    </div>
-
-    <!-- پیش غذا -->
-<div class="menu-item" role="listitem" tabindex="0" data-category="پیش غذا" data-title="حلیم گندم" data-price="۱۴۸.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/haleam.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>حلیم گندم</strong>
-    <span>کیلویی ۱۴۸.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/haleam.jpg" alt="حلیم گندم" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="حلیم گندم"></div>
+<!-- بخش برندینگ -->
+<div class="branding" role="banner">
+<img alt="لوگوی رستوران لقمه احسان" src="https://itehsan.github.io/khaneehsan/logo.png"/>
+<h1>به خانه طعم‌ها خوش آمدید</h1>
+<p>تجربه‌ای متفاوت از غذای اصیل ایرانی</p>
 </div>
-
+<!-- هدر بالا با عنوان و دکمه منو -->
+<header class="header" role="banner">
+<h2>منوی رستوران لقمه احسان</h2>
+<button aria-label="باز کردن منوی جانبی" class="menu-button" id="menuToggle">☰</button>
+</header>
+<!-- منوی جانبی که از راست باز می‌شود -->
+<nav aria-hidden="true" aria-label="منوی جانبی" class="side-menu" id="sideMenu" role="navigation">
+<p style="font-weight:bold; margin-bottom: 0.5rem;">دسته‌بندی‌ها</p>
+<div aria-pressed="true" class="tab active" data-category="پیش غذا" role="button" tabindex="0">پیش غذا</div>
+<div aria-pressed="false" class="tab" data-category="کباب ها" role="button" tabindex="0">کباب ها</div>
+<div aria-pressed="false" class="tab" data-category="ساندویچ ها" role="button" tabindex="0">ساندویچ ها</div>
+<div aria-pressed="false" class="tab" data-category="دسر و چاشنی" role="button" tabindex="0">دسر و چاشنی</div>
+<div aria-pressed="false" class="tab" data-category="نوشیدنی" role="button" tabindex="0">شربت ، نوشیدنی</div>
+<hr style="border-color:#444; margin: 1rem 0;"/>
+<p center-link"="" style="font-weight:bold; margin-bottom: 0.5rem; class=">تماس با ما</p>
+<a href="http://www.khaneehsan.com" rel="noopener" tabindex="0" target="_blank">خانه احسان</a>
+<a href="https://khaneehsan.github.io/social-platform/" rel="noopener" tabindex="0" target="_blank">درباره ما</a>
+</nav>
+<!-- کادر جستجو -->
+<div aria-label="جستجوی غذاها" class="search-box" role="search">
+<input aria-label="جستجوی غذاها" autocomplete="off" id="search" placeholder="هرچی دوست داری جستجو کن ..." type="text"/>
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.07 5.6 12.47 3 9 3S2.93 5.6 2.93 8.39 5.53 13.78 9 13.78c1.61 0 3.08-.65 4.13-1.7l.27.28v.79l4.25 4.25c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L15.5 14zM9 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path>
+</svg>
+</div>
+<!-- تب‌های دسته‌بندی بالای صفحه -->
+<div aria-label="دسته‌بندی‌های غذا" class="tabs" role="tablist">
+<div aria-selected="true" class="tab active" data-category="همه" role="tab" tabindex="0">همه غذاها</div>
+<div aria-selected="false" class="tab" data-category="پیش غذا" role="tab" tabindex="-1">پیش غذا</div>
+<div aria-selected="false" class="tab" data-category="کباب ها" role="tab" tabindex="-1">کباب ها</div>
+<div aria-selected="false" class="tab" data-category="ساندویچ ها" role="tab" tabindex="-1">ساندویچ ها</div>
+<div aria-selected="false" class="tab" data-category="دسر و چاشنی" role="tab" tabindex="-1">دسر و چاشنی</div>
+<div aria-selected="false" class="tab" data-category="نوشیدنی" role="tab" tabindex="-1">شربت ، نوشیدنی</div>
+</div>
+<!-- لیست غذاها -->
+<main aria-label="لیست غذاها" class="menu-container" role="list">
+<!-- نمونه غذاها: هر آیتم یک div با داده‌ها -->
+<div class="menu-item" data-category="پیش غذا" data-img="https://itehsan.github.io/khaneehsan/soup.jpg" data-price="۸۳.۰۰۰ تومان" data-title="سوپ جو" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>سوپ جو</strong>
+<span>۸۳.۰۰۰ تومان</span>
+</div>
+<img alt="سوپ جو" src="https://itehsan.github.io/khaneehsan/soup.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="سوپ جو"></div>
+</div>
+<div class="menu-item" data-category="پیش غذا" data-img="https://itehsan.github.io/khaneehsan/ash.jpg" data-price="۱۰۹.۰۰۰ تومان" data-title="آش جو" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>آش جو</strong>
+<span>۱۰۹.۰۰۰ تومان</span>
+</div>
+<img alt="آش جو" src="https://itehsan.github.io/khaneehsan/ash.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="آش جو"></div>
+</div>
+<!-- پیش غذا -->
+<div class="menu-item" data-category="پیش غذا" data-img="https://itehsan.github.io/khaneehsan/haleam.jpg" data-price="۱۴۸.۰۰۰ تومان" data-title="حلیم گندم" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>حلیم گندم</strong>
+<span>کیلویی ۱۴۸.۰۰۰ تومان</span>
+</div>
+<img alt="حلیم گندم" src="https://itehsan.github.io/khaneehsan/haleam.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="حلیم گندم"></div>
+</div>
 <!-- کباب ها -->
-<div class="menu-item" role="listitem" tabindex="0" data-category="کباب ها" data-title="کوبیده گوسفندی" data-price="۱۱۱.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/0c53a7a9-636.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>کوبیده گوسفندی</strong>
-    <span>۱۲۵.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/0c53a7a9-636.jpg" alt="کوبیده گوسفندی" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="کوبیده گوسفندی"></div>
+<div class="menu-item" data-category="کباب ها" data-img="https://itehsan.github.io/khaneehsan/0c53a7a9-636.jpg" data-price="۱۱۱.۰۰۰ تومان" data-title="کوبیده گوسفندی" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>کوبیده گوسفندی</strong>
+<span>۱۲۵.۰۰۰ تومان</span>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="کباب ها" data-title="کوبیده بوقلمون" data-price="۷۹.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/008bcb7c-447.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>کوبیده بوقلمون</strong>
-    <span>۱۲۵.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/008bcb7c-447.jpg" alt="کوبیده بوقلمون" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="کوبیده بوقلمون"></div>
+<img alt="کوبیده گوسفندی" src="https://itehsan.github.io/khaneehsan/0c53a7a9-636.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="کوبیده گوسفندی"></div>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="کباب ها" data-title="کوبیده گوسفندی با نان و دورچین" data-price="۱۲۵.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/kabab gosfandi.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>کوبیده گوسفندی با نان و دورچین</strong>
-    <span>۱۲۵.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/kabab gosfandi.jpg" alt="کوبیده گوسفندی با نان و دورچین" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="کوبیده گوسفندی با نان و دورچین"></div>
+<div class="menu-item" data-category="کباب ها" data-img="https://itehsan.github.io/khaneehsan/008bcb7c-447.jpg" data-price="۷۹.۰۰۰ تومان" data-title="کوبیده بوقلمون" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>کوبیده بوقلمون</strong>
+<span>۱۲۵.۰۰۰ تومان</span>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="کباب ها" data-title="کوبیده بوقلمون با نان و درچین" data-price="۷۹.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/babab boqlamon.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>کوبیده بوقلمون با نان و درچین</strong>
-    <span>۷۹.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/babab boqlamon.jpg" alt="کوبیده بوقلمون با نان و درچین" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="کوبیده بوقلمون با نان و درچین"></div>
+<img alt="کوبیده بوقلمون" src="https://itehsan.github.io/khaneehsan/008bcb7c-447.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="کوبیده بوقلمون"></div>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="کباب ها" data-title="کباب لقمه گوسفندی" data-price="۱۸۴.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/loqmeh.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>کباب لقمه گوسفندی</strong>
-    <span>۱۸۴.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/loqmeh.jpg" alt="کباب لقمه گوسفندی" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="کباب لقمه گوسفندی"></div>
+<div class="menu-item" data-category="کباب ها" data-img="https://itehsan.github.io/khaneehsan/kabab gosfandi.jpg" data-price="۱۲۵.۰۰۰ تومان" data-title="کوبیده گوسفندی با نان و دورچین" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>کوبیده گوسفندی با نان و دورچین</strong>
+<span>۱۲۵.۰۰۰ تومان</span>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="کباب ها" data-title="کباب لقمه شتر" data-price="۲۱۵.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/loqmeh.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>کباب لقمه شتر</strong>
-    <span>۲۱۵.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/loqmeh.jpg" alt="کباب لقمه شتر" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="کباب لقمه شتر"></div>
+<img alt="کوبیده گوسفندی با نان و دورچین" src="https://itehsan.github.io/khaneehsan/kabab gosfandi.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="کوبیده گوسفندی با نان و دورچین"></div>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="کباب ها" data-title="گوجه کبابی" data-price="۲۱۵.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/gojeh.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>گوجه کبابی</strong>
-    <span>۲۱۵.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/gojeh.jpg" alt="گوجه کبابی" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="گوجه کبابی"></div>
+<div class="menu-item" data-category="کباب ها" data-img="https://itehsan.github.io/khaneehsan/babab boqlamon.jpg" data-price="۷۹.۰۰۰ تومان" data-title="کوبیده بوقلمون با نان و درچین" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>کوبیده بوقلمون با نان و درچین</strong>
+<span>۷۹.۰۰۰ تومان</span>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="کباب ها" data-title="دورچین" data-price="۲۱۵.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/dorchin.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>دورچین</strong>
-    <span>۲۱۵.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/dorchin.jpg" alt="دورچین" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="دورچین"></div>
+<img alt="کوبیده بوقلمون با نان و درچین" src="https://itehsan.github.io/khaneehsan/babab boqlamon.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="کوبیده بوقلمون با نان و درچین"></div>
 </div>
-
+<div class="menu-item" data-category="کباب ها" data-img="https://itehsan.github.io/khaneehsan/loqmeh.jpg" data-price="۱۸۴.۰۰۰ تومان" data-title="کباب لقمه گوسفندی" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>کباب لقمه گوسفندی</strong>
+<span>۱۸۴.۰۰۰ تومان</span>
+</div>
+<img alt="کباب لقمه گوسفندی" src="https://itehsan.github.io/khaneehsan/loqmeh.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="کباب لقمه گوسفندی"></div>
+</div>
+<div class="menu-item" data-category="کباب ها" data-img="https://itehsan.github.io/khaneehsan/loqmeh.jpg" data-price="۲۱۵.۰۰۰ تومان" data-title="کباب لقمه شتر" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>کباب لقمه شتر</strong>
+<span>۲۱۵.۰۰۰ تومان</span>
+</div>
+<img alt="کباب لقمه شتر" src="https://itehsan.github.io/khaneehsan/loqmeh.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="کباب لقمه شتر"></div>
+</div>
+<div class="menu-item" data-category="کباب ها" data-img="https://itehsan.github.io/khaneehsan/gojeh.jpg" data-price="۲۱۵.۰۰۰ تومان" data-title="گوجه کبابی" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>گوجه کبابی</strong>
+<span>۲۱۵.۰۰۰ تومان</span>
+</div>
+<img alt="گوجه کبابی" src="https://itehsan.github.io/khaneehsan/gojeh.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="گوجه کبابی"></div>
+</div>
+<div class="menu-item" data-category="کباب ها" data-img="https://itehsan.github.io/khaneehsan/dorchin.jpg" data-price="۲۱۵.۰۰۰ تومان" data-title="دورچین" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>دورچین</strong>
+<span>۲۱۵.۰۰۰ تومان</span>
+</div>
+<img alt="دورچین" src="https://itehsan.github.io/khaneehsan/dorchin.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="دورچین"></div>
+</div>
 <!-- ساندویچ ها -->
-<div class="menu-item" role="listitem" tabindex="0" data-category="ساندویچ ها" data-title="ساندویچ کوبیده گوسفندی" data-price="۱۲۵.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/sandevich gosfandy.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>ساندویچ کوبیده گوسفندی</strong>
-    <span>۱۲۵.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/sandevich gosfandy.jpg" alt="ساندویچ کوبیده گوسفندی" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="ساندویچ کوبیده گوسفندی"></div>
+<div class="menu-item" data-category="ساندویچ ها" data-img="https://itehsan.github.io/khaneehsan/sandevich gosfandy.jpg" data-price="۱۲۵.۰۰۰ تومان" data-title="ساندویچ کوبیده گوسفندی" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>ساندویچ کوبیده گوسفندی</strong>
+<span>۱۲۵.۰۰۰ تومان</span>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="ساندویچ ها" data-title="ساندویچ کوبیده بوقلمون" data-price="۲۲۰.۰۰۰ ریال" data-img="https://itehsan.github.io/khaneehsan/boqlamon.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>ساندویچ کوبیده بوقلمون</strong>
-    <span>۲۲۰.۰۰۰ ریال</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/boqlamon.jpg" alt="ساندویچ کوبیده بوقلمون" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="ساندویچ کوبیده بوقلمون"></div>
+<img alt="ساندویچ کوبیده گوسفندی" src="https://itehsan.github.io/khaneehsan/sandevich gosfandy.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="ساندویچ کوبیده گوسفندی"></div>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="ساندویچ ها" data-title="ساندویچ لقمه گوسفندی" data-price="۲۰۰.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/gosfandy.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>ساندویچ لقمه گوسفندی</strong>
-    <span>۲۰۰.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/gosfandy.jpg" alt="ساندویچ لقمه گوسفندی" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="ساندویچ لقمه گوسفندی"></div>
+<div class="menu-item" data-category="ساندویچ ها" data-img="https://itehsan.github.io/khaneehsan/boqlamon.jpg" data-price="۲۲۰.۰۰۰ ریال" data-title="ساندویچ کوبیده بوقلمون" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>ساندویچ کوبیده بوقلمون</strong>
+<span>۲۲۰.۰۰۰ ریال</span>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="ساندویچ ها" data-title="ساندویچ لقمه شتر" data-price="۲۴۰.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/loqmeh.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>ساندویچ لقمه شتر</strong>
-    <span>۲۴۰.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/loqmeh.jpg" alt="ساندویچ لقمه شتر" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="ساندویچ لقمه شتر"></div>
+<img alt="ساندویچ کوبیده بوقلمون" src="https://itehsan.github.io/khaneehsan/boqlamon.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="ساندویچ کوبیده بوقلمون"></div>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="ساندویچ ها" data-title="ساندویچ همبرگر بوقلمون" data-price="۹۹.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/hamberger.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>ساندویچ همبرگر بوقلمون</strong>
-    <span>۹۹.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/hamberger.jpg" alt="ساندویچ همبرگر بوقلمون" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="ساندویچ همبرگر بوقلمون"></div>
+<div class="menu-item" data-category="ساندویچ ها" data-img="https://itehsan.github.io/khaneehsan/gosfandy.jpg" data-price="۲۰۰.۰۰۰ تومان" data-title="ساندویچ لقمه گوسفندی" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>ساندویچ لقمه گوسفندی</strong>
+<span>۲۰۰.۰۰۰ تومان</span>
 </div>
-
+<img alt="ساندویچ لقمه گوسفندی" src="https://itehsan.github.io/khaneehsan/gosfandy.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="ساندویچ لقمه گوسفندی"></div>
+</div>
+<div class="menu-item" data-category="ساندویچ ها" data-img="https://itehsan.github.io/khaneehsan/loqmeh.jpg" data-price="۲۴۰.۰۰۰ تومان" data-title="ساندویچ لقمه شتر" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>ساندویچ لقمه شتر</strong>
+<span>۲۴۰.۰۰۰ تومان</span>
+</div>
+<img alt="ساندویچ لقمه شتر" src="https://itehsan.github.io/khaneehsan/loqmeh.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="ساندویچ لقمه شتر"></div>
+</div>
+<div class="menu-item" data-category="ساندویچ ها" data-img="https://itehsan.github.io/khaneehsan/hamberger.jpg" data-price="۹۹.۰۰۰ تومان" data-title="ساندویچ همبرگر بوقلمون" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>ساندویچ همبرگر بوقلمون</strong>
+<span>۹۹.۰۰۰ تومان</span>
+</div>
+<img alt="ساندویچ همبرگر بوقلمون" src="https://itehsan.github.io/khaneehsan/hamberger.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="ساندویچ همبرگر بوقلمون"></div>
+</div>
 <!-- دسر و چاشنی -->
-<div class="menu-item" role="listitem" tabindex="0" data-category="دسر و چاشنی" data-title="نوشانه زرشک" data-price="۱۲۰.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/noshaneh.jpeg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>نوشانه زرشک</strong>
-    <span>۱۲۰.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/noshaneh.jpeg" alt="نوشانه زرشک" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="نوشانه زرشک"></div>
+<div class="menu-item" data-category="دسر و چاشنی" data-img="https://itehsan.github.io/khaneehsan/noshaneh.jpeg" data-price="۱۲۰.۰۰۰ تومان" data-title="نوشانه زرشک" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>نوشانه زرشک</strong>
+<span>۱۲۰.۰۰۰ تومان</span>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="دسر و چاشنی" data-title="زیتون پرورده ۷۵ گرمی" data-price="۲۵.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/zeytonnnnn.png" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>زیتون پرورده</strong>
-    <span>۲۵.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/zeytonnnnn.png" alt="زیتون پرورده" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="زیتون پرورده"></div>
+<img alt="نوشانه زرشک" src="https://itehsan.github.io/khaneehsan/noshaneh.jpeg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="نوشانه زرشک"></div>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="دسر و چاشنی" data-title="سبزی خوردن" data-price="۳۸.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/sabzii.png" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>سبزی خوردن</strong>
-    <span>۳۸.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/sabzii.png" alt="سبزی خوردن" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="سبزی خوردن"></div>
+<div class="menu-item" data-category="دسر و چاشنی" data-img="https://itehsan.github.io/khaneehsan/zeytonnnnn.png" data-price="۲۵.۰۰۰ تومان" data-title="زیتون پرورده ۷۵ گرمی" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>زیتون پرورده</strong>
+<span>۲۵.۰۰۰ تومان</span>
 </div>
-
+<img alt="زیتون پرورده" src="https://itehsan.github.io/khaneehsan/zeytonnnnn.png"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="زیتون پرورده"></div>
+</div>
+<div class="menu-item" data-category="دسر و چاشنی" data-img="https://itehsan.github.io/khaneehsan/sabzii.png" data-price="۳۸.۰۰۰ تومان" data-title="سبزی خوردن" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>سبزی خوردن</strong>
+<span>۳۸.۰۰۰ تومان</span>
+</div>
+<img alt="سبزی خوردن" src="https://itehsan.github.io/khaneehsan/sabzii.png"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="سبزی خوردن"></div>
+</div>
 <!-- نوشیدنی -->
-<div class="menu-item" role="listitem" tabindex="0" data-category="نوشیدنی" data-title="دوغ تلمی نیم لیتری" data-price="۱۹.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/dooooq.png" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>دوغ تلمی نیم لیتری</strong>
-    <span>۱۹.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/dooooq.png" alt="دوغ تلمی نیم لیتری" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="دوغ تلمی نیم لیتری"></div>
+<div class="menu-item" data-category="نوشیدنی" data-img="https://itehsan.github.io/khaneehsan/dooooq.png" data-price="۱۹.۰۰۰ تومان" data-title="دوغ تلمی نیم لیتری" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>دوغ تلمی نیم لیتری</strong>
+<span>۱۹.۰۰۰ تومان</span>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="نوشیدنی" data-title="دوغ تلمی خانواده دولیتری" data-price="۶۳.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/doq2.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>دوغ تلمی خانواده دولیتری</strong>
-    <span>۶۳.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/doq2.jpg" alt="دوغ تلمی خانواده دولیتری" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="دوغ تلمی خانواده دولیتری"></div>
+<img alt="دوغ تلمی نیم لیتری" src="https://itehsan.github.io/khaneehsan/dooooq.png"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="دوغ تلمی نیم لیتری"></div>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="نوشیدنی" data-title="آب معدنی کوچک" data-price="۱۵.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/vata.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>آب معدنی کوچک</strong>
-    <span>۱۵.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/vata.jpg" alt="آب معدنی کوچک" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="آب معدنی کوچک"></div>
+<div class="menu-item" data-category="نوشیدنی" data-img="https://itehsan.github.io/khaneehsan/doq2.jpg" data-price="۶۳.۰۰۰ تومان" data-title="دوغ تلمی خانواده دولیتری" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>دوغ تلمی خانواده دولیتری</strong>
+<span>۶۳.۰۰۰ تومان</span>
 </div>
-
-<div class="menu-item" role="listitem" tabindex="0" data-category="نوشیدنی" data-title="آب معدنی خانواده" data-price="۱۵.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
-  <div class="info">
-    <strong>آب معدنی خانواده</strong>
-    <span>۱۵.۰۰۰ تومان</span>
-  </div>
-  <img src="https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg" alt="آب معدنی خانواده" />
-  <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="آب معدنی خانواده"></div>
+<img alt="دوغ تلمی خانواده دولیتری" src="https://itehsan.github.io/khaneehsan/doq2.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="دوغ تلمی خانواده دولیتری"></div>
 </div>
+<div class="menu-item" data-category="نوشیدنی" data-img="https://itehsan.github.io/khaneehsan/vata.jpg" data-price="۱۵.۰۰۰ تومان" data-title="آب معدنی کوچک" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>آب معدنی کوچک</strong>
+<span>۱۵.۰۰۰ تومان</span>
+</div>
+<img alt="آب معدنی کوچک" src="https://itehsan.github.io/khaneehsan/vata.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="آب معدنی کوچک"></div>
+</div>
+<div class="menu-item" data-category="نوشیدنی" data-img="https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg" data-price="۱۵.۰۰۰ تومان" data-title="آب معدنی خانواده" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}" role="listitem" tabindex="0">
+<div class="info">
+<strong>آب معدنی خانواده</strong>
+<span>۱۵.۰۰۰ تومان</span>
+</div>
+<img alt="آب معدنی خانواده" src="https://itehsan.github.io/khaneehsan/Vata-1500cc.jpg"/>
+<div aria-label="میانگین امتیاز: 0 از 5" class="average-rating" data-title="آب معدنی خانواده"></div>
+</div>
+<!-- اینجا میتونی بقیه غذاها رو هم مثل اینها اضافه کنی -->
+</main>
+<!-- مودال نمایش جزئیات غذا و امتیازدهی -->
+<div aria-labelledby="modalTitle" aria-modal="true" class="modal" id="modal" role="dialog" tabindex="-1">
+<div class="modal-content">
 
-    <!-- اینجا میتونی بقیه غذاها رو هم مثل اینها اضافه کنی -->
+<div class="slider" style="margin-bottom:1rem;">
+<img id="slide1" src="" style="max-width:100%; border-radius: 12px; display:block; margin:auto;"/>
+<img id="slide2" src="" style="max-width:100%; border-radius: 12px; display:none; margin:auto;"/>
+<div style="margin-top:0.5rem;">
+<button onclick="showSlide(1)" style="margin:0 0.3rem;">۱</button>
+<button onclick="showSlide(2)" style="margin:0 0.3rem;">۲</button>
+</div>
+</div>
+<button aria-label="بستن" class="close" id="modalClose">×</button>
+<img alt="" id="modalImg" src=""/>
+<h3 id="modalTitle" style="font-size:1.5rem; color:#fff; margin-top: 1rem;"></h3>
+<p id="modalPrice"></p>
+<!-- زمان سفارش فقط برای سوپ جو و آش جو نمایش داده می‌شود -->
+<p id="modalOrderTime" style="color: #f9c400; font-weight: bold;"></p>
+<!-- بخش امتیازدهی ستاره‌ای -->
+<div aria-label="امتیازدهی ستاره‌ای" class="rating" role="radiogroup">
+<span aria-checked="false" aria-label="۵ ستاره" class="star" data-value="5" role="radio" tabindex="0">★</span>
+<span aria-checked="false" aria-label="۴ ستاره" class="star" data-value="4" role="radio" tabindex="-1">★</span>
+<span aria-checked="false" aria-label="۳ ستاره" class="star" data-value="3" role="radio" tabindex="-1">★</span>
+<span aria-checked="false" aria-label="۲ ستاره" class="star" data-value="2" role="radio" tabindex="-1">★</span>
+<span aria-checked="false" aria-label="۱ ستاره" class="star" data-value="1" role="radio" tabindex="-1">★</span>
+</div>
+<p id="ratingMsg" style="margin-top: 0.5rem; color: #f9c400; font-weight: bold;"></p>
 
-  </main>
-
-  <!-- مودال نمایش جزئیات غذا و امتیازدهی -->
-  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
-    <div class="modal-content">
-      <button class="close" id="modalClose" aria-label="بستن">×</button>
-      <img src="" alt="" id="modalImg" />
-      <h3 id="modalTitle"></h3>
-      <p id="modalPrice"></p>
-      <!-- زمان سفارش فقط برای سوپ جو و آش جو نمایش داده می‌شود -->
-      <p id="modalOrderTime" style="color: #f9c400; font-weight: bold;"></p>
-
-      <!-- بخش امتیازدهی ستاره‌ای -->
-      <div class="rating" role="radiogroup" aria-label="امتیازدهی ستاره‌ای">
-        <span class="star" role="radio" aria-checked="false" tabindex="0" data-value="5" aria-label="۵ ستاره">&#9733;</span>
-        <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="4" aria-label="۴ ستاره">&#9733;</span>
-        <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="3" aria-label="۳ ستاره">&#9733;</span>
-        <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="2" aria-label="۲ ستاره">&#9733;</span>
-        <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="1" aria-label="۱ ستاره">&#9733;</span>
-      </div>
-      <p id="ratingMsg" style="margin-top: 0.5rem; color: #f9c400; font-weight: bold;"></p>
-    </div>
-  </div>
-
-  <!-- فوتر پایین صفحه -->
-  <footer class="footer">
+<div class="feedback-buttons" style="margin-top:1rem;">
+<button onclick="submitFeedback('متوسط')" style="margin: 0 0.5rem;">متوسط</button>
+<button onclick="submitFeedback('خوب')" style="margin: 0 0.5rem;">خوب</button>
+<button onclick="submitFeedback('عالی')" style="margin: 0 0.5rem;">عالی</button>
+</div>
+</div>
+</div>
+<!-- فوتر پایین صفحه -->
+<footer class="footer">
     © 2025 رستوران لقمه احسان. همه حقوق محفوظ است.
   </footer>
-
 <script>
   // ======= تعریف متغیرهای اصلی برای المان‌های HTML =======
   const sideMenu = document.getElementById('sideMenu'); // منوی جانبی
@@ -1045,6 +1025,33 @@
   // شروع اولیه با نمایش همه غذاها
   changeCategory("همه");
 </script>
+<script>
+let currentSlide = 1;
 
-</body>
+function showSlide(num) {
+  currentSlide = num;
+  document.getElementById("slide1").style.display = num === 1 ? "block" : "none";
+  document.getElementById("slide2").style.display = num === 2 ? "block" : "none";
+}
+
+function submitFeedback(level) {
+  alert("نظر شما ثبت شد: " + level);
+}
+
+// Extend existing showModal
+const originalShowModal = showModal;
+showModal = function(el) {
+  const title = el.dataset.title;
+  const price = el.dataset.price;
+  const img = el.dataset.img;
+
+  originalShowModal(title, price, img);
+
+  // Example second image logic (you may modify this)
+  const secondImage = img.replace(".jpg", "_2.jpg");
+  document.getElementById("slide1").src = img;
+  document.getElementById("slide2").src = secondImage;
+  showSlide(1);
+}
+</script></body>
 </html>
