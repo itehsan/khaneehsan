@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>ورود به سایت</title>
+  <style>
+    body {
+      direction: rtl;
+      font-family: sans-serif;
+      background: linear-gradient(to bottom left, #cfe3e9, #8baecb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 400px;
+      padding: 30px;
+      text-align: center;
+    }
+    .card img {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+    .card h2 {
+      margin-bottom: 20px;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: right;
+    }
+    button {
+      background-color: #f57c00;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <img src="https://cdn-icons-png.flaticon.com/512/484/484167.png" alt="پشتیبانی">
+    <h2>ورود به سایت</h2>
+
+    <input type="text" id="name" placeholder="نام کامل">
+    <input type="tel" id="phone" placeholder="شماره تماس">
+
+    <button onclick="submitUser()">ورود به سایت</button>
+  </div>
+
+  <script>
+    function submitUser() {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      if (!name || !phone) {
+        alert("لطفاً نام و شماره تماس را وارد کنید.");
+        return;
+      }
+
+      fetch("https://khaneehsan.netlify.app/api/submitUser", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone })
+      })
+      .then(res => res.json())
+      .then(() => {
+        window.location.href = "index.html"; // انتقال به صفحه اصلی
+      })
+      .catch(err => {
+        console.error(err);
+        alert("ارسال اطلاعات با مشکل مواجه شد.");
+      });
+    }
+  </script>
+
+</body>
+</html>
