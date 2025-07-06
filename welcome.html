@@ -62,7 +62,7 @@
 
     .card h2 {
       margin-bottom: 25px;
-      font-size: 2rem; /* افزایش سایز عنوان */
+      font-size: 2rem;
       color: #333;
       font-weight: bold;
     }
@@ -73,14 +73,14 @@
       margin: 12px 0;
       border: 1px solid #ddd;
       border-radius: 10px;
-      font-size: 1.3rem; /* افزایش سایز فونت */
+      font-size: 1.3rem;
       background: rgba(255, 255, 255, 0.9);
       transition: all 0.3s;
       font-family: 'AdobeArabic', sans-serif;
     }
 
     input::placeholder {
-      font-size: 1.2rem; /* افزایش سایز placeholder */
+      font-size: 1.2rem;
     }
 
     input:focus {
@@ -96,7 +96,7 @@
       border: none;
       padding: 16px;
       border-radius: 10px;
-      font-size: 1.4rem; /* افزایش سایز دکمه */
+      font-size: 1.4rem;
       margin-top: 20px;
       cursor: pointer;
       transition: all 0.3s;
@@ -111,14 +111,14 @@
     }
     
     .phone-input {
-      direction: rtl;
-      text-align: right;
-      unicode-bidi: bidi-override;
+      direction: ltr; /* تغییر جهت به چپ به راست */
+      text-align: left; /* تراز متن به چپ */
+      unicode-bidi: plaintext; /* حل مشکل نمایش اعداد */
     }
 
     .phone-input::placeholder {
-      direction: rtl;
-      text-align: right;
+      direction: ltr;
+      text-align: left;
     }
 
     @media (max-width: 500px) {
