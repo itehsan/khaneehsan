@@ -423,7 +423,6 @@
   animation: fadeInUp 0.4s ease both;
 }
     
-  <!-- انیمیشن -->
 .menu-item.animate-out {
   animation: fadeOutDown 0.3s ease both;
 }
@@ -1049,6 +1048,15 @@ function changeCategory(category) {
         comment: ""
       })
     })
+      // دریافت و نمایش میانگین امتیاز غذاها
+fetch('https://script.google.com/macros/s/AKfycbxV4D5K3FMHI4nklZnDTmidknCpL7ddQYVsu9O0Ftt69V1_F0hkN8XXk7lx_SKk36o/exec')
+  .then(res => res.json())
+  .then(data => {
+    const avg = data[title]; // title از showModal گرفته شده
+    const avgDisplay = avg ? `میانگین امتیاز: ${avg} از ۵` : 'هنوز امتیازی ثبت نشده';
+    document.getElementById('averageRating').textContent = avgDisplay;
+  });
+
     .then(response => {
       if (!response.ok) throw new Error("خطا در ارسال امتیاز به سرور.");
       return response.json();
