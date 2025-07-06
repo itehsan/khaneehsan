@@ -37,17 +37,17 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.3); /* کاهش تاریکی به 30% */
+      background: rgba(0, 0, 0, 0.3);
       z-index: 0;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.92); /* افزایش شفافیت به 92% */
+      background: rgba(255, 255, 255, 0.92);
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      padding: 30px;
+      padding: 35px;
       width: 90%;
-      max-width: 400px;
+      max-width: 420px;
       text-align: center;
       position: relative;
       z-index: 1;
@@ -56,32 +56,37 @@
     }
 
     .card img {
-      width: 280px;
-      margin-bottom: 20px;
+      width: 300px;
+      margin-bottom: 25px;
     }
 
     .card h2 {
-      margin-bottom: 20px;
-      font-size: 1.6rem;
+      margin-bottom: 25px;
+      font-size: 2rem; /* افزایش سایز عنوان */
       color: #333;
+      font-weight: bold;
     }
 
     input {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
+      padding: 15px;
+      margin: 12px 0;
       border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1.1rem;
+      border-radius: 10px;
+      font-size: 1.3rem; /* افزایش سایز فونت */
       background: rgba(255, 255, 255, 0.9);
       transition: all 0.3s;
       font-family: 'AdobeArabic', sans-serif;
     }
 
+    input::placeholder {
+      font-size: 1.2rem; /* افزایش سایز placeholder */
+    }
+
     input:focus {
       outline: none;
       border-color: #f57c00;
-      box-shadow: 0 0 0 2px rgba(245, 124, 0, 0.2);
+      box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.2);
     }
 
     button {
@@ -89,19 +94,20 @@
       background-color: #f57c00;
       color: white;
       border: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      margin-top: 15px;
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 1.4rem; /* افزایش سایز دکمه */
+      margin-top: 20px;
       cursor: pointer;
       transition: all 0.3s;
       font-family: 'AdobeArabic', sans-serif;
+      font-weight: bold;
     }
 
     button:hover {
       background-color: #e76c00;
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 7px 20px rgba(0,0,0,0.15);
     }
     
     .phone-input {
@@ -115,21 +121,32 @@
       text-align: right;
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
       .card {
-        padding: 20px;
+        padding: 25px;
+        max-width: 380px;
       }
       
       .card img {
-        width: 240px;
+        width: 260px;
       }
       
       .card h2 {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
       }
 
-      input, button {
-        font-size: 1rem;
+      input {
+        font-size: 1.2rem;
+        padding: 13px;
+      }
+      
+      input::placeholder {
+        font-size: 1.1rem;
+      }
+
+      button {
+        font-size: 1.3rem;
+        padding: 14px;
       }
     }
   </style>
