@@ -1,6 +1,4 @@
-const fetch = require("node-fetch");
-
-exports.handler = async (event) => {
+exports.handler = async function(event) {
   try {
     const userData = JSON.parse(event.body);
 
@@ -16,13 +14,17 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "*"
       },
       body: JSON.stringify(result)
     };
+
   } catch (error) {
     return {
       statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      },
       body: JSON.stringify({ error: error.message })
     };
   }
