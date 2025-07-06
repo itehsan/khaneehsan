@@ -423,6 +423,12 @@
   </style>
 </head>
 <body>
+<div id="welcomeForm" style="position:fixed; inset:0; background:#222; color:white; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:99999;">
+  <h2 style="margin-bottom:1rem;">ورود به منو</h2>
+  <input id="userName" type="text" placeholder="نام شما" style="padding:10px; margin:5px;" />
+  <input id="userPhone" type="tel" placeholder="شماره موبایل" style="padding:10px; margin:5px;" />
+  <button onclick="submitUserInfo()" style="padding:10px 20px; margin-top:10px;">ورود</button>
+</div>
 
   <!-- بخش برندینگ -->
   <div class="branding" role="banner">
@@ -719,6 +725,30 @@
   </footer>
 
 <script>
+  function submitUserInfo() {
+  const name = document.getElementById('userName').value.trim();
+  const phone = document.getElementById('userPhone').value.trim();
+
+  if (!name || !phone) {
+    alert("لطفاً نام و شماره موبایل را وارد کنید.");
+    return;
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycbwiKBevxoGaZpImgEYp2Fd4OvB1_D71f0MOfJuwOxyBnmtg7vbCIf4pGtnNq6LVf60/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, phone })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      document.getElementById('welcomeForm').style.display = 'none';
+    } else {
+      alert("خطا در ارسال اطلاعات");
+    }
+  })
+  .catch(() => alert("ارسال اطلاعات با خطا مواجه شد."));
+}
   // ======= تعریف متغیرهای اصلی برای المان‌های HTML =======
   const sideMenu = document.getElementById('sideMenu'); // منوی جانبی
   const menuToggle = document.getElementById('menuToggle'); // دکمه همبرگری باز/بسته کردن منو
