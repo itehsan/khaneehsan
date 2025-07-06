@@ -700,13 +700,15 @@
       <p id="modalOrderTime" style="color: #f9c400; font-weight: bold;"></p>
 
       <!-- بخش امتیازدهی ستاره‌ای -->
-      <div class="rating" role="radiogroup" aria-label="امتیازدهی ستاره‌ای">
-        <span class="star" role="radio" aria-checked="false" tabindex="0" data-value="5" aria-label="۵ ستاره">&#9733;</span>
-        <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="4" aria-label="۴ ستاره">&#9733;</span>
-        <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="3" aria-label="۳ ستاره">&#9733;</span>
-        <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="2" aria-label="۲ ستاره">&#9733;</span>
-        <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="1" aria-label="۱ ستاره">&#9733;</span>
-      </div>
+     <div class="rating" role="radiogroup" aria-label="امتیازدهی ستاره‌ای">
+  <span class="star" role="radio" aria-checked="false" tabindex="0" data-value="5" aria-label="۵ ستاره">&#9733;</span>
+  <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="4" aria-label="۴ ستاره">&#9733;</span>
+  <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="3" aria-label="۳ ستاره">&#9733;</span>
+  <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="2" aria-label="۲ ستاره">&#9733;</span>
+  <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="1" aria-label="۱ ستاره">&#9733;</span>
+</div>
+<button id="submit-rating">ارسال امتیاز</button>
+<div id="response-message"></div>
       <p id="ratingMsg" style="margin-top: 0.5rem; color: #f9c400; font-weight: bold;"></p>
     </div>
   </div>
@@ -732,7 +734,7 @@
   const modalOrderTime = document.getElementById('modalOrderTime'); // متن زمان سفارش داخل مودال
   const stars = modal.querySelectorAll('.star'); // ستاره‌های امتیازدهی
   const ratingMsg = document.getElementById('ratingMsg'); // پیام امتیاز (میانگین و تعداد رای)
-
+  
   // کلید ذخیره در localStorage برای امتیازها
   const STORAGE_KEY = 'restaurant_ratings';
 
@@ -918,7 +920,7 @@
       });
     }
 
-        // ستاره اول در مودال قابلیت فوکوس بگیرد
+    // ستاره اول در مودال قابلیت فوکوس بگیرد
     stars[0].tabIndex = 0;
 
     // نمایش مودال
@@ -933,19 +935,19 @@
 
   // بستن مودال با کلیک روی فضای بیرون مودال
   // بستن منوی بازشو وقتی روی بیرون منو کلیک شود
-    window.addEventListener('click', (event) => {
-      const isClickInsideMenu = sideMenu.contains(event.target);
-      const isClickOnButton = menuToggle.contains(event.target);
-      if (!isClickInsideMenu && !isClickOnButton) {
-        sideMenu.classList.remove('open');
-        sideMenu.setAttribute('aria-hidden', 'true');
-      }
-    });
+  window.addEventListener('click', (event) => {
+    const isClickInsideMenu = sideMenu.contains(event.target);
+    const isClickOnButton = menuToggle.contains(event.target);
+    if (!isClickInsideMenu && !isClickOnButton) {
+      sideMenu.classList.remove('open');
+      sideMenu.setAttribute('aria-hidden', 'true');
+    }
+  });
   modal.addEventListener('click', (e) => {
-  if(e.target === modal) {
-    modal.classList.remove('show');
-  }
-});
+    if(e.target === modal) {
+      modal.classList.remove('show');
+    }
+  });
 
   // امتیازدهی ستاره‌ای در مودال
   stars.forEach(star => {
@@ -986,50 +988,50 @@
     });
   });
 
-  // ذخیره امتیاز انتخاب شده و بروزرسانی UI
+  // ذخیره امتیاز انتخاب شده و بروزرسانی UI + ارسال به Netlify و دریافت میانگین
   function saveRating(value) {
-    if(!currentItem) return;
+    if (!currentItem) return;
     const title = currentItem.dataset.title;
     const ratings = loadRatings();
-    if(!ratings[title]) ratings[title] = [];
+    if (!ratings[title]) ratings[title] = [];
     ratings[title].push(value);
     saveRatings(ratings);
-    // === ارسال امتیاز به Google Sheets ===
-    fetch("https://script.google.com/macros/s/AKfycbyqqeO1WaeOLrctM0I2q-wKQh-Zd1MUO0-ewP3R-pv3pAJhHxgl-GC5L6Z9FcpMBRg/exec", {
+
+    // ارسال امتیاز به Netlify Function
+    fetch("https://khaneehsan.netlify.app/api/submit-rating", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        title: title,     // نام غذا (مطابق با اسکریپت)
-        rating: value,    // امتیاز انتخاب‌شده
-        comment: ""       // فعلاً نظر خالی ارسال می‌شود
+        title: title,
+        rating: value,
+        comment: ""
       })
     })
     .then(response => {
-      if (!response.ok) throw new Error("ارسال به گوگل شیت با خطا مواجه شد.");
-      return response.text();
+      if (!response.ok) throw new Error("خطا در ارسال امتیاز به سرور.");
+      return response.json();
     })
-    .then(result => {
-      console.log("نتیجه از Google Sheets:", result);
+    .then(data => {
+      if (data.success) {
+        const avg = data.averageRating || calculateAverage(ratings[title]);
+        ratingMsg.textContent = `میانگین امتیاز: ${avg.toFixed(1)} از ۵ (${ratings[title].length} رای)`;
+
+        stars.forEach(star => {
+          star.classList.toggle('selected', parseInt(star.dataset.value) <= Math.round(avg));
+          star.setAttribute('aria-checked', parseInt(star.dataset.value) <= Math.round(avg) ? 'true' : 'false');
+        });
+
+        updateAverageRatingsUI();
+      } else {
+        throw new Error(data.error || "خطا در دریافت پاسخ سرور.");
+      }
     })
     .catch(error => {
       console.error("خطا:", error);
+      alert("خطا در ارسال امتیاز. لطفا دوباره تلاش کنید.");
     });
-
-
-    // بروزرسانی پیام و رنگ ستاره‌ها در مودال
-    const scores = ratings[title];
-    const avg = calculateAverage(scores);
-    ratingMsg.textContent = `میانگین امتیاز: ${avg.toFixed(1)} از ۵ (${scores.length} رای)`;
-
-    stars.forEach(star => {
-      star.classList.toggle('selected', parseInt(star.dataset.value) <= Math.round(avg));
-      star.setAttribute('aria-checked', parseInt(star.dataset.value) <= Math.round(avg) ? 'true' : 'false');
-    });
-
-    // بروزرسانی میانگین امتیاز زیر غذا
-    updateAverageRatingsUI();
   }
 
   // وقتی صفحه بارگذاری شد، میانگین امتیازها را بروز کن
