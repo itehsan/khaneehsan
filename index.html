@@ -419,6 +419,23 @@
   background-color: #555; /* اختیاری: رنگ کمی تیره‌تر برای کلیک */
 }
 
+    .menu-item.animate-in {
+  animation: fadeInUp 0.4s ease both;
+}
+    
+  <!-- انیمیشن -->
+.menu-item.animate-out {
+  animation: fadeOutDown 0.3s ease both;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOutDown {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(30px); }
+}
 
   </style>
 </head>
@@ -854,21 +871,44 @@
   }
 
   // فیلتر غذاها بر اساس دسته و متن جستجو
-  function changeCategory(category) {
-    const searchTerm = searchInput.value.trim().toLowerCase();
-    menuItems.forEach(item => {
-      const title = item.dataset.title.toLowerCase();
-      const cat = item.dataset.category;
-      const matchesCategory = category === "همه" || cat === category;
-      const matchesSearch = title.includes(searchTerm);
-      if(matchesCategory && matchesSearch){
-        item.style.display = 'flex';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  }
+function changeCategory(category) {
+  // ➊ گرفتن مقدار جستجو از input و تبدیل به حروف کوچک
+  const searchTerm = searchInput.value.trim().toLowerCase();
 
+  // ➋ حلقه روی همه آیتم‌های منو
+  menuItems.forEach(item => {
+    // گرفتن عنوان غذا و دسته‌اش از data-attribute
+    const title = item.dataset.title.toLowerCase();  // مثلاً: "کباب کوبیده"
+    const cat = item.dataset.category;               // مثلاً: "کباب"
+
+    // ➌ بررسی اینکه آیا آیتم متعلق به دسته فعلی هست یا نه
+    const matchesCategory = category === "همه" || cat === category;
+
+    // ➍ بررسی اینکه عنوان شامل عبارت جستجوشده هست یا نه
+    const matchesSearch = title.includes(searchTerm);
+
+    // ✅ اگر آیتم باید نمایش داده شود
+    if (matchesCategory && matchesSearch) {
+      item.style.display = 'flex';                  // مطمئن شو آیتم نمایش داده میشه
+      item.classList.remove('animate-out');         // اگر قبلاً انیمیشن خروج داشته، حذفش کن
+      void item.offsetWidth;                        // ترفند برای ریست انیمیشن (مجبور کردن مرورگر به رفرش کلاس)
+      item.classList.add('animate-in');             // انیمیشن ورود از پایین اجرا میشه
+    } 
+    
+    // ❌ اگر آیتم باید مخفی بشه
+    else {
+      if (item.style.display !== 'none') {          // فقط اگر قبلاً نمایش داده شده
+        item.classList.remove('animate-in');        // انیمیشن ورود رو حذف کن
+        item.classList.add('animate-out');          // انیمیشن خروج رو اجرا کن
+
+        // صبر کن تا انیمیشن تمام بشه، بعد مخفیش کن
+        setTimeout(() => {
+          item.style.display = 'none';
+        }, 300); // ۳۰۰ میلی‌ثانیه یعنی زمان انیمیشن خروج
+      }
+    }
+  });
+}
   // جستجو زنده در کادر جستجو
   searchInput.addEventListener('input', () => {
     const activeTab = document.querySelector('.tabs .tab.active');
