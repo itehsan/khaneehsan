@@ -94,11 +94,11 @@
       top: 0;
       right: -260px; /* ابتدا خارج از صفحه سمت راست */
       width: 260px;
-      height: 100%;
+      height: %;
       background-color: #2b2e34;
       box-shadow: -2px 0 6px rgba(0,0,0,0.7);
       transition: right 0.3s ease;
-      z-index: 10000;
+      z-index: 00;
       padding: 1rem;
       display: flex;
       flex-direction: column;
@@ -144,7 +144,7 @@
       z-index: 2;
     }
     .search-box input {
-      width: 100%;
+      width: %;
       background: transparent;
       border: none;
       outline: none;
@@ -202,7 +202,7 @@
         grid-template-columns: 1fr; /* واکنش‌گرا برای موبایل */
       }
       .search-box {
-        width: 100%;
+        width: %;
       }
     }
 
@@ -273,7 +273,7 @@
       backdrop-filter: blur(4px);
       justify-content: center;
       align-items: center;
-      z-index: 11000;
+      z-index: 10;
     }
     .modal.show {
       display: flex;
@@ -294,7 +294,7 @@
     }
     /* عکس بزرگ در مودال */
     .modal-content img {
-      width: 100%;
+      width: %;
   max-width: 330px;
   border-radius: 12px;
   background: #fff;
@@ -903,7 +903,7 @@ function changeCategory(category) {
         // صبر کن تا انیمیشن تمام بشه، بعد مخفیش کن
         setTimeout(() => {
           item.style.display = 'none';
-        }, 100); // ۳۰۰ میلی‌ثانیه یعنی زمان انیمیشن خروج
+        }, 700); // ۳۰۰ میلی‌ثانیه یعنی زمان انیمیشن خروج
       }
     }
   });
