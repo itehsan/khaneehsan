@@ -998,7 +998,7 @@
     saveRatings(ratings);
 
     // ارسال امتیاز به Netlify Function
-    fetch("https://script.google.com/macros/s/AKfycbyqqeO1WaeOLrctM0I2q-wKQh-Zd1MUO0-ewP3R-pv3pAJhHxgl-GC5L6Z9FcpMBRg/exec", {
+    fetch("https://khaneehsan.netlify.app/api/submit-rating", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -1047,6 +1047,7 @@
   // شروع اولیه با نمایش همه غذاها
   changeCategory("همه");
 </script>
+
 
 </body>
 </html>
