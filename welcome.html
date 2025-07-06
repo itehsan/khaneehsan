@@ -8,6 +8,7 @@
     * {
       box-sizing: border-box;
     }
+    
     @font-face {
       font-family: 'AdobeArabic';
       src: url('https://itehsan.github.io/khaneehsan/AdobeArabic-Regular.otf') format('opentype');
@@ -17,43 +18,70 @@
 
     body {
       direction: rtl;
-      font-family: sans-serif;
+      font-family: 'AdobeArabic', sans-serif; /* استفاده از فونت AdobeArabic به عنوان پیشفرض */
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom left, #e0efff, #a5c8ff);
+      background: url('https://source.unsplash.com/random/1920x1080/?nature,water') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
     }
 
     .card {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      padding: 30px;
       width: 90%;
       max-width: 400px;
       text-align: center;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .card img {
-      width: 300px;
+      width: 280px;
       margin-bottom: 20px;
     }
 
     .card h2 {
       margin-bottom: 20px;
-      font-size: 1.4rem;
+      font-size: 1.6rem; /* افزایش سایز فونت */
+      color: #333;
     }
 
     input {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
-      border: 1px solid #ccc;
+      border: 1px solid #ddd;
       border-radius: 8px;
-      font-size: 1rem;
+      font-size: 1.1rem; /* افزایش سایز فونت */
+      background: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s;
+      font-family: 'AdobeArabic', sans-serif; /* اعمال فونت برای inputها */
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #f57c00;
+      box-shadow: 0 0 0 2px rgba(245, 124, 0, 0.2);
     }
 
     button {
@@ -63,33 +91,45 @@
       border: none;
       padding: 12px;
       border-radius: 8px;
-      font-size: 1rem;
+      font-size: 1.1rem; /* افزایش سایز فونت */
       margin-top: 15px;
       cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'AdobeArabic', sans-serif; /* اعمال فونت برای دکمه */
     }
 
     button:hover {
       background-color: #e76c00;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
     
     .phone-input {
-  direction: ltr;
-  text-align: left;
-}
+      direction: rtl; /* تغییر جهت به راست به چپ */
+      text-align: right; /* تراز متن به راست */
+      unicode-bidi: bidi-override; /* حل مشکل نمایش اعداد */
+    }
 
-.phone-input::placeholder {
-  direction: ltr;
-  text-align: left;
-}
-
+    .phone-input::placeholder {
+      direction: rtl;
+      text-align: right;
+    }
 
     @media (max-width: 400px) {
+      .card {
+        padding: 20px;
+      }
+      
+      .card img {
+        width: 240px;
+      }
+      
       .card h2 {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
       }
 
       input, button {
-        font-size: 0.95rem;
+        font-size: 1rem;
       }
     }
   </style>
