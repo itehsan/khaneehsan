@@ -65,6 +65,17 @@
     button:hover {
       background-color: #e76c00;
     }
+    
+    .phone-input {
+  direction: ltr;
+  text-align: left;
+}
+
+.phone-input::placeholder {
+  direction: ltr;
+  text-align: left;
+}
+
 
     @media (max-width: 400px) {
       .card h2 {
@@ -84,7 +95,7 @@
     <h2>ورود به سایت</h2>
 
     <input type="text" id="name" placeholder="نام کامل">
-    <input type="tel" id="phone" placeholder="شماره تماس">
+    <input type="tel" id="phone" class="phone-input" placeholder="شماره تماس">
 
     <button onclick="submitUser()">ورود به سایت</button>
   </div>
