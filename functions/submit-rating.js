@@ -2,7 +2,9 @@ exports.handler = async function(event, context) {
   const { title, rating, comment } = JSON.parse(event.body || "{}");
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbyqqeO1WaeOLrctM0I2q-wKQh-Zd1MUO0-ewP3R-pv3pAJhHxgl-GC5L6Z9FcpMBRg/exec", {
+        
+
+    const response = await fetch("https://script.google.com/macros/s/AKfycbxV4D5K3FMHI4nklZnDTmidknCpL7ddQYVsu9O0Ftt69V1_F0hkN8XXk7lx_SKk36o/exec", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
