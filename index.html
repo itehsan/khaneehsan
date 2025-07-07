@@ -391,6 +391,43 @@
       color: gold;
     }
 
+    
+.weight-cards {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.weight-card {
+  background-color: #3c3f48;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 90px;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  font-family: inherit;
+}
+.weight-card small {
+  color: #ccc;
+  font-size: 0.85rem;
+}
+.weight-card:hover {
+  transform: translateY(-3px);
+  background-color: #50545f;
+}
+.weight-card.active {
+  background-color: #f9c400;
+  color: black;
+  font-weight: bold;
+  border-color: #f9c400;
+}
+
+
     /* فوتر پایین صفحه */
     .footer {
       text-align: center;
@@ -708,7 +745,19 @@
       <!-- زمان سفارش فقط برای سوپ جو و آش جو نمایش داده می‌شود -->
       <p id="modalOrderTime" style="color: #f9c400; font-weight: bold;"></p>
 
-      <!-- بخش امتیازدهی ستاره‌ای -->
+      
+<!-- ✨ بخش انتخاب وزن برای سوپ جو، آش جو و حلیم گندم -->
+<div id="weightOptions" style="display: none; margin-top: 1.5rem;">
+  <h4 style="color:#f9c400; margin-bottom: 1rem;">انتخاب وزن:</h4>
+  <div class="weight-cards">
+    <div class="weight-card active" data-price="24000">۳۰۰ گرم<br><small>۲۴.۰۰۰ تومان</small></div>
+    <div class="weight-card" data-price="45000">پرسی<br><small>۴۵.۰۰۰ تومان</small></div>
+    <div class="weight-card" data-price="80000">۱ کیلو<br><small>۸۰.۰۰۰ تومان</small></div>
+  </div>
+  <p style="margin-top: 1rem; font-weight:bold; color:#f9c400;">قیمت نهایی: <span id="dynamicPrice">۲۴.۰۰۰</span> تومان</p>
+</div>
+
+<!-- بخش امتیازدهی ستاره‌ای -->
      <div class="rating" role="radiogroup" aria-label="امتیازدهی ستاره‌ای">
   <span class="star" role="radio" aria-checked="false" tabindex="0" data-value="5" aria-label="۵ ستاره">&#9733;</span>
   <span class="star" role="radio" aria-checked="false" tabindex="-1" data-value="4" aria-label="۴ ستاره">&#9733;</span>
@@ -1045,6 +1094,30 @@
 
   // وقتی صفحه بارگذاری شد، میانگین امتیازها را بروز کن
   updateAverageRatingsUI();
+
+  
+  // ✨ کنترل نمایش وزن گرافیکی برای غذاهای خاص
+  const weightCards = document.querySelectorAll('.weight-card');
+  const dynamicPrice = document.getElementById('dynamicPrice');
+  const weightSection = document.getElementById('weightOptions');
+  const originalShowModal = showModal;
+  showModal = function(element) {
+    originalShowModal(element);
+    const titlesWithWeights = ["سوپ جو", "آش جو", "حلیم گندم"];
+    if (titlesWithWeights.includes(element.dataset.title)) {
+      weightSection.style.display = "block";
+    } else {
+      weightSection.style.display = "none";
+    }
+  };
+  weightCards.forEach(card => {
+    card.addEventListener('click', () => {
+      weightCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      dynamicPrice.textContent = parseInt(card.dataset.price).toLocaleString();
+    });
+  });
+
 
   // امکان بستن مودال با دکمه Esc کیبورد
   window.addEventListener('keydown', (e) => {
