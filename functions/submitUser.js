@@ -1,5 +1,5 @@
 exports.handler = async function(event) {
-  // CORS preflight response
+  // پاسخ به preflight CORS
   if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 200,
@@ -32,6 +32,7 @@ exports.handler = async function(event) {
       },
       body: JSON.stringify(result)
     };
+
   } catch (error) {
     return {
       statusCode: 500,
