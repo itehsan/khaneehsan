@@ -776,26 +776,45 @@
   </footer>
 
 <script>
-  // ======= تعریف متغیرهای اصلی برای المان‌های HTML =======
-  const sideMenu = document.getElementById('sideMenu'); // منوی جانبی
-  const menuToggle = document.getElementById('menuToggle'); // دکمه همبرگری باز/بسته کردن منو
-  const tabs = document.querySelectorAll('.tabs .tab'); // تب‌های بالای صفحه (دسته‌ها)
-  const sideTabs = document.querySelectorAll('.side-menu .tab'); // تب‌های منوی کناری
-  const searchInput = document.getElementById('search'); // ورودی جستجو
-  const menuItems = document.querySelectorAll('.menu-item'); // لیست تمام غذاها
-  const modal = document.getElementById('modal'); // مودال بازشونده
-  const modalClose = document.getElementById('modalClose'); // دکمه بستن مودال
-  const modalImg = document.getElementById('modalImg'); // تصویر داخل مودال
-  const modalTitle = document.getElementById('modalTitle'); // عنوان داخل مودال
-  const modalPrice = document.getElementById('modalPrice'); // قیمت داخل مودال
-  const modalOrderTime = document.getElementById('modalOrderTime'); // متن زمان سفارش داخل مودال
-  const stars = modal.querySelectorAll('.star'); // ستاره‌های امتیازدهی
-  const ratingMsg = document.getElementById('ratingMsg'); // پیام امتیاز (میانگین و تعداد رای)
-  
-  // کلید ذخیره در localStorage برای امتیازها
+  // تعریف متغیرها
+  const sideMenu = document.getElementById('sideMenu');
+  const menuToggle = document.getElementById('menuToggle');
+  const tabs = document.querySelectorAll('.tabs .tab');
+  const sideTabs = document.querySelectorAll('.side-menu .tab');
+  const searchInput = document.getElementById('search');
+  const menuItems = document.querySelectorAll('.menu-item');
+  const modal = document.getElementById('modal');
+  const modalClose = document.getElementById('modalClose');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalOrderTime = document.getElementById('modalOrderTime');
+  const stars = modal.querySelectorAll('.star');
+  const ratingMsg = document.getElementById('ratingMsg');
   const STORAGE_KEY = 'restaurant_ratings';
 
-  // بارگذاری امتیازها از localStorage (یا مقدار خالی اگر چیزی ذخیره نشده)
+  const weightOptions = document.getElementById('weightOptions');
+  const weightCardsContainer = document.getElementById('weightCards');
+  const dynamicPrice = document.getElementById('dynamicPrice');
+
+  const weightsByTitle = {
+    "سوپ جو": [
+      { weight: "۳۰۰ گرم", price: 24000 },
+      { weight: "پرسی", price: 45000 },
+      { weight: "۱ کیلو", price: 80000 }
+    ],
+    "آش جو": [
+      { weight: "نیم پرسی", price: 20000 },
+      { weight: "پرسی", price: 40000 },
+      { weight: "دو پرسی", price: 75000 }
+    ],
+    "حلیم گندم": [
+      { weight: "کاسه کوچک", price: 25000 },
+      { weight: "کاسه بزرگ", price: 40000 },
+      { weight: "یک کیلو", price: 70000 }
+    ]
+  };
+
   function loadRatings() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -805,57 +824,118 @@
     }
   }
 
-  // ذخیره امتیازها به localStorage
   function saveRatings(ratings) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(ratings));
   }
 
-  // محاسبه میانگین آرایه اعداد (امتیازها)
   function calculateAverage(arr) {
     if (!arr || arr.length === 0) return 0;
-    const sum = arr.reduce((a,b) => a+b, 0);
-    return (sum / arr.length);
+    const sum = arr.reduce((a, b) => a + b, 0);
+    return sum / arr.length;
   }
 
-  // به‌روزرسانی نمایش میانگین امتیاز زیر هر محصول
   function updateAverageRatingsUI() {
     const ratings = loadRatings();
     document.querySelectorAll('.average-rating').forEach(avgDiv => {
       const title = avgDiv.dataset.title;
       const scores = ratings[title] || [];
       const avg = calculateAverage(scores);
-      avgDiv.innerHTML = ''; // پاک کردن محتوا
+      avgDiv.innerHTML = '';
       avgDiv.setAttribute('aria-label', `میانگین امتیاز: ${avg.toFixed(1)} از ۵`);
-
-      // نمایش ستاره‌ها با رنگ طلایی برای میانگین
       const fullStars = Math.floor(avg);
       const halfStar = (avg - fullStars) >= 0.5;
-      for(let i=1; i<=5; i++){
-        let starSpan = document.createElement('span');
+      for (let i = 1; i <= 5; i++) {
+        const starSpan = document.createElement('span');
         starSpan.classList.add('star');
         starSpan.textContent = '★';
-        if(i <= fullStars) starSpan.style.color = 'gold';
-        else if(i === fullStars + 1 && halfStar) starSpan.style.color = 'goldenrod';
+        if (i <= fullStars) starSpan.style.color = 'gold';
+        else if (i === fullStars + 1 && halfStar) starSpan.style.color = 'goldenrod';
         else starSpan.style.color = '#444';
         avgDiv.appendChild(starSpan);
       }
     });
   }
 
-  // باز و بسته کردن منوی جانبی با کلیک روی دکمه همبرگر
+  function showModal(element) {
+    currentItem = element;
+    modalImg.src = element.dataset.img;
+    modalImg.alt = element.dataset.title;
+    modalTitle.textContent = element.dataset.title;
+    modalPrice.textContent = element.dataset.price;
+
+    modalPrice.style.display = ["سوپ جو", "آش جو", "حلیم"].includes(element.dataset.title) ? "none" : "block";
+
+    if (element.dataset.title === "سوپ جو") {
+      modalOrderTime.textContent = "زمان سفارش: شنبه، دوشنبه، چهارشنبه ۱۲ تا ۱۵";
+    } else if (element.dataset.title === "آش جو") {
+      modalOrderTime.textContent = "زمان سفارش: یکشنبه، سه‌شنبه، پنجشنبه ۱۲ تا ۱۵";
+    } else {
+      modalOrderTime.textContent = "";
+    }
+
+    const ratings = loadRatings();
+    const scores = ratings[element.dataset.title] || [];
+    const avg = calculateAverage(scores);
+    ratingMsg.textContent = `میانگین امتیاز: ${avg.toFixed(1)} از ۵ (${scores.length} رای)`;
+
+    stars.forEach(star => {
+      star.classList.remove('selected', 'hovered');
+      star.setAttribute('aria-checked', 'false');
+      star.tabIndex = -1;
+    });
+
+    if (scores.length > 0) {
+      const roundedAvg = Math.round(avg);
+      stars.forEach(star => {
+        if (parseInt(star.dataset.value) <= roundedAvg) {
+          star.classList.add('selected');
+          star.setAttribute('aria-checked', 'true');
+        }
+      });
+    }
+
+    stars[0].tabIndex = 0;
+    modal.classList.add('show');
+    modal.focus();
+
+    const title = element.dataset.title;
+    const weightOptionsData = weightsByTitle[title];
+    if (weightOptionsData) {
+      weightOptions.style.display = "block";
+      weightCardsContainer.innerHTML = "";
+      weightOptionsData.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.classList.add("weight-card");
+        if (index === 0) card.classList.add("active");
+        card.dataset.price = item.price;
+        card.innerHTML = `${item.weight}<br><small>${item.price.toLocaleString()} تومان</small>`;
+        card.addEventListener("click", () => {
+          document.querySelectorAll('.weight-card').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          dynamicPrice.textContent = item.price.toLocaleString();
+        });
+        weightCardsContainer.appendChild(card);
+      });
+      dynamicPrice.textContent = weightOptionsData[0].price.toLocaleString();
+    } else {
+      weightOptions.style.display = "none";
+    }
+  }
+
+  let currentItem = null;
+
   menuToggle.addEventListener('click', () => {
     const isOpen = sideMenu.classList.toggle('open');
     sideMenu.setAttribute('aria-hidden', !isOpen);
   });
 
-  // رفتار کلیک و کلیدهای کیبورد روی تب‌های بالای صفحه
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       changeCategory(tab.dataset.category);
       setActiveTab(tab);
     });
     tab.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter' || e.key === ' ') {
+      if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         changeCategory(tab.dataset.category);
         setActiveTab(tab);
@@ -863,16 +943,15 @@
     });
   });
 
-  // رفتار کلیک و کلیدهای کیبورد روی تب‌های منوی جانبی
   sideTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       changeCategory(tab.dataset.category);
       setActiveSideTab(tab);
-      sideMenu.classList.remove('open'); // بعد انتخاب، منو بسته شود
+      sideMenu.classList.remove('open');
       sideMenu.setAttribute('aria-hidden', 'true');
     });
     tab.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter' || e.key === ' ') {
+      if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         changeCategory(tab.dataset.category);
         setActiveSideTab(tab);
@@ -882,7 +961,6 @@
     });
   });
 
-  // فعال و غیرفعال کردن کلاس‌های تب‌ها برای نشان دادن تب انتخاب شده (بالا)
   function setActiveTab(activeTab) {
     tabs.forEach(tab => {
       const isActive = tab === activeTab;
@@ -890,13 +968,12 @@
       tab.setAttribute('aria-selected', isActive);
       tab.tabIndex = isActive ? 0 : -1;
     });
-    // هماهنگی تب منوی کناری
     sideTabs.forEach(tab => {
       tab.classList.toggle('active', tab.dataset.category === activeTab.dataset.category);
       tab.setAttribute('aria-pressed', tab.dataset.category === activeTab.dataset.category);
     });
   }
-  // فعال و غیرفعال کردن تب‌های منوی کناری و هماهنگی با تب بالای صفحه
+
   function setActiveSideTab(activeTab) {
     sideTabs.forEach(tab => {
       const isActive = tab === activeTab;
@@ -910,7 +987,6 @@
     });
   }
 
-  // فیلتر غذاها بر اساس دسته و متن جستجو
   function changeCategory(category) {
     const searchTerm = searchInput.value.trim().toLowerCase();
     menuItems.forEach(item => {
@@ -918,80 +994,26 @@
       const cat = item.dataset.category;
       const matchesCategory = category === "همه" || cat === category;
       const matchesSearch = title.includes(searchTerm);
-      if(matchesCategory && matchesSearch){
-        item.style.display = 'flex';
-      } else {
-        item.style.display = 'none';
-      }
+      item.style.display = (matchesCategory && matchesSearch) ? 'flex' : 'none';
     });
   }
 
-  // جستجو زنده در کادر جستجو
   searchInput.addEventListener('input', () => {
     const activeTab = document.querySelector('.tabs .tab.active');
     const category = activeTab ? activeTab.dataset.category : "همه";
     changeCategory(category);
   });
 
-  // متغیر نگهدارنده آیتم فعلی در مودال
-  let currentItem = null;
-
-  // نمایش مودال و پر کردن اطلاعات بر اساس آیتم انتخاب شده
-  function showModal(element) {
-    currentItem = element;
-    modalImg.src = element.dataset.img;
-    modalImg.alt = element.dataset.title;
-    modalTitle.textContent = element.dataset.title;
-    modalPrice.textContent = element.dataset.price;
-
-    // نمایش زمان سفارش فقط برای "سوپ جو" و "آش جو"
-    if(element.dataset.title === "سوپ جو"){
-      modalOrderTime.textContent = "زمان سفارش: شنبه، دوشنبه، چهارشنبه ۱۲ تا ۱۵";
-    } else if(element.dataset.title === "آش جو"){
-      modalOrderTime.textContent = "زمان سفارش: یکشنبه، سه‌شنبه، پنجشنبه ۱۲ تا ۱۵";
-    } else {
-      modalOrderTime.textContent = "";
-    }
-
-    // بارگذاری امتیازهای ذخیره شده برای این غذا
-    const ratings = loadRatings();
-    const scores = ratings[element.dataset.title] || [];
-    const avg = calculateAverage(scores);
-    ratingMsg.textContent = `میانگین امتیاز: ${avg.toFixed(1)} از ۵ (${scores.length} رای)`;
-
-    // پاک کردن انتخاب قبلی ستاره‌ها
-    stars.forEach(star => {
-      star.classList.remove('selected', 'hovered');
-      star.setAttribute('aria-checked', 'false');
-      star.tabIndex = -1;
-    });
-
-    // اگر امتیازی وجود دارد، ستاره‌ها را نشان بده
-    if(scores.length > 0){
-      const roundedAvg = Math.round(avg);
-      stars.forEach(star => {
-        if(parseInt(star.dataset.value) <= roundedAvg) {
-          star.classList.add('selected');
-          star.setAttribute('aria-checked', 'true');
-        }
-      });
-    }
-
-    // ستاره اول در مودال قابلیت فوکوس بگیرد
-    stars[0].tabIndex = 0;
-
-    // نمایش مودال
-    modal.classList.add('show');
-    modal.focus();
-  }
-
-  // بستن مودال با کلیک روی دکمه بستن
   modalClose.addEventListener('click', () => {
     modal.classList.remove('show');
   });
 
-  // بستن مودال با کلیک روی فضای بیرون مودال
-  // بستن منوی بازشو وقتی روی بیرون منو کلیک شود
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('show');
+    }
+  });
+
   window.addEventListener('click', (event) => {
     const isClickInsideMenu = sideMenu.contains(event.target);
     const isClickOnButton = menuToggle.contains(event.target);
@@ -1000,52 +1022,36 @@
       sideMenu.setAttribute('aria-hidden', 'true');
     }
   });
-  modal.addEventListener('click', (e) => {
-    if(e.target === modal) {
-      modal.classList.remove('show');
-    }
-  });
 
-  // امتیازدهی ستاره‌ای در مودال
   stars.forEach(star => {
-    // وقتی موس روی ستاره می‌رود رنگ ستاره‌ها تا آن مقدار تغییر کند
     star.addEventListener('mouseenter', () => {
       const val = parseInt(star.dataset.value);
       stars.forEach(s => {
         s.classList.toggle('hovered', parseInt(s.dataset.value) <= val);
       });
     });
-    // وقتی موس خارج شد رنگ به حالت عادی برگردد
     star.addEventListener('mouseleave', () => {
       stars.forEach(s => s.classList.remove('hovered'));
     });
-    // وقتی ستاره کلیک شد امتیاز ذخیره شود
     star.addEventListener('click', () => {
       const val = parseInt(star.dataset.value);
       saveRating(val);
     });
-    // پشتیبانی از کیبورد: زدن اینتر یا اسپیس برای ثبت امتیاز
     star.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter' || e.key === ' ') {
+      if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         const val = parseInt(star.dataset.value);
         saveRating(val);
       }
-      // حرکت بین ستاره‌ها با کلیدهای چپ و راست
-      if(e.key === 'ArrowLeft' || e.key === 'ArrowRight'){
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
         e.preventDefault();
         let idx = Array.from(stars).indexOf(e.target);
-        if(e.key === 'ArrowRight'){
-          idx = (idx === 0) ? stars.length -1 : idx -1;
-        } else {
-          idx = (idx === stars.length -1) ? 0 : idx +1;
-        }
+        idx = e.key === 'ArrowRight' ? (idx === 0 ? stars.length - 1 : idx - 1) : (idx === stars.length - 1 ? 0 : idx + 1);
         stars[idx].focus();
       }
     });
   });
 
-  // ذخیره امتیاز انتخاب شده و بروزرسانی UI + ارسال به Netlify و دریافت میانگین
   function saveRating(value) {
     if (!currentItem) return;
     const title = currentItem.dataset.title;
@@ -1054,17 +1060,12 @@
     ratings[title].push(value);
     saveRatings(ratings);
 
-    // ارسال امتیاز به Netlify Function
     fetch("https://khaneehsan.netlify.app/api/submit-rating", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        title: title,
-        rating: value,
-        comment: ""
-      })
+      body: JSON.stringify({ title, rating: value, comment: "" })
     })
     .then(response => {
       if (!response.ok) throw new Error("خطا در ارسال امتیاز به سرور.");
@@ -1074,12 +1075,11 @@
       if (data.success) {
         const avg = data.averageRating || calculateAverage(ratings[title]);
         ratingMsg.textContent = `میانگین امتیاز: ${avg.toFixed(1)} از ۵ (${ratings[title].length} رای)`;
-
         stars.forEach(star => {
-          star.classList.toggle('selected', parseInt(star.dataset.value) <= Math.round(avg));
-          star.setAttribute('aria-checked', parseInt(star.dataset.value) <= Math.round(avg) ? 'true' : 'false');
+          const value = parseInt(star.dataset.value);
+          star.classList.toggle('selected', value <= Math.round(avg));
+          star.setAttribute('aria-checked', value <= Math.round(avg) ? 'true' : 'false');
         });
-
         updateAverageRatingsUI();
       } else {
         throw new Error(data.error || "خطا در دریافت پاسخ سرور.");
@@ -1091,42 +1091,15 @@
     });
   }
 
-  // وقتی صفحه بارگذاری شد، میانگین امتیازها را بروز کن
-  updateAverageRatingsUI();
-
-  
-  // ✨ کنترل نمایش وزن گرافیکی برای غذاهای خاص
-  const weightCards = document.querySelectorAll('.weight-card');
-  const dynamicPrice = document.getElementById('dynamicPrice');
-  const weightSection = document.getElementById('weightOptions');
-  const originalShowModal = showModal;
-  showModal = function(element) {
-    originalShowModal(element);
-    const titlesWithWeights = ["سوپ جو", "آش جو", "حلیم گندم"];
-    if (titlesWithWeights.includes(element.dataset.title)) {
-      weightSection.style.display = "block";
-    } else {
-      weightSection.style.display = "none";
-    }
-  };
-  weightCards.forEach(card => {
-    card.addEventListener('click', () => {
-      weightCards.forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-      dynamicPrice.textContent = parseInt(card.dataset.price).toLocaleString();
-    });
-  });
-
-
-  // امکان بستن مودال با دکمه Esc کیبورد
   window.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape' && modal.classList.contains('show')) {
+    if (e.key === 'Escape' && modal.classList.contains('show')) {
       modal.classList.remove('show');
     }
   });
 
-  // شروع اولیه با نمایش همه غذاها
+  updateAverageRatingsUI();
   changeCategory("همه");
 </script>
+
 </body>
 </html>
