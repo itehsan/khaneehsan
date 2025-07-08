@@ -1166,26 +1166,38 @@ function updateWeightSection(title) {
     const cards = section.querySelectorAll('.weight-card');
     const priceSpan = section.querySelector('.dynamicPrice');
 
-  cards.forEach(card => {
-  card.addEventListener('click', () => {
-    cards.forEach(c => c.classList.remove('active'));
-    card.classList.add('active');
-
-
-    const price = Number(card.dataset.price);
-if (!isNaN(price)) {
-  priceSpan.textContent = price.toLocaleString('fa-IR'); // یا بدون fa-IR برای انگلیسی
-} else {
-  priceSpan.textContent = "—";
-}
-
+ // cards.forEach(card => {
+//  card.addEventListener('click', () => {
+ //   cards.forEach(c => c.classList.remove('active'));
+ //   card.classList.add('active');
+//    const price = Number(card.dataset.price);
+//if (!isNaN(price)) {
+//  priceSpan.textContent = price.toLocaleString('fa-IR'); // یا بدون fa-IR برای انگلیسی
+//} else {
+//  priceSpan.textContent = "—";
+//}
 //const price = Number(card.dataset.price);
  //   if (!isNaN(price)) {
  //     priceSpan.textContent = price.toLocaleString();
   //  } else {
 //      priceSpan.textContent = "—";
 //    }
- });
+// });
+///});
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    cards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+
+    const priceStr = card.dataset.price?.replace(/[^0-9.]/g, ''); // فقط اعداد و نقطه
+    const price = Number(priceStr);
+
+    if (!isNaN(price)) {
+      priceSpan.textContent = price.toLocaleString('fa-IR'); // نمایش فارسی: ۸۰٬۰۰۰
+    } else {
+      priceSpan.textContent = "—";
+    }
+  });
 });
 
   }
