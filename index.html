@@ -746,10 +746,12 @@
 
       
 <!-- ✨ بخش انتخاب وزن برای سوپ جو، آش جو و حلیم گندم -->
-<div id="weightOptions" style="display:none;">
-  <h4>انتخاب وزن:</h4>
-  <div id="weightCards" class="weight-cards"></div>
-  <p>قیمت نهایی: <span id="dynamicPrice"></span> تومان</p>
+<div id="weightOptions" style="display: none; margin-top: 1.2rem;">
+  <h4 style="color:#f9c400; margin-bottom: 1rem;">انتخاب وزن:</h4>
+  <div class="weight-cards" id="weightCards"></div>
+  <p style="margin-top: 1rem; font-weight:bold; color:#f9c400;">
+    قیمت نهایی: <span id="dynamicPrice">۰</span> تومان
+  </p>
 </div>
 
 
@@ -796,14 +798,14 @@
 
   const weightsByTitle = {
     "سوپ جو": [
-      { weight: "۳۰۰ گرم", price: 24000 },
-      { weight: "پرسی", price: 45000 },
-      { weight: "۱ کیلو", price: 80000 }
+      { weight: "۳۰۰ گرم", price: ۲۴.۰۰۰ },
+      { weight: "پرسی", price: ۶۴.۰۰۰ },
+      { weight: "۱ کیلو", price: ۸۰.۰۰۰ }
     ],
     "آش جو": [
-      { weight: "نیم پرسی", price: 20000 },
-      { weight: "پرسی", price: 40000 },
-      { weight: "دو پرسی", price: 75000 }
+      { weight: "نیم پرسی", price: ۱۰۹.۰۰۰ },
+      { weight: "پرسی", price: ۹۳.۰۰۰ },
+      { weight: "۱ کیلویی", price: ۱۰۹.۰۰۰ }
     ],
     "حلیم گندم": [
       { weight: "کاسه کوچک", price: 25000 },
