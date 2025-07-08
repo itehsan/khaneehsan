@@ -1,45 +1,39 @@
-exports.handler = async function(event) {
-  // پاسخ به preflight CORS
-  if (event.httpMethod === "OPTIONS") {
-    return {
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "POST, OPTIONS"
-      },
-      body: ""
-    };
+function submitUserInfo() {
+  const name = document.getElementById('userName').value.trim();
+  const phone = document.getElementById('userPhone').value.trim();
+
+  if (!name || !phone) {
+    alert('لطفاً نام و شماره موبایل را وارد کنید.');
+    return;
   }
 
-  try {
-    const userData = JSON.parse(event.body);
+  // ذخیره اطلاعات در localStorage
+  localStorage.setItem('userName', name);
+  localStorage.setItem('userPhone', phone);
 
-    const response = await fetch("https://script.google.com/macros/s/AKfycbwiKBevxoGaZpImgEYp2Fd4OvB1_D71f0MOfJuwOxyBnmtg7vbCIf4pGtnNq6LVf60/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
-    });
+  // ارسال به Google Sheets
+  fetch("https://script.google.com/macros/s/AKfycbwiKBevxoGaZpImgEYp2Fd4OvB1_D71f0MOfJuwOxyBnmtg7vbCIf4pGtnNq6LVf60/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, phone })
+  })
+  .then(response => response.json())
+  .then(data => {
+    // موفقیت در ورود
+    console.log('ارسال شد:', data);
+    window.location.href = "menu.html"; // یا هر صفحه‌ای که منو در اون هست
+  })
+  .catch(error => {
+    console.error("خطا:", error);
+    alert("خطا در ارسال اطلاعات");
+  });
+}
 
-    const result = await response.json();
-
-    return {
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*"
-      },
-      body: JSON.stringify(result)
-    };
-
-  } catch (error) {
-    return {
-      statusCode: 500,
-      headers: {
-        "Access-Control-Allow-Origin": "*"
-      },
-      body: JSON.stringify({ error: error.message })
-    };
+// اگر قبلاً وارد شده، مستقیم منتقل کن
+window.addEventListener("DOMContentLoaded", () => {
+  const name = localStorage.getItem('userName');
+  const phone = localStorage.getItem('userPhone');
+  if (name && phone) {
+    window.location.href = "menu.html";
   }
-};
+});
