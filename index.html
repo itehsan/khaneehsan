@@ -1166,13 +1166,20 @@ function updateWeightSection(title) {
     const cards = section.querySelectorAll('.weight-card');
     const priceSpan = section.querySelector('.dynamicPrice');
 
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        cards.forEach(c => c.classList.remove('active'));
-        card.classList.add('active');
-        priceSpan.textContent = parseInt(card.dataset.price).toLocaleString();
-      });
-    });
+  cards.forEach(card => {
+  card.addEventListener('click', () => {
+    cards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    
+    const price = parseInt(card.dataset.price);
+    if (!isNaN(price)) {
+      priceSpan.textContent = price.toLocaleString();
+    } else {
+      priceSpan.textContent = "—";
+    }
+  });
+});
+
   }
 }
 
