@@ -985,6 +985,27 @@
     modal.focus();
   }
 
+ // .................................
+  function openModal(productElement) {
+  const title = productElement.querySelector('.product-title').textContent.trim();
+  const price = productElement.querySelector('.product-price').textContent.trim();
+
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalPrice').textContent = price;
+
+  // مخفی کردن قیمت برای سوپ، آش، حلیم
+  if (['سوپ جو', 'آش جو', 'حلیم گندم'].includes(title)) {
+    document.getElementById('modalPrice').style.display = 'none';
+  } else {
+    document.getElementById('modalPrice').style.display = 'block';
+  }
+
+  // نمایش مودال
+  document.getElementById('productModal').style.display = 'block';
+}
+
+//  ..................................
+
   // بستن مودال با کلیک روی دکمه بستن
   modalClose.addEventListener('click', () => {
     modal.classList.remove('show');
