@@ -518,7 +518,7 @@
   <main class="menu-container" role="list" aria-label="لیست غذاها">
     
     <!-- نمونه غذاها: هر آیتم یک div با داده‌ها -->
-    <div class="menu-item" role="listitem" tabindex="0" data-category="پیش غذا" data-title="سوپ جو" data-img="https://itehsan.github.io/khaneehsan/soup.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
+    <div class="menu-item" role="listitem" tabindex="0" data-category="پیش غذا" data-title="سوپ جو" data-price="۸۳.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/soup.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
       <div class="info">
         <strong>سوپ جو</strong>
         <span>کیلویی۸۰.۰۰۰ تومان</span>
@@ -527,7 +527,7 @@
       <div class="average-rating" aria-label="میانگین امتیاز: 0 از 5" data-title="سوپ جو"></div>
     </div>
 
-    <div class="menu-item" role="listitem" tabindex="0" data-category="پیش غذا" data-title="آش جو" data-img="https://itehsan.github.io/khaneehsan/ash.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
+    <div class="menu-item" role="listitem" tabindex="0" data-category="پیش غذا" data-title="آش جو" data-price="۱۰۹.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/ash.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
       <div class="info">
         <strong>آش جو</strong>
         <span>کیلویی۱۰۹.۰۰۰ تومان</span>
@@ -537,7 +537,7 @@
     </div>
 
     <!-- پیش غذا -->
-<div class="menu-item" role="listitem" tabindex="0" data-category="پیش غذا" data-title="حلیم گندم" data-img="https://itehsan.github.io/khaneehsan/haleam.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
+<div class="menu-item" role="listitem" tabindex="0" data-category="پیش غذا" data-title="حلیم گندم" data-price="۱۴۸.۰۰۰ تومان" data-img="https://itehsan.github.io/khaneehsan/haleam.jpg" onclick="showModal(this)" onkeydown="if(event.key==='Enter'){showModal(this)}">
   <div class="info">
     <strong>حلیم گندم</strong>
     <span>کیلویی ۱۴۸.۰۰۰ تومان</span>
@@ -937,20 +937,12 @@
   let currentItem = null;
 
   // نمایش مودال و پر کردن اطلاعات بر اساس آیتم انتخاب شده
-  function (element) {
+  function showModal(element) {
     currentItem = element;
     modalImg.src = element.dataset.img;
     modalImg.alt = element.dataset.title;
     modalTitle.textContent = element.dataset.title;
     modalPrice.textContent = element.dataset.price;
-
-    // اگر غذا از نوع خاص بود، قیمت را پنهان کن
-if (["سوپ جو", "آش جو", "حلیم"].includes(element.dataset.title)) {
-  modalPrice.style.display = "none";
-} else {
-  modalPrice.style.display = "block";
-}
-
 
     // نمایش زمان سفارش فقط برای "سوپ جو" و "آش جو"
     if(element.dataset.title === "سوپ جو"){
@@ -992,7 +984,6 @@ if (["سوپ جو", "آش جو", "حلیم"].includes(element.dataset.title)) {
     modal.classList.add('show');
     modal.focus();
   }
-
 
   // بستن مودال با کلیک روی دکمه بستن
   modalClose.addEventListener('click', () => {
@@ -1108,8 +1099,8 @@ if (["سوپ جو", "آش جو", "حلیم"].includes(element.dataset.title)) {
   const weightCards = document.querySelectorAll('.weight-card');
   const dynamicPrice = document.getElementById('dynamicPrice');
   const weightSection = document.getElementById('weightOptions');
-  const original = ;
-   = function(element) {
+  const originalShowModal = showModal;
+  showModal = function(element) {
     originalShowModal(element);
     const titlesWithWeights = ["سوپ جو", "آش جو", "حلیم گندم"];
     if (titlesWithWeights.includes(element.dataset.title)) {
