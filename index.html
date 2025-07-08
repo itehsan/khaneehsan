@@ -746,15 +746,12 @@
 
       
 <!-- ✨ بخش انتخاب وزن برای سوپ جو، آش جو و حلیم گندم -->
-<div id="weightOptions" style="display: none; margin-top: 1.2rem;">
-  <h4 style="color:#f9c400; margin-bottom: 1rem;">انتخاب وزن:</h4>
-  <div class="weight-cards">
-    <div class="weight-card active" data-price="24000">۳۰۰ گرم<br><small>۲۴.۰۰۰ تومان</small></div>
-    <div class="weight-card" data-price="45000">پرسی<br><small>۴۵.۰۰۰ تومان</small></div>
-    <div class="weight-card" data-price="80000">۱ کیلو<br><small>۸۰.۰۰۰ تومان</small></div>
-  </div>
-  <p style="margin-top: 1rem; font-weight:bold; color:#f9c400;">قیمت نهایی: <span id="dynamicPrice">۲۴.۰۰۰</span> تومان</p>
+<div id="weightOptions" style="display:none;">
+  <h4>انتخاب وزن:</h4>
+  <div id="weightCards" class="weight-cards"></div>
+  <p>قیمت نهایی: <span id="dynamicPrice"></span> تومان</p>
 </div>
+
 
 <!-- بخش امتیازدهی ستاره‌ای -->
      <div class="rating" role="radiogroup" aria-label="امتیازدهی ستاره‌ای">
@@ -814,6 +811,40 @@
       { weight: "یک کیلو", price: 70000 }
     ]
   };
+
+  const weightSection = document.getElementById('weightOptions');
+const weightCardsContainer = document.getElementById('weightCards');
+const dynamicPrice = document.getElementById('dynamicPrice');
+
+if (weightsByTitle[element.dataset.title]) {
+  const weights = weightsByTitle[element.dataset.title];
+  weightCardsContainer.innerHTML = '';
+  weights.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'weight-card';
+    if (index === 0) card.classList.add('active'); // اولین گزینه پیش‌فرض فعال
+    card.dataset.price = item.price;
+    card.innerHTML = `${item.weight}<br><small>${item.price.toLocaleString()} تومان</small>`;
+    weightCardsContainer.appendChild(card);
+  });
+
+  // تنظیم قیمت اولیه
+  dynamicPrice.textContent = weights[0].price.toLocaleString();
+
+  // ثبت کلیک روی کارت‌ها
+  const allCards = weightCardsContainer.querySelectorAll('.weight-card');
+  allCards.forEach(card => {
+    card.addEventListener('click', () => {
+      allCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      dynamicPrice.textContent = parseInt(card.dataset.price).toLocaleString();
+    });
+  });
+
+  weightSection.style.display = "block";
+} else {
+  weightSection.style.display = "none";
+}
 
   function loadRatings() {
     try {
