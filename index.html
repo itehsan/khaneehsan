@@ -801,10 +801,11 @@
   </footer>
 
 <script>
-  const name = localStorage.getItem('userName');
-  const phone = localStorage.getItem('userPhone');
+  const name = localStorage.getItem("userName");
+  const phone = localStorage.getItem("userPhone");
+
   if (!name || !phone) {
-    window.location.href = 'login.html';
+    window.location.href = "welcome.html";
   }
   // ======= تعریف متغیرهای اصلی برای المان‌های HTML =======
   const sideMenu = document.getElementById('sideMenu'); // منوی جانبی
