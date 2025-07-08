@@ -944,6 +944,14 @@
     modalTitle.textContent = element.dataset.title;
     modalPrice.textContent = element.dataset.price;
 
+    // اگر غذا از نوع خاص بود، قیمت را پنهان کن
+if (["سوپ جو", "آش جو", "حلیم"].includes(element.dataset.title)) {
+  modalPrice.style.display = "none";
+} else {
+  modalPrice.style.display = "block";
+}
+
+
     // نمایش زمان سفارش فقط برای "سوپ جو" و "آش جو"
     if(element.dataset.title === "سوپ جو"){
       modalOrderTime.textContent = "زمان سفارش: شنبه، دوشنبه، چهارشنبه ۱۲ تا ۱۵";
@@ -985,23 +993,6 @@
     modal.focus();
   }
 
-  function openModal(productElement) {
-  const title = productElement.querySelector('.product-title').textContent.trim();
-  const price = productElement.querySelector('.product-price').textContent.trim();
-
-  document.getElementById('modalTitle').textContent = title;
-  document.getElementById('modalPrice').textContent = price;
-
-  // مخفی کردن قیمت برای سوپ، آش، حلیم
-  if (['سوپ جو', 'آش جو', 'حلیم گندم'].includes(title)) {
-    document.getElementById('modalPrice').style.display = 'none';
-  } else {
-    document.getElementById('modalPrice').style.display = 'block';
-  }
-
-  // نمایش مودال
-  document.getElementById('productModal').style.display = 'block';
-}
 
   // بستن مودال با کلیک روی دکمه بستن
   modalClose.addEventListener('click', () => {
