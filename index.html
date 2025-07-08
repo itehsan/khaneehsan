@@ -1170,15 +1170,23 @@ function updateWeightSection(title) {
   card.addEventListener('click', () => {
     cards.forEach(c => c.classList.remove('active'));
     card.classList.add('active');
-    
-const price = Number(card.dataset.price);
-    if (!isNaN(price)) {
-      priceSpan.textContent = price.toLocaleString();
-    } else {
-      priceSpan.textContent = "—";
-    }
-  });
-});
+
+
+    const price = Number(card.dataset.price);
+if (!isNaN(price)) {
+  priceSpan.textContent = price.toLocaleString('fa-IR'); // یا بدون fa-IR برای انگلیسی
+} else {
+  priceSpan.textContent = "—";
+}
+
+//const price = Number(card.dataset.price);
+ //   if (!isNaN(price)) {
+ //     priceSpan.textContent = price.toLocaleString();
+  //  } else {
+//      priceSpan.textContent = "—";
+//    }
+//  });
+//});
 
   }
 }
