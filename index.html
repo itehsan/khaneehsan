@@ -1171,7 +1171,7 @@ function updateWeightSection(title) {
     cards.forEach(c => c.classList.remove('active'));
     card.classList.add('active');
     
-    const price = parseInt(card.dataset.price);
+const price = Number(card.dataset.price);
     if (!isNaN(price)) {
       priceSpan.textContent = price.toLocaleString();
     } else {
